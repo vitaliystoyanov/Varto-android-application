@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="action_bar">#ff272727</color>
+    <color name="button_press_bar">#45000000</color>
+    <color name="text_color_white">#ffffffff</color>
+    <color name="text_color_black">#ff000000</color>
+    <color name="text_color_gray">#ff9e9e9e</color>
+</resources>

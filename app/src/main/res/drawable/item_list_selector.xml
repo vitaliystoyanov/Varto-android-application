@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Когда по элементу списка нажали применять item_bg_hover.xml -->
+    <item android:drawable="@drawable/item_bg_hover"
+        android:state_pressed="true" />
+
+    <!-- Когда стоит фокус на элементе списка то применить item_bg_hover.xml -->
+    <item android:drawable="@drawable/item_bg_hover"
+        android:state_focused="true" />
+
+    <!-- И в простом состоянии применить item_bg.xml -->
+    <item android:drawable="@drawable/item_bg" />
+</selector>

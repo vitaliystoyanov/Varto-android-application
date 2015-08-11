@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/action_bar"
+        android:id="@+id/action_bar">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true">
+
+            <View android:layout_height="fill_parent"
+                android:layout_width="1dp"
+                android:background="#ff353535"
+                android:layout_alignParentStart="true" />
+
+            <ImageButton
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:id="@+id/button_refresh"
+                android:src="@mipmap/ic_refresh_v2"
+                android:clickable="true"
+                android:layout_alignParentTop="true"
+                android:layout_toStartOf="@+id/button_settings"
+                android:layout_alignParentBottom="true"
+                style="@style/AppThemeButton" />
+
+            <View android:layout_height="fill_parent"
+                android:layout_width="1dp"
+                android:background="#ff353535"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/view" />
+
+            <ImageButton
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:id="@+id/button_settings"
+                android:src="@mipmap/ic_settings"
+                style="@style/AppThemeButton"
+                android:layout_alignParentTop="true" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/back_layout"
+            android:visibility="invisible">
+
+            <ImageButton
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:id="@+id/button_back"
+                android:src="@mipmap/ic_back"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:clickable="true"
+                style="@style/AppThemeButton" />
+
+            <es.esy.varto_novomyrgorod.varto.controller.components.TypefaceTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/status_location_bar_menu"
+                android:textSize="18sp"
+                android:id="@+id/textview_status"
+                android:textColor="#ffffffff"
+                android:gravity="center"
+                android:visibility="visible"
+                app:customTypeface="Lato-Light.ttf"
+                android:layout_marginLeft="-9dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/logo_layout">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/image_logo"
+                android:src="@mipmap/ic_logo"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container"
+        android:layout_below="@+id/action_bar">
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#92000000"
+        android:id="@+id/foregroung_panel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"
+        android:layout_below="@+id/action_bar"
+        android:gravity="center">
+
+    </RelativeLayout>
+
+</RelativeLayout>

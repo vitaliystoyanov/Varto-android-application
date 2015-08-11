@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:buttonStyle">@style/AppThemeButton</item>
+    </style>
+
+    <style name="AppThemeButton">
+        <item name="android:background">@drawable/buttons_acrionbar</item>
+    </style>
+
+    <style name="CustomButton">
+        <item name="android:background">@drawable/buttons_main</item>
+    </style>
+</resources>

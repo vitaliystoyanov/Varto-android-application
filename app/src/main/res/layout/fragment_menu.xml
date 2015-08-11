@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="@color/text_color_white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/layout_above"
+        android:layout_height="164dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:id="@+id/imageview_menu_logo"
+            android:src="@mipmap/ic_logo_vartoplus"
+            android:layout_marginLeft="17dp" />
+
+        <View android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#ffd0d0d0"
+            android:id="@+id/view"
+            android:layout_below="@+id/imageview_menu_logo" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/linearlayout_informaion_about_shop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/imageview_menu_logo"
+            android:paddingTop="17dp"
+            android:paddingBottom="17dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/ic_today"
+                    android:layout_marginRight="8dp" />
+
+                <es.esy.varto_novomyrgorod.varto.controller.components.TypefaceTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/timetable_for_today"
+                    android:textSize="14sp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/text_color_black"
+                    android:id="@+id/textview_timetable" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/ic_map"
+                    android:layout_marginRight="8dp" />
+
+                <es.esy.varto_novomyrgorod.varto.controller.components.TypefaceTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="EMPTY"
+                    android:id="@+id/textview_location"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_color_gray"
+                    android:gravity="left|center_vertical" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/ic_email"
+                    android:layout_marginRight="8dp" />
+
+                <es.esy.varto_novomyrgorod.varto.controller.components.TypefaceTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="EMPTY"
+                    android:id="@+id/textview_email"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_color_gray"
+                    android:gravity="left|center_vertical" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout_above"
+        android:orientation="vertical"
+        android:layout_marginTop="1dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imageview_news"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/textview_menu_news"
+                android:id="@+id/textview_menu_news"
+                android:gravity="center"
+                android:textColor="@color/text_color_white"
+                android:textSize="32sp"
+                android:typeface="serif"
+                style="@style/CustomButton" />
+
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#ffd0d0d0"
+                android:id="@+id/view1"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imageview_sale"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/textview_menu_sale"
+                android:id="@+id/textview_menu_shares"
+                android:gravity="center"
+                android:textColor="@color/text_color_white"
+                android:textSize="32sp"
+                android:typeface="serif"
+                style="@style/CustomButton" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

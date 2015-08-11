@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/action_bar">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:id="@+id/imageview_splash_logo"
+        android:src="@mipmap/ic_logo_splash"
+        android:layout_above="@+id/textview_progress"
+        android:layout_centerHorizontal="true" />
+
+    <es.esy.varto_novomyrgorod.varto.controller.components.TypefaceTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/textview_loading_splash"
+        android:id="@+id/textview_progress"
+        android:gravity="center"
+        android:textSize="13sp"
+        android:typeface="sans"
+        app:customTypeface="Lato-Light.ttf"
+        android:textColor="@color/text_color_white"
+        android:layout_alignTop="@+id/progressBar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:progress="100"
+        android:indeterminateOnly="true"
+        android:layout_marginTop="284dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/imageview_splash_logo" />
+
+</RelativeLayout>
