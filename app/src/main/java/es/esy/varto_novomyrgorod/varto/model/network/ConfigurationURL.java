@@ -1,6 +1,7 @@
 package es.esy.varto_novomyrgorod.varto.model.network;
 
 final class ConfigurationURL {
+    //
     public static String URL = "http://varto-novomyrgorod.esy.es/api";
     public static String URL_TIMETABLE = URL + "/timetable/get.php";
     public static String URL_NEWS_GET = URL + "/news/get.php";
