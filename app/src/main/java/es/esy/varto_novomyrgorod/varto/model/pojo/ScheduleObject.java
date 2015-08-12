@@ -12,6 +12,12 @@ public class ScheduleObject {
     private String friday;
     private String saturday;
 
+    public ScheduleObject() {
+        this.shop = "not";
+        this.sunday = "неизвестно";
+        this.thursday = "неизвестно";
+    }
+
     public String getSunday() {
         return sunday;
     }

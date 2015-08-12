@@ -10,11 +10,14 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.Collections;
 import java.util.List;
 
 import es.esy.varto_novomyrgorod.varto.R;
 import es.esy.varto_novomyrgorod.varto.controller.components.NewsListviewAdapter;
 import es.esy.varto_novomyrgorod.varto.model.MemoryPreferences;
+import es.esy.varto_novomyrgorod.varto.model.database.DBHelper;
+import es.esy.varto_novomyrgorod.varto.model.database.DBNewsProvider;
 import es.esy.varto_novomyrgorod.varto.model.pojo.NewsObject;
 
 public class NewsFragment extends Fragment {
@@ -62,8 +65,12 @@ public class NewsFragment extends Fragment {
     class loadNewsAsycnTask extends AsyncTask<Void, Void, List<NewsObject>> {
         @Override
         protected List<NewsObject> doInBackground(Void... params) {
-            MemoryPreferences memoryPreferences = new MemoryPreferences(getActivity());
-            return memoryPreferences.getNewsFromMemory();
+            DBNewsProvider dbNewsProvider = new DBNewsProvider(new DBHelper(getActivity()));
+
+            if (fromFragment != null)
+                return dbNewsProvider.getNewsFromSQLDatabase(fromFragment);
+            else
+                return Collections.emptyList();
         }
 
         @Override

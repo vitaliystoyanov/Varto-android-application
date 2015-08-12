@@ -18,6 +18,7 @@ import es.esy.varto_novomyrgorod.varto.R;
 import es.esy.varto_novomyrgorod.varto.controller.fragments.MainMenuFragment;
 import es.esy.varto_novomyrgorod.varto.model.ComplexObject;
 import es.esy.varto_novomyrgorod.varto.model.database.DBHelper;
+import es.esy.varto_novomyrgorod.varto.model.database.DBNewsProvider;
 import es.esy.varto_novomyrgorod.varto.model.database.DBScheduleProvider;
 import es.esy.varto_novomyrgorod.varto.model.network.ComplexObjectProvider;
 
@@ -103,9 +104,13 @@ public class MainFragmentActivity extends FragmentActivity {
 
         protected Void doInBackground(Void... args) {
             ComplexObject complexObject = new ComplexObjectProvider().getComplexObject();
+            DBHelper dbHelper = new DBHelper(MainFragmentActivity.this);
 
-            DBScheduleProvider dbManager = new DBScheduleProvider(new DBHelper(MainFragmentActivity.this));
-            dbManager.setTimetablesObjectToDB(complexObject.getScheduleObjects());
+            DBScheduleProvider dbManager = new DBScheduleProvider(dbHelper);
+            dbManager.setScheduleObjectToDB(complexObject.getScheduleObjects());
+
+            DBNewsProvider dbNewsProvider = new DBNewsProvider(dbHelper);
+            dbNewsProvider.setNewsToSQLDatabase(complexObject.getNewsObjects());
 
             return null;
         }

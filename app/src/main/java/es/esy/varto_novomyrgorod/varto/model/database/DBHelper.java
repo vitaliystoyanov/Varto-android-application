@@ -5,26 +5,33 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-/**
- * Created by Vitaliy Stoyanov on 8/11/2015.
- */
 public class DBHelper extends SQLiteOpenHelper {
+    private static final String TAG_DATABASE_DB = "DB";
+    private static final int DATABASE_VERSION = 1;
+
     public DBHelper(Context context) {
-        super(context, "DB", null, 1);
+        super(context, TAG_DATABASE_DB, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d("DBG", "onCreate database");
-        db.execSQL("create table timetable ("
-                + "shop text,"
-                + "sunday text,"
-                + "monday text,"
-                + "tuesday text,"
-                + "wednesday text,"
-                + "thursday text,"
-                + "friday text,"
-                + "saturday text" + ");");
+        db.execSQL("create table " + DBConstants.TAG_TABLE_SCHEDULE + " ("
+                + DBConstants.TAG_SHOP + " text,"
+                + DBConstants.TAG_SUNDAY + " text,"
+                + DBConstants.TAG_MONDAY + " text,"
+                + DBConstants.TAG_TUESDAY + " text,"
+                + DBConstants.TAG_WEDNESDAY + " text,"
+                + DBConstants.TAG_THURSDAY + " text,"
+                + DBConstants.TAG_FRIDAY + " text,"
+                + DBConstants.TAG_SATURDAY + " text" + ");");
+        db.execSQL("create table " + DBConstants.TAG_TABLE_NEWS + " ("
+                + DBConstants.TAG_ID + " int,"
+                + DBConstants.TAG_TITLE + " text,"
+                + DBConstants.TAG_IMAGE + " text,"
+                + DBConstants.TAG_ARTICLE + " text,"
+                + DBConstants.TAG_SHOP + " text,"
+                + DBConstants.TAG_CREATED_AT + " text" + ");");
     }
 
     @Override

@@ -8,36 +8,27 @@ import java.util.List;
 
 import es.esy.varto_novomyrgorod.varto.model.pojo.ScheduleObject;
 
-public class DBScheduleProvider {
-    private static final String LOG_TAG = "DBG";
-    private static final String TAG_TABLE = "timetable";
-    private static final String TAG_SHOP = "shop";
-    private static final String TAG_SUNDAY = "sunday";
-    private static final String TAG_MONDAY = "monday";
-    private static final String TAG_TUESDAY = "tuesday";
-    private static final String TAG_WEDNESDAY = "wednesday";
-    private static final String TAG_THURSDAY = "thursday";
-    private static final String TAG_FRIDAY = "friday";
-    private static final String TAG_SATURDAY = "saturday";
+public class DBScheduleProvider extends DBConstants{
     private DBHelper localDBHelper;
+    private static final String LOG_TAG = "DBG";
 
     public DBScheduleProvider(DBHelper helper) {
         this.localDBHelper = helper;
     }
 
-    public void setTimetablesObjectToDB(List<ScheduleObject> listTimetables) {
+    public void setScheduleObjectToDB(List<ScheduleObject> listTimetables) {
         if (!listTimetables.isEmpty()) {
             SQLiteDatabase DBConnect = null;
             try {
                 DBConnect = localDBHelper.getWritableDatabase();
-                Log.i(LOG_TAG, "DB connect: " + DBConnect.toString());
+                Log.i(LOG_TAG, "[TABLE: schedule]SQL: getWritableDatabase(): " + DBConnect.toString());
 
                 Cursor cursor = null;
                 try {
-                    cursor = DBConnect.query(TAG_TABLE, null, null, null, null, null, null);
+                    cursor = DBConnect.query(TAG_TABLE_SCHEDULE, null, null, null, null, null, null);
                     if (cursor.moveToFirst()) {
-                        int clearCount = DBConnect.delete(TAG_TABLE, null, null);
-                        Log.i(LOG_TAG, "SQL:  SUCCESS DELETE, deleted count rows: " + clearCount);
+                        int clearCount = DBConnect.delete(TAG_TABLE_SCHEDULE, null, null);
+                        Log.i(LOG_TAG, "[TABLE: schedule]SQL:  SUCCESS DELETE, deleted count rows: " + clearCount);
                     }
                 } finally {
                     if (cursor != null) cursor.close();
@@ -56,15 +47,14 @@ public class DBScheduleProvider {
                     contentValues.put(TAG_FRIDAY, scheduleObject.getFriday());
                     contentValues.put(TAG_SATURDAY, scheduleObject.getSaturday());
 
-                    Log.i(LOG_TAG, "Size content value to insert to DB: " + String.valueOf(contentValues.size()));
-                    Log.i(LOG_TAG, "SQL: Result SQL insert: " + String.valueOf(DBConnect.insert(TAG_TABLE, null, contentValues)));
+                    Log.i(LOG_TAG, "[TABLE: schedule]SQL: Result SQL insert: " + String.valueOf(DBConnect.insert(TAG_TABLE_SCHEDULE, null, contentValues)));
                 }
 
             } finally {
                 if (DBConnect != null) DBConnect.close();
             }
         } else {
-            Log.i(LOG_TAG, "List<ScheduleObject> is empty!");
+            Log.i(LOG_TAG, "[TABLE: schedule]  List<ScheduleObject> is empty!");
         }
     }
 
@@ -74,16 +64,16 @@ public class DBScheduleProvider {
             SQLiteDatabase DBConnect = null;
             try {
                 DBConnect = localDBHelper.getWritableDatabase();
-                Log.i(LOG_TAG, "DB connect: " + DBConnect.toString());
+                Log.i(LOG_TAG, "[TABLE: schedule]SQL: getWritableDatabase(): " + DBConnect.toString());
 
                 String whereArgs = "shop = ?";
                 String[] whereValues = new String[]{shop};
 
                 Cursor cursor = null;
                 try {
-                    cursor = DBConnect.query(TAG_TABLE, null, whereArgs, whereValues, null, null, null);
+                    cursor = DBConnect.query(TAG_TABLE_SCHEDULE, null, whereArgs, whereValues, null, null, null);
                     if (cursor.moveToFirst()) {
-                        Log.i(LOG_TAG, "SQL: query success!Finded row");
+                        Log.i(LOG_TAG, "[TABLE: schedule]  getScheduleFromDB(String shop) - the successful request, found the rows.");
                         int shopColIndex = cursor.getColumnIndex(TAG_SHOP);
                         int sundayColIndex = cursor.getColumnIndex(TAG_SUNDAY);
                         int mondayColIndex = cursor.getColumnIndex(TAG_MONDAY);
@@ -110,7 +100,7 @@ public class DBScheduleProvider {
             }
             return scheduleObject;
         } else {
-            Log.i(LOG_TAG, "getScheduleFromDB(String shop): Argument a shop is NULL!");
+            Log.i(LOG_TAG, "[TABLE: schedule]  getScheduleFromDB(String shop): Argument a shop is NULL!");
             return null;
         }
     }
