@@ -49,7 +49,7 @@ public class NewsListviewAdapter extends ArrayAdapter<String> {
 
         NewsObject objectItem = data.get(position);
 
-        title.setText(objectItem.getTitle());
+        title.setText(objectItem.getTitle() +"");
         article.setText(objectItem.getArticle());
         time.setText(objectItem.getCreated_at());
         return view;
