@@ -3,6 +3,7 @@ package es.esy.varto_novomyrgorod.varto.model.pojo;
 public class NewsObject {
     private Integer id;
     private String shop;
+    private String image;
     private String title;
     private String article;
     private String created_at;
@@ -21,6 +22,14 @@ public class NewsObject {
 
     public void setShop(String shop) {
         this.shop = shop;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getTitle() {
