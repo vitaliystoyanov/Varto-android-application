@@ -32,6 +32,7 @@ public class ComplexObjectProvider {
     public static final String JSON_OLD_PRICE = "old_price";
     public static final String JSON_NEW_PRICE = "new_price";
     public static final String JSON_TIMETABLES = "timetables";
+    private static final String JSON_IMAGE = "image";
     private HTTPRequestMaker request;
 
     public ComplexObjectProvider() {
@@ -68,6 +69,7 @@ public class ComplexObjectProvider {
                         object.setId(jsonObject.getInt(JSON_ID));
                         object.setShop(jsonObject.getString(JSON_SHOP));
                         object.setTitle(jsonObject.getString(JSON_TITLE));
+                        object.setImage(jsonObject.getString(JSON_IMAGE));
                         object.setArticle(jsonObject.getString(JSON_ARTICLE));
                         object.setCreated_at(jsonObject.getString(JSON_CREATED_AT));
 
