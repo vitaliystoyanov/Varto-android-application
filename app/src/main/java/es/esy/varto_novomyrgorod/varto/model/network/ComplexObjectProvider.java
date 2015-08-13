@@ -10,12 +10,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import es.esy.varto_novomyrgorod.varto.model.ComplexObject;
-import es.esy.varto_novomyrgorod.varto.model.network.ConfigurationURL;
-import es.esy.varto_novomyrgorod.varto.model.network.HTTPRequestMaker;
 import es.esy.varto_novomyrgorod.varto.model.pojo.CatalogObject;
 import es.esy.varto_novomyrgorod.varto.model.pojo.NewsObject;
-import es.esy.varto_novomyrgorod.varto.model.pojo.SharesObject;
+import es.esy.varto_novomyrgorod.varto.model.pojo.SaleObject;
 import es.esy.varto_novomyrgorod.varto.model.pojo.ScheduleObject;
 
 public class ComplexObjectProvider {
@@ -33,6 +30,7 @@ public class ComplexObjectProvider {
     public static final String JSON_NEW_PRICE = "new_price";
     public static final String JSON_TIMETABLES = "timetables";
     private static final String JSON_IMAGE = "image";
+    private static final String JSON_CATALOG = "catalog";
     private HTTPRequestMaker request;
 
     public ComplexObjectProvider() {
@@ -50,7 +48,7 @@ public class ComplexObjectProvider {
     }
 
     //TODO рефакторинг и переделка.
-    private List<NewsObject> getNews() {
+    public List<NewsObject> getNews() {
         String respond = request.makeGETRequest(ConfigurationURL.URL_NEWS_GET, null);
         JSONObject json = getJSONObject(respond);
 
@@ -87,7 +85,7 @@ public class ComplexObjectProvider {
         return Collections.emptyList();
     }
 
-    private List<CatalogObject> getCatalog() {
+    public List<CatalogObject> getCatalogs() {
         String respond = request.makeGETRequest(ConfigurationURL.URL_CATALOGS, null);
         JSONObject json = getJSONObject(respond);
 
@@ -97,12 +95,12 @@ public class ComplexObjectProvider {
             try {
                 int success = json.getInt(JSON_SUCCESS);
                 if (success == 1) {
-                    listCatalogs = new ArrayList<CatalogObject>();
+                    listCatalogs = new ArrayList<>();
                     JSONArray catalogsArray = json.getJSONArray(JSON_CATALOGS);
                     for (int i = 0; i < catalogsArray.length(); i++) {
                         JSONObject jsonObject = catalogsArray.getJSONObject(i);
-                        listCatalogs.add(new CatalogObject(jsonObject.getString(JSON_CATALOGS),
-                                jsonObject.getString(JSON_SHOP)));
+                        listCatalogs.add(new CatalogObject(jsonObject.getString(JSON_SHOP),
+                                jsonObject.getString(JSON_CATALOG)));
                     }
 
                     return listCatalogs;
@@ -116,25 +114,27 @@ public class ComplexObjectProvider {
         return Collections.emptyList();
     }
 
-    private List<SharesObject> getShares() {
+    public List<SaleObject> getSales() {
         String respond = request.makeGETRequest(ConfigurationURL.URL_SHARES, null);
         JSONObject json = getJSONObject(respond);
 
-        ArrayList<SharesObject> listOfParsedShares = null;
+        ArrayList<SaleObject> listOfParsedShares = null;
         if (json != null) {
-            Log.d("DBG", "JSON from URL_SHARES: " + json.toString());
+            Log.d("DBG", "JSON from URL_SALES: " + json.toString());
             try {
                 int success = json.getInt(JSON_SUCCESS);
                 if (success == 1) {
-                    listOfParsedShares = new ArrayList<SharesObject>();
+                    listOfParsedShares = new ArrayList<>();
                     JSONArray sharesArray = json.getJSONArray(JSON_SHARES);
                     for (int i = 0; i < sharesArray.length(); i++) {
                         JSONObject jsonObject = sharesArray.getJSONObject(i);
-                        SharesObject object = new SharesObject();
+                        SaleObject object = new SaleObject();
 
                         object.setId(jsonObject.getInt(JSON_ID));
                         object.setShop(jsonObject.getString(JSON_SHOP));
                         object.setTitle(jsonObject.getString(JSON_TITLE));
+                        object.setCatalog(jsonObject.getString(JSON_CATALOG));
+                        object.setImage(jsonObject.getString(JSON_IMAGE));
                         object.setDescription(jsonObject.getString(JSON_DESCRIPTION));
                         object.setNew_price(jsonObject.getString(JSON_NEW_PRICE));
                         object.setOld_price(jsonObject.getString(JSON_OLD_PRICE));
@@ -154,7 +154,7 @@ public class ComplexObjectProvider {
         return Collections.emptyList();
     }
 
-    private List<ScheduleObject> getTimetables() {
+    public List<ScheduleObject> getTimetables() {
         String respond = request.makeGETRequest(ConfigurationURL.URL_TIMETABLE, null);
         JSONObject json = getJSONObject(respond);
 
@@ -164,7 +164,7 @@ public class ComplexObjectProvider {
             try {
                 int success = json.getInt(JSON_SUCCESS);
                 if (success == 1) {
-                    listOfParsedTimetables = new ArrayList<ScheduleObject>();
+                    listOfParsedTimetables = new ArrayList<>();
                     JSONArray timetablesArray = json.getJSONArray(JSON_TIMETABLES);
 
                     for (int i = 0; i < timetablesArray.length(); i++) {
@@ -192,22 +192,5 @@ public class ComplexObjectProvider {
         }
 
         return Collections.emptyList();
-    }
-
-    public ComplexObject getComplexObject() {
-        ComplexObject object = null;
-
-        List<NewsObject> news = getNews();
-        //ArrayList<CatalogObject> catalogs = getCatalog();
-        List<SharesObject> shares = getShares();
-        List<ScheduleObject> timetables = getTimetables();
-
-        object = new ComplexObject();
-        object.setNewsObjects(news);
-        //object.setCatalogObjects(catalogs);
-        object.setSharesObjects(shares);
-        object.setScheduleObjects(timetables);
-
-        return object;
     }
 }

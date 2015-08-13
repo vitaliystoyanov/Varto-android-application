@@ -68,7 +68,7 @@
                 android:clickable="true"
                 style="@style/AppThemeButton" />
 
-            <es.esy.varto_novomyrgorod.varto.controller.components.TypefaceTextView
+            <es.esy.varto_novomyrgorod.varto.components.TypefaceTextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"

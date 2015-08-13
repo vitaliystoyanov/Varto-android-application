@@ -1,4 +1,4 @@
-package es.esy.varto_novomyrgorod.varto.controller.components;
+package es.esy.varto_novomyrgorod.varto.components;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

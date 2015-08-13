@@ -32,6 +32,19 @@ public class DBHelper extends SQLiteOpenHelper {
                 + DBConstants.TAG_ARTICLE + " text,"
                 + DBConstants.TAG_SHOP + " text,"
                 + DBConstants.TAG_CREATED_AT + " text" + ");");
+        db.execSQL("create table " + DBConstants.TAG_TABLE_SALES + " ("
+                + DBConstants.TAG_ID + " int,"
+                + DBConstants.TAG_TITLE + " text,"
+                + DBConstants.TAG_IMAGE + " text,"
+                + DBConstants.TAG_CATALOG + " text,"
+                + DBConstants.TAG_DESCRIPTION + " text,"
+                + DBConstants.TAG_SHOP + " text,"
+                + DBConstants.TAG_NEW_PRICE + " text,"
+                + DBConstants.TAG_OLD_PRICE + " text,"
+                + DBConstants.TAG_CREATED_AT + " text" + ");");
+        db.execSQL("create table " + DBConstants.TAG_TABLE_CATALOG + " ("
+                + DBConstants.TAG_SHOP + " text,"
+                + DBConstants.TAG_NAME + " text" + ");");
     }
 
     @Override

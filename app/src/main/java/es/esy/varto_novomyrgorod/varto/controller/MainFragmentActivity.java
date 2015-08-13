@@ -16,9 +16,10 @@ import android.widget.TextView;
 
 import es.esy.varto_novomyrgorod.varto.R;
 import es.esy.varto_novomyrgorod.varto.controller.fragments.MainMenuFragment;
-import es.esy.varto_novomyrgorod.varto.model.ComplexObject;
+import es.esy.varto_novomyrgorod.varto.model.database.DBCatalogProvider;
 import es.esy.varto_novomyrgorod.varto.model.database.DBHelper;
 import es.esy.varto_novomyrgorod.varto.model.database.DBNewsProvider;
+import es.esy.varto_novomyrgorod.varto.model.database.DBSalesProvider;
 import es.esy.varto_novomyrgorod.varto.model.database.DBScheduleProvider;
 import es.esy.varto_novomyrgorod.varto.model.network.ComplexObjectProvider;
 
@@ -43,7 +44,7 @@ public class MainFragmentActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        new LoadUpdatesInfoAsync().execute();
+        new LoadContentAsyncTask().execute();
     }
 
     @Override
@@ -68,7 +69,7 @@ public class MainFragmentActivity extends FragmentActivity {
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //new LoadUpdatesInfoAsync().execute();
+                new LoadContentAsyncTask().execute();
             }
         });
         final FragmentManager manager = getSupportFragmentManager();
@@ -88,37 +89,42 @@ public class MainFragmentActivity extends FragmentActivity {
         transaction.commit();
     }
 
-    class LoadUpdatesInfoAsync extends AsyncTask<Void, Integer, Void> {
+    class LoadContentAsyncTask extends AsyncTask<Void, Integer, Void> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-              foreground.setVisibility(View.VISIBLE);
-//            newsPlusLayout.setVisibility(View.INVISIBLE);
-//            sharesPlusLayout.setVisibility(View.INVISIBLE);
-//            newsDishesLayout.setVisibility(View.INVISIBLE);
-//            sharesDishesLayout.setVisibility(View.INVISIBLE);
-//
-              animationRefreshButton(true);
+                foreground.setVisibility(View.VISIBLE);
+                refresh.setClickable(false);
+//              newsPlusLayout.setVisibility(View.INVISIBLE);
+//              sharesPlusLayout.setVisibility(View.INVISIBLE);
+//              newsDishesLayout.setVisibility(View.INVISIBLE);
+//              sharesDishesLayout.setVisibility(View.INVISIBLE);
+                animationRefreshButton(true);
         }
 
         protected Void doInBackground(Void... args) {
-            ComplexObject complexObject = new ComplexObjectProvider().getComplexObject();
+            ComplexObjectProvider complexObject = new ComplexObjectProvider();
+
             DBHelper dbHelper = new DBHelper(MainFragmentActivity.this);
-
             DBScheduleProvider dbManager = new DBScheduleProvider(dbHelper);
-            dbManager.setScheduleObjectToDB(complexObject.getScheduleObjects());
-
             DBNewsProvider dbNewsProvider = new DBNewsProvider(dbHelper);
-            dbNewsProvider.setNewsToSQLDatabase(complexObject.getNewsObjects());
+            DBCatalogProvider dbCatalogProvider = new DBCatalogProvider(dbHelper);
+            DBSalesProvider dbSalesProvider = new DBSalesProvider(dbHelper);
+
+            dbManager.setScheduleObjectToDB(complexObject.getTimetables());
+            dbNewsProvider.setNewsToSQLDatabase(complexObject.getNews());
+            dbCatalogProvider.setCatalogsToSQLDatabase(complexObject.getCatalogs());
+            dbSalesProvider.setSaleObjectsToSQLDatabase(complexObject.getSales());
 
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
-             foreground.setVisibility(View.INVISIBLE);
-             animationRefreshButton(false);
+            foreground.setVisibility(View.INVISIBLE);
+            refresh.setClickable(true);
+            animationRefreshButton(false);
         }
     }
 

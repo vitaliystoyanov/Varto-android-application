@@ -5,12 +5,11 @@ public class CatalogObject {
     private String shop;
 
     public CatalogObject(String pShop, String pName) {
-        shop = pShop;
-        name = pName;
+        this.shop = pShop;
+        this.name = pName;
     }
 
     public CatalogObject() {
-
     }
 
     public String getName() {
@@ -19,5 +18,13 @@ public class CatalogObject {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getShop() {
+        return shop;
+    }
+
+    public void setShop(String shop) {
+        this.shop = shop;
     }
 }

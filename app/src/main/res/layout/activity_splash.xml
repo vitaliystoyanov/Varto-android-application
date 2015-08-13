@@ -13,7 +13,7 @@
         android:layout_above="@+id/textview_progress"
         android:layout_centerHorizontal="true" />
 
-    <es.esy.varto_novomyrgorod.varto.controller.components.TypefaceTextView
+    <es.esy.varto_novomyrgorod.varto.components.TypefaceTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/textview_loading_splash"

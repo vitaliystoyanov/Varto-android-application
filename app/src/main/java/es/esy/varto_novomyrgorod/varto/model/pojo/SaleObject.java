@@ -3,10 +3,12 @@ package es.esy.varto_novomyrgorod.varto.model.pojo;
 /**
  * Created by Vitaliy Stoyanov on 7/6/2015.
  */
-public class SharesObject {
+public class SaleObject {
     private Integer id;
     private String shop;
+    private String catalog;
     private String title;
+    private String image;
     private String description;
     private String new_price;
     private String old_price;
@@ -34,6 +36,22 @@ public class SharesObject {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getCatalog() {
+        return catalog;
+    }
+
+    public void setCatalog(String catalog) {
+        this.catalog = catalog;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getDescription() {
