@@ -69,12 +69,12 @@
                 android:clickable="true"
                 style="@style/AppThemeButton" />
 
-            <es.esy.varto_novomyrgorod.varto.components.TypefaceTextView
+            <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/status_location_bar_menu"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:id="@+id/textview_status"
                 android:textColor="#ffffffff"
                 android:gravity="center"
@@ -121,17 +121,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageView"
-            android:src="@mipmap/ic_logo"
+            android:src="@mipmap/ic_logo_splash"
             android:layout_alignWithParentIfMissing="false"
             android:layout_centerInParent="true" />
 
-        <es.esy.varto_novomyrgorod.varto.components.TypefaceTextView
+        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/foreground_text"
             android:id="@+id/textView"
             android:textColor="@color/text_color_white"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:customTypeface="Lato-Light.ttf"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"

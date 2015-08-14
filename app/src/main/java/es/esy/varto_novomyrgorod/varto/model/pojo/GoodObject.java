@@ -3,7 +3,7 @@ package es.esy.varto_novomyrgorod.varto.model.pojo;
 /**
  * Created by Vitaliy Stoyanov on 7/6/2015.
  */
-public class SaleObject {
+public class GoodObject {
     private Integer id;
     private String shop;
     private String catalog;

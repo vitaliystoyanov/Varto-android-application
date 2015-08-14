@@ -42,7 +42,7 @@ public class DBCatalogProvider extends DBConstants {
                     CatalogObject catalogObject = catalogsToSQLDatabase.get(i);
 
                     contentValues.put(TAG_SHOP, catalogObject.getShop());
-                    contentValues.put(TAG_NAME, catalogObject.getShop());
+                    contentValues.put(TAG_NAME, catalogObject.getName());
 
                     Log.i(TAG_LOG, "[TABLE: catalog]SQL:  Result SQL insert operation: "
                             + String.valueOf(DBConnect.insert(TAG_TABLE_CATALOG, null, contentValues))
@@ -84,6 +84,7 @@ public class DBCatalogProvider extends DBConstants {
                             object.setShop(cursor.getString(shopColIndex));
 
                             catalogObjects.add(object);
+                            Log.i(TAG_LOG, "name = " + object.getName() + ", shop = " + object.getShop());
                         } while (cursor.moveToNext());
                         Log.i(TAG_LOG, "[TABLE: catalog]SQL:  Total objects in the ArrayList<CatalogObject>"
                                 + ",which will return method: "

@@ -22,10 +22,10 @@ import es.esy.varto_novomyrgorod.varto.model.database.DBScheduleProvider;
 import es.esy.varto_novomyrgorod.varto.model.pojo.ScheduleObject;
 
 public class MenuFragment extends Fragment implements View.OnClickListener{
-    public static final String FROM = "FROM";
-    public static final String NEWS = "NEWS";
-    public static final String SHARES = "SHARES";
-    public static final int DURATION_MILLIS_ANIMATION = 1000;
+    private static final String FROM = "FROM";
+    private static final String NEWS = "NEWS";
+    private static final String SHARES = "SHARES";
+    private static final int DURATION_MILLIS_ANIMATION = 700;
     private LinearLayout backLayout;
     private ImageView saleImage;
     private ImageView newsImage;

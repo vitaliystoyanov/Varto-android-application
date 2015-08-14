@@ -37,4 +37,5 @@
     //CLASS TimeAndDateWorkingShops
     <string name="timetable_for_today">Расписание на сегодня:</string>
     <string name="timetable_unknow">unknow</string>
+    <string name="status_bar_catalogs">КАТАЛОГИ</string>
 </resources>

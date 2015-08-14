@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 import es.esy.varto_novomyrgorod.varto.R;
-import es.esy.varto_novomyrgorod.varto.components.NewsListviewAdapter;
+import es.esy.varto_novomyrgorod.varto.adapters.NewsListviewAdapter;
 import es.esy.varto_novomyrgorod.varto.model.database.DBHelper;
 import es.esy.varto_novomyrgorod.varto.model.database.DBNewsProvider;
 import es.esy.varto_novomyrgorod.varto.model.pojo.NewsObject;

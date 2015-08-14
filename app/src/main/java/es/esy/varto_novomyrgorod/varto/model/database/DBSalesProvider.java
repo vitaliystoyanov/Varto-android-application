@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import es.esy.varto_novomyrgorod.varto.model.pojo.SaleObject;
+import es.esy.varto_novomyrgorod.varto.model.pojo.GoodObject;
 
 public class DBSalesProvider extends DBConstants{
     private DBHelper localDBHelper;
@@ -19,8 +19,8 @@ public class DBSalesProvider extends DBConstants{
         this.localDBHelper = localDBHelper;
     }
 
-    public void setSaleObjectsToSQLDatabase(List<SaleObject> saleObjectListToSQLDatabase) {
-        if (!saleObjectListToSQLDatabase.isEmpty()) {
+    public void setSaleObjectsToSQLDatabase(List<GoodObject> goodObjectListToSQLDatabase) {
+        if (!goodObjectListToSQLDatabase.isEmpty()) {
             SQLiteDatabase DBConnect = null;
             try {
                 DBConnect = localDBHelper.getWritableDatabase();
@@ -37,23 +37,23 @@ public class DBSalesProvider extends DBConstants{
                     if (cursor != null) cursor.close();
                 }
 
-                for (int i = 0; i < saleObjectListToSQLDatabase.size(); i++) {
+                for (int i = 0; i < goodObjectListToSQLDatabase.size(); i++) {
                     ContentValues contentValues = new ContentValues();
-                    SaleObject saleObject = saleObjectListToSQLDatabase.get(i);
+                    GoodObject goodObject = goodObjectListToSQLDatabase.get(i);
 
-                    contentValues.put(TAG_ID, saleObject.getId());
-                    contentValues.put(TAG_SHOP, saleObject.getShop());
-                    contentValues.put(TAG_TITLE, saleObject.getTitle());
-                    contentValues.put(TAG_CATALOG, saleObject.getCatalog());
-                    contentValues.put(TAG_IMAGE, saleObject.getImage());
-                    contentValues.put(TAG_NEW_PRICE, saleObject.getNew_price());
-                    contentValues.put(TAG_OLD_PRICE, saleObject.getOld_price());
-                    contentValues.put(TAG_DESCRIPTION, saleObject.getDescription());
-                    contentValues.put(TAG_CREATED_AT, saleObject.getCreated_at());
+                    contentValues.put(TAG_ID, goodObject.getId());
+                    contentValues.put(TAG_SHOP, goodObject.getShop());
+                    contentValues.put(TAG_TITLE, goodObject.getTitle());
+                    contentValues.put(TAG_CATALOG, goodObject.getCatalog());
+                    contentValues.put(TAG_IMAGE, goodObject.getImage());
+                    contentValues.put(TAG_NEW_PRICE, goodObject.getNew_price());
+                    contentValues.put(TAG_OLD_PRICE, goodObject.getOld_price());
+                    contentValues.put(TAG_DESCRIPTION, goodObject.getDescription());
+                    contentValues.put(TAG_CREATED_AT, goodObject.getCreated_at());
 
                     Log.i(TAG_LOG, "[TABLE: sale]SQL:  Result SQL insert operation: "
                             + String.valueOf(DBConnect.insert(TAG_TABLE_SALES, null, contentValues))
-                            + ", SaleObject size of which is transmitted database: "
+                            + ", GoodObject size of which is transmitted database: "
                             + String.valueOf(contentValues.size()));
                 }
 
@@ -61,12 +61,12 @@ public class DBSalesProvider extends DBConstants{
                 if (DBConnect != null) DBConnect.close();
             }
         }else {
-            Log.i(TAG_LOG, "[TABLE: sale] List<SaleObject> is empty!");
+            Log.i(TAG_LOG, "[TABLE: sale] List<GoodObject> is empty!");
         }
     }
 
-    public List<SaleObject> getSalesObjectsFromSQLDatabase(String shop, String catalog) {
-        ArrayList<SaleObject> salesObject = new ArrayList<>();
+    public List<GoodObject> getSalesObjectsFromSQLDatabase(String shop, String catalog) {
+        ArrayList<GoodObject> salesObject = new ArrayList<>();
         if ((shop != null) && (catalog != null)) {
             SQLiteDatabase DBConnect = null;
             try {
@@ -92,7 +92,7 @@ public class DBSalesProvider extends DBConstants{
 
                     if (cursor.moveToFirst()) {
                         do {
-                            SaleObject object = new SaleObject();
+                            GoodObject object = new GoodObject();
 
                             object.setId(cursor.getInt(idColIndex));
                             object.setShop(cursor.getString(shopColIndex));
@@ -106,7 +106,7 @@ public class DBSalesProvider extends DBConstants{
 
                               salesObject.add(object);
                         } while (cursor.moveToNext());
-                        Log.i(TAG_LOG, "[TABLE: sale]SQL:  Total objects in the ArrayList<SaleObject>"
+                        Log.i(TAG_LOG, "[TABLE: sale]SQL:  Total objects in the ArrayList<GoodObject>"
                                 + ", which will return method: "
                                 + salesObject.size());
                     }

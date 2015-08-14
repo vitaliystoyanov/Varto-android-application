@@ -48,7 +48,7 @@
                     android:src="@mipmap/ic_today"
                     android:layout_marginRight="8dp" />
 
-                <es.esy.varto_novomyrgorod.varto.components.TypefaceTextView
+                <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/timetable_for_today"
@@ -71,7 +71,7 @@
                     android:src="@mipmap/ic_map"
                     android:layout_marginRight="8dp" />
 
-                <es.esy.varto_novomyrgorod.varto.components.TypefaceTextView
+                <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="EMPTY"
@@ -94,7 +94,7 @@
                     android:src="@mipmap/ic_email"
                     android:layout_marginRight="8dp" />
 
-                <es.esy.varto_novomyrgorod.varto.components.TypefaceTextView
+                <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="EMPTY"

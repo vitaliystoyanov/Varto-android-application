@@ -20,7 +20,7 @@
                 android:contentDescription="@string/description_image"
                 android:clickable="true" />
 
-            <es.esy.varto_novomyrgorod.varto.components.TypefaceTextView
+            <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textview_enter_plus"
@@ -33,9 +33,9 @@
                 android:paddingTop="60dp"
                 app:customTypeface="Lato-Light.ttf" >
 
-            </es.esy.varto_novomyrgorod.varto.components.TypefaceTextView>
+            </es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView>
 
-            <es.esy.varto_novomyrgorod.varto.components.TypefaceTextView
+            <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
                 android:layout_width="match_parent"
                 android:text="@string/textview_varto_plus"
                 android:id="@+id/textview_plus"
@@ -68,7 +68,7 @@
                         android:src="@mipmap/ic_sale_v2"
                         android:contentDescription="@string/image_description" />
 
-                    <es.esy.varto_novomyrgorod.varto.components.TypefaceTextView
+                    <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:id="@+id/textview_count_news_plus"
@@ -128,7 +128,7 @@
                 android:contentDescription="@string/image_description"
                 android:clickable="true" />
 
-            <es.esy.varto_novomyrgorod.varto.components.TypefaceTextView
+            <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
                 android:layout_width="match_parent"
                 android:text="@string/textview_varto_dishes"
                 android:id="@+id/textview_dishes"
@@ -140,7 +140,7 @@
                 style="@style/CustomButton"
                 android:typeface="serif" />
 
-        <es.esy.varto_novomyrgorod.varto.components.TypefaceTextView
+        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
             android:id="@+id/textview_enter_dishes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

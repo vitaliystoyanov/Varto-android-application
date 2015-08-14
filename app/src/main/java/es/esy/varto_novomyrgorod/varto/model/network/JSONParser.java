@@ -11,8 +11,8 @@ import java.util.Collections;
 import java.util.List;
 
 import es.esy.varto_novomyrgorod.varto.model.pojo.CatalogObject;
+import es.esy.varto_novomyrgorod.varto.model.pojo.GoodObject;
 import es.esy.varto_novomyrgorod.varto.model.pojo.NewsObject;
-import es.esy.varto_novomyrgorod.varto.model.pojo.SaleObject;
 import es.esy.varto_novomyrgorod.varto.model.pojo.ScheduleObject;
 
 public class JSONParser extends JSONConstants {
@@ -33,7 +33,7 @@ public class JSONParser extends JSONConstants {
     }
 
     public List<NewsObject> getNews() {
-        String respond = request.makeGETRequest(ConfigurationURL.URL_NEWS_GET, null);
+        String respond = request.makeGETRequest(HTTPUrl.URL_NEWS_GET, null);
         JSONObject json = getJSONObject(respond);
 
         ArrayList<NewsObject> listOfParsedNews = null;
@@ -70,7 +70,7 @@ public class JSONParser extends JSONConstants {
     }
 
     public List<CatalogObject> getCatalogs() {
-        String respond = request.makeGETRequest(ConfigurationURL.URL_CATALOGS, null);
+        String respond = request.makeGETRequest(HTTPUrl.URL_CATALOGS, null);
         JSONObject json = getJSONObject(respond);
 
         ArrayList<CatalogObject> listCatalogs = null;
@@ -98,11 +98,11 @@ public class JSONParser extends JSONConstants {
         return Collections.emptyList();
     }
 
-    public List<SaleObject> getSales() {
-        String respond = request.makeGETRequest(ConfigurationURL.URL_SHARES, null);
+    public List<GoodObject> getSales() {
+        String respond = request.makeGETRequest(HTTPUrl.URL_SHARES, null);
         JSONObject json = getJSONObject(respond);
 
-        ArrayList<SaleObject> listOfParsedShares = null;
+        ArrayList<GoodObject> listOfParsedShares = null;
         if (json != null) {
             Log.d("DBG", "JSON from URL_SALES: " + json.toString());
             try {
@@ -112,7 +112,7 @@ public class JSONParser extends JSONConstants {
                     JSONArray sharesArray = json.getJSONArray(JSON_SHARES);
                     for (int i = 0; i < sharesArray.length(); i++) {
                         JSONObject jsonObject = sharesArray.getJSONObject(i);
-                        SaleObject object = new SaleObject();
+                        GoodObject object = new GoodObject();
 
                         object.setId(jsonObject.getInt(JSON_ID));
                         object.setShop(jsonObject.getString(JSON_SHOP));
@@ -139,7 +139,7 @@ public class JSONParser extends JSONConstants {
     }
 
     public List<ScheduleObject> getTimetables() {
-        String respond = request.makeGETRequest(ConfigurationURL.URL_TIMETABLE, null);
+        String respond = request.makeGETRequest(HTTPUrl.URL_TIMETABLE, null);
         JSONObject json = getJSONObject(respond);
 
         ArrayList<ScheduleObject> listOfParsedTimetables = null;
