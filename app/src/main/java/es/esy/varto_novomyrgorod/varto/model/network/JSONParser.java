@@ -15,25 +15,10 @@ import es.esy.varto_novomyrgorod.varto.model.pojo.NewsObject;
 import es.esy.varto_novomyrgorod.varto.model.pojo.SaleObject;
 import es.esy.varto_novomyrgorod.varto.model.pojo.ScheduleObject;
 
-public class ComplexObjectProvider {
-    public static final String JSON_SUCCESS = "success";
-    public static final String JSON_NEWS = "news";
-    public static final String JSON_CATALOGS = "catalogs";
-    public static final String JSON_SHARES = "shares";
-    public static final String JSON_ID = "id";
-    public static final String JSON_SHOP = "shop";
-    public static final String JSON_TITLE = "title";
-    public static final String JSON_ARTICLE = "article";
-    public static final String JSON_CREATED_AT = "created_at";
-    public static final String JSON_DESCRIPTION = "description";
-    public static final String JSON_OLD_PRICE = "old_price";
-    public static final String JSON_NEW_PRICE = "new_price";
-    public static final String JSON_TIMETABLES = "timetables";
-    private static final String JSON_IMAGE = "image";
-    private static final String JSON_CATALOG = "catalog";
+public class JSONParser extends JSONConstants {
     private HTTPRequestMaker request;
 
-    public ComplexObjectProvider() {
+    public JSONParser() {
         request = new HTTPRequestMaker();
     }
 
@@ -47,7 +32,6 @@ public class ComplexObjectProvider {
         return jObj;
     }
 
-    //TODO рефакторинг и переделка.
     public List<NewsObject> getNews() {
         String respond = request.makeGETRequest(ConfigurationURL.URL_NEWS_GET, null);
         JSONObject json = getJSONObject(respond);
@@ -55,7 +39,7 @@ public class ComplexObjectProvider {
         ArrayList<NewsObject> listOfParsedNews = null;
         if (json != null) {
             Log.d("DBG", "JSON URL_NEWS_GET: " + json.toString());
-            listOfParsedNews = new ArrayList<NewsObject>();
+            listOfParsedNews = new ArrayList<>();
             try {
                 int success = json.getInt(JSON_SUCCESS);
                 if (success == 1) {
@@ -172,13 +156,13 @@ public class ComplexObjectProvider {
                         JSONObject jsonObject = timetablesArray.getJSONObject(i);
 
                         object.setShop(jsonObject.getString(JSON_SHOP));
-                        object.setSunday(jsonObject.getString("sunday"));
-                        object.setMonday(jsonObject.getString("monday"));
-                        object.setTuesday(jsonObject.getString("tuesday"));
-                        object.setWednesday(jsonObject.getString("wednesday"));
-                        object.setThursday(jsonObject.getString("thursday"));
-                        object.setFriday(jsonObject.getString("friday"));
-                        object.setSaturday(jsonObject.getString("saturday"));
+                        object.setSunday(jsonObject.getString(JSON_SUNDAY));
+                        object.setMonday(jsonObject.getString(JSON_MONDAY));
+                        object.setTuesday(jsonObject.getString(JSON_TUESDAY));
+                        object.setWednesday(jsonObject.getString(JSON_WEDNESDAY));
+                        object.setThursday(jsonObject.getString(JSON_THURSDAY));
+                        object.setFriday(jsonObject.getString(JSON_FRIDAY));
+                        object.setSaturday(jsonObject.getString(JSON_SATURDAY));
 
                         listOfParsedTimetables.add(object);
                     }

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
+import java.util.concurrent.TimeUnit;
+
 import es.esy.varto_novomyrgorod.varto.R;
 
 public class SplashActivity extends Activity {
@@ -28,11 +30,11 @@ public class SplashActivity extends Activity {
 
         @Override
         protected Void doInBackground(Void... params) {
-//            try {
-//                TimeUnit.SECONDS.sleep(3);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             return null;
         }

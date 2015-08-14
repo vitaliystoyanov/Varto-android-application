@@ -21,10 +21,10 @@ import es.esy.varto_novomyrgorod.varto.model.database.DBHelper;
 import es.esy.varto_novomyrgorod.varto.model.database.DBNewsProvider;
 import es.esy.varto_novomyrgorod.varto.model.database.DBSalesProvider;
 import es.esy.varto_novomyrgorod.varto.model.database.DBScheduleProvider;
-import es.esy.varto_novomyrgorod.varto.model.network.ComplexObjectProvider;
+import es.esy.varto_novomyrgorod.varto.model.network.JSONParser;
 
 public class MainFragmentActivity extends FragmentActivity {
-    public static final int DURATION_MILLIS = 700;
+    private static final int DURATION_MILLIS = 700;
     private RelativeLayout foreground;
     private ImageButton refresh;
     private LinearLayout newsPlusLayout;
@@ -35,6 +35,8 @@ public class MainFragmentActivity extends FragmentActivity {
     private TextView countSharesPlus;
     private TextView countNewsDishes;
     private TextView countSharesDishes;
+    private MainMenuFragment menuFragmentInstance;
+    private FragmentManager manager;
 
     @Override
     protected void onPause() {
@@ -44,13 +46,14 @@ public class MainFragmentActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        new LoadContentAsyncTask().execute();
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        manager = getSupportFragmentManager();
 
         newsPlusLayout = (LinearLayout) findViewById(R.id.info_news_plus);
         sharesPlusLayout = (LinearLayout) findViewById(R.id.info_shares_plus);
@@ -72,7 +75,6 @@ public class MainFragmentActivity extends FragmentActivity {
                 new LoadContentAsyncTask().execute();
             }
         });
-        final FragmentManager manager = getSupportFragmentManager();
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,13 +82,10 @@ public class MainFragmentActivity extends FragmentActivity {
             }
         });
 
-        makeSwitchingFragment(manager);
-    }
-
-    private void makeSwitchingFragment(FragmentManager manager) {
+        menuFragmentInstance = new MainMenuFragment();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.container, new MainMenuFragment());
-        transaction.commit();
+        transaction.add(R.id.container, menuFragmentInstance).commit();
+        new LoadContentAsyncTask().execute();
     }
 
     class LoadContentAsyncTask extends AsyncTask<Void, Integer, Void> {
@@ -104,7 +103,7 @@ public class MainFragmentActivity extends FragmentActivity {
         }
 
         protected Void doInBackground(Void... args) {
-            ComplexObjectProvider complexObject = new ComplexObjectProvider();
+            JSONParser parsedObjects = new JSONParser();
 
             DBHelper dbHelper = new DBHelper(MainFragmentActivity.this);
             DBScheduleProvider dbManager = new DBScheduleProvider(dbHelper);
@@ -112,19 +111,24 @@ public class MainFragmentActivity extends FragmentActivity {
             DBCatalogProvider dbCatalogProvider = new DBCatalogProvider(dbHelper);
             DBSalesProvider dbSalesProvider = new DBSalesProvider(dbHelper);
 
-            dbManager.setScheduleObjectToDB(complexObject.getTimetables());
-            dbNewsProvider.setNewsToSQLDatabase(complexObject.getNews());
-            dbCatalogProvider.setCatalogsToSQLDatabase(complexObject.getCatalogs());
-            dbSalesProvider.setSaleObjectsToSQLDatabase(complexObject.getSales());
+            dbManager.setScheduleObjectToDB(parsedObjects.getTimetables());
+            dbNewsProvider.setNewsToSQLDatabase(parsedObjects.getNews());
+            dbCatalogProvider.setCatalogsToSQLDatabase(parsedObjects.getCatalogs());
+            dbSalesProvider.setSaleObjectsToSQLDatabase(parsedObjects.getSales());
 
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
+            final FragmentTransaction transaction = manager.beginTransaction();
+            transaction.addToBackStack(null);
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            transaction.replace(R.id.container, menuFragmentInstance).commit();
+
             foreground.setVisibility(View.INVISIBLE);
-            refresh.setClickable(true);
             animationRefreshButton(false);
+            refresh.setClickable(true);
         }
     }
 
