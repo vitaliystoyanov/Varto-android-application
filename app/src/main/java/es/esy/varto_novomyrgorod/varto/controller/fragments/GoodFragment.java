@@ -7,18 +7,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import java.util.Collections;
 import java.util.List;
 
 import es.esy.varto_novomyrgorod.varto.R;
+import es.esy.varto_novomyrgorod.varto.adapters.GoodsListviewAdapter;
 import es.esy.varto_novomyrgorod.varto.model.database.DBHelper;
 import es.esy.varto_novomyrgorod.varto.model.database.DBSalesProvider;
 import es.esy.varto_novomyrgorod.varto.model.pojo.GoodObject;
 
 public class GoodFragment extends Fragment {
-    public static final String FROM = "FROM";
-    public static final String CATALOG = "CATALOG";
+    private LinearLayout backLayout;
+    private static final String FROM = "FROM";
+    private static final String CATALOG = "CATALOG";
     private static final String TAG_LOG = "DBG";
     private ListView goodsList;
     private String fromFragment;
@@ -40,12 +45,13 @@ public class GoodFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_shares, null);
+        return inflater.inflate(R.layout.fragment_goods, null);
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        backLayout = (LinearLayout) getActivity().findViewById(R.id.back_layout);
         goodsList = (ListView) getActivity().findViewById(R.id.list_shares);
         fromFragment = getStringFromBundle(FROM);
         catalog = getStringFromBundle(CATALOG);
@@ -56,11 +62,15 @@ public class GoodFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        TextView textViewStatus = (TextView) getActivity().findViewById(R.id.textview_status);
+        textViewStatus.setText(R.string.status_bar_goods);
+        backLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        backLayout.setVisibility(View.INVISIBLE);
     }
 
     public class LoadGoodsAsyncTask extends AsyncTask<Void, Void, List<GoodObject>> {
@@ -86,8 +96,8 @@ public class GoodFragment extends Fragment {
         @Override
         protected void onPostExecute(final List<GoodObject> result) {
             if (!result.isEmpty()) {
-//                NewsListviewAdapter adapter = new NewsListviewAdapter(getActivity(), result);
-//                goodsList.setAdapter(adapter);
+                GoodsListviewAdapter adapter = new GoodsListviewAdapter(getActivity(), result);
+                goodsList.setAdapter(adapter);
             }
         }
     }

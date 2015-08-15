@@ -2,10 +2,10 @@
     <string name="app_name">Varto</string>
 
     //SPLASH ACTIVITY.
-    <string name="textview_loading_splash">Загрузка...</string>
+    <string name="textview_loading_splash">Завантаження...</string>
 
     //FOREGROUND
-    <string name="foreground_text">Идет загрузка...</string>
+    <string name="foreground_text">Завантаження...</string>
 
     //FRAGMENT MAIN.
     <string name="textview_varto_plus">VARTO PLUS</string>
@@ -15,27 +15,31 @@
 
     //OTHER STRINGS.
     <string name="description_image">image</string>
-    <string name="textview_shares">Товары</string>
+    <string name="textview_shares">Товари</string>
     <string name="image_description">image</string>
-    <string name="textview_news">Новости</string>
+    <string name="textview_news">Новини</string>
 
 
     //ANTIVITY ACTION BAR.
     <string name="status_location_bar_menu">МЕНЮ</string>
-    <string name="status_bar_news">НОВОСТИ</string>
+    <string name="status_bar_news">НОВИНИ</string>
 
     //FRAGMENT MENU.
-    <string name="map_location_plus">Новомиргород, Ленина 118а</string>
-    <string name="map_location_dishes">Новомиргород, Ленина 33/116</string>
+    <string name="map_location_plus">Новомиргород, Леніна 118а</string>
+    <string name="map_location_dishes">Новомиргород, Леніна 33/116</string>
     <string name="email_plus">vartoplus@gmail.com</string>
     <string name="email_dishes">vartodishes@gmail.com</string>
-    <string name="textview_menu_news">Новости</string>
-    <string name="textview_menu_sale">Товары</string>
+    <string name="textview_menu_news">Новини</string>
+    <string name="textview_menu_sale">Товари</string>
 
     //FRAGMENT NEWS.
     
     //CLASS TimeAndDateWorkingShops
-    <string name="timetable_for_today">Расписание на сегодня:</string>
+    <string name="timetable_for_today">Розклад на сьогодні:</string>
     <string name="timetable_unknow">unknow</string>
     <string name="status_bar_catalogs">КАТАЛОГИ</string>
+    <string name="status_bar_goods">ТОВАРИ</string>
+    
+    //FRAGMENT GOODS
+    <string name="valuta">грн.</string>
 </resources>
