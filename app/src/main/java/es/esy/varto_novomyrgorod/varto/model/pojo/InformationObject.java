@@ -1,24 +1,40 @@
 package es.esy.varto_novomyrgorod.varto.model.pojo;
 
 public class InformationObject {
-    private Integer amountOfNewsPlus;
-    private Integer amountOfSharesPlus;
-    private Integer amountOfNewsDishes;
+    private int amountOfNewsPlus;
+    private int amountOfGoodsPlus;
+    private int amountOfNewsDishes;
+    private int amountOfGoodsDishes;
 
-
-    public void putAmountOfNewsDishes(Integer amount) {
-        this.amountOfNewsDishes = amount;
-    }
-
-    public void putAmountOfNewsPlus(Integer amount) {
-        this.amountOfNewsPlus = amount;
-    }
-
-    public Integer getAmountOfNewsPlus() {
+    public int getAmountOfNewsPlus() {
         return amountOfNewsPlus;
     }
 
-    public Integer getAmountOfNewsDishes() {
+    public void setAmountOfNewsPlus(int amountOfNewsPlus) {
+        this.amountOfNewsPlus = amountOfNewsPlus;
+    }
+
+    public int getAmountOfGoodsPlus() {
+        return amountOfGoodsPlus;
+    }
+
+    public void setAmountOfGoodsPlus(int amountOfGoodsPlus) {
+        this.amountOfGoodsPlus = amountOfGoodsPlus;
+    }
+
+    public int getAmountOfNewsDishes() {
         return amountOfNewsDishes;
+    }
+
+    public void setAmountOfNewsDishes(int amountOfNewsDishes) {
+        this.amountOfNewsDishes = amountOfNewsDishes;
+    }
+
+    public int getAmountOfGoodsDishes() {
+        return amountOfGoodsDishes;
+    }
+
+    public void setAmountOfGoodsDishes(int amountOfGoodsDishes) {
+        this.amountOfGoodsDishes = amountOfGoodsDishes;
     }
 }

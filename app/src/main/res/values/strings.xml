@@ -10,8 +10,10 @@
     //FRAGMENT MAIN.
     <string name="textview_varto_plus">VARTO PLUS</string>
     <string name="textview_varto_dishes">VARTO DISHES</string>
-    <string name="start_menu_enter"><u>ВХОД</u></string>
-    <string name="textview_default_amount"></string>
+    <string name="start_menu_enter"><u>ВХІД</u></string>
+    <string name="textview_default_amount">5</string>
+    <string name="textview_news_info">новини</string>
+    <string name="textview_goods_info">товарів</string>
 
     //OTHER STRINGS.
     <string name="description_image">image</string>

@@ -123,4 +123,43 @@ public class DBSalesProvider extends DBConstants{
             return Collections.emptyList();
         }
     }
+
+    public List<Integer> getArrayListID(String shop) {
+        List<Integer> integerList = new ArrayList<Integer>();
+        if (shop != null) {
+            SQLiteDatabase DBConnect = null;
+            try {
+                DBConnect = localDBHelper.getWritableDatabase();
+                Log.i(TAG_LOG, "[TABLE: sales, getArrayListID]SQL:  DBConnect = localDBHelper.getWritableDatabase(): "
+                        + DBConnect.toString());
+
+                String whereArgs = "shop = ?";
+                String[] whereValues = new String[]{shop};
+
+                Cursor cursor = null;
+                try {
+                    cursor = DBConnect.query(TAG_TABLE_SALES, null, whereArgs, whereValues, null, null, null);
+                    int idColIndex = cursor.getColumnIndex(TAG_ID);
+
+                    if (cursor.moveToFirst()) {
+                        do {
+                            integerList.add(cursor.getInt(idColIndex));
+                        } while (cursor.moveToNext());
+                        Log.i(TAG_LOG, "[TABLE: sales, getArrayListID]SQL:  Total objects in the ArrayList<NewsObject>"
+                                + ",which will return method: "
+                                + integerList.size());
+                    }
+                } finally {
+                    if (cursor != null) cursor.close();
+                }
+            } finally {
+                if (DBConnect != null) DBConnect.close();
+            }
+
+            return integerList;
+        } else {
+            Log.i(TAG_LOG, "[TABLE: sales, getArrayListID]  getNewsFromSQLDatabase(String shop) -  String shop is empty!");
+            return Collections.emptyList();
+        }
+    }
 }

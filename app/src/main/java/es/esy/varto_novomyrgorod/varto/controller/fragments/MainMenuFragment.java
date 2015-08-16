@@ -9,22 +9,41 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.LoadedFrom;
-import com.nostra13.universalimageloader.core.display.BitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
-import com.nostra13.universalimageloader.core.imageaware.ImageAware;
 
 import es.esy.varto_novomyrgorod.varto.R;
-
+import es.esy.varto_novomyrgorod.varto.model.pojo.InformationObject;
 
 public class MainMenuFragment extends Fragment implements View.OnClickListener {
+    private static final String NEWS_PLUS = "news_plus";
+    private static final String NEWS_DISHES = "new_dishes";
+    private LinearLayout newsPlusLayout;
+    private LinearLayout sharesPlusLayout;
+    private LinearLayout newsDishesLayout;
+    private LinearLayout sharesDishesLayout;
+    private TextView countNewsPlus;
+    private TextView countSharesPlus;
+    private TextView countNewsDishes;
+    private TextView countSharesDishes;
     private LinearLayout logo;
+
+    public static MainMenuFragment newInstance(InformationObject object){
+        MainMenuFragment fragment = new MainMenuFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(NEWS_PLUS, object.getAmountOfNewsPlus());
+        bundle.putInt(NEWS_DISHES, object.getAmountOfNewsDishes());
+        fragment.setArguments(bundle);
+
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +56,17 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
         logo = (LinearLayout) getActivity().findViewById(R.id.logo_layout);
         TextView buttonPlus = (TextView) getActivity().findViewById(R.id.textview_plus);
         TextView buttonDishes = (TextView) getActivity().findViewById(R.id.textview_dishes);
+
+        newsPlusLayout = (LinearLayout) getActivity().findViewById(R.id.info_news_plus);
+        newsDishesLayout = (LinearLayout) getActivity().findViewById(R.id.info_news_dishes);
+        sharesPlusLayout = (LinearLayout) getActivity().findViewById(R.id.info_shares_plus);
+        sharesDishesLayout = (LinearLayout) getActivity().findViewById(R.id.info_shares_dishes);
+
+        countNewsPlus = (TextView) getActivity().findViewById(R.id.textview_count_news_plus);
+        countSharesPlus = (TextView) getActivity().findViewById(R.id.textview_count_shares_plus);
+        countNewsDishes = (TextView) getActivity().findViewById(R.id.textview_count_news_dishes);
+        countSharesDishes = (TextView) getActivity().findViewById(R.id.textview_count_shares_dishes);
+
         buttonPlus.setOnClickListener(this);
         buttonDishes.setOnClickListener(this);
     }
@@ -85,5 +115,42 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
             }
             break;
         }
+    }
+
+    public void setInformationObject(InformationObject object) {
+        Animation slide = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.abc_slide_in_bottom);
+        Log.i("DBG", "goods = "+object.getAmountOfGoodsPlus() +", news = " +object.getAmountOfNewsPlus());
+        Log.i("DBG", "goods = "+object.getAmountOfGoodsDishes() +", news = " +object.getAmountOfNewsDishes());
+        int newsPlus = object.getAmountOfNewsPlus();
+        int newsDishes = object.getAmountOfNewsDishes();
+        int goodsPlus = object.getAmountOfGoodsPlus();
+        int goodsDishes = object.getAmountOfGoodsDishes();
+        if (newsPlus > 0) {
+            countNewsPlus.setText("(+" + newsPlus + ") новин");
+            newsPlusLayout.setVisibility(View.VISIBLE);
+            newsPlusLayout.startAnimation(slide);
+        }
+        if (newsDishes > 0) {
+            countNewsDishes.setText("(+" + newsDishes + ") новин");
+            newsDishesLayout.setVisibility(View.VISIBLE);
+            newsDishesLayout.startAnimation(slide);
+        }
+        if (goodsPlus > 0) {
+            countSharesPlus.setText("(+" + goodsPlus + ") товарів");
+            sharesPlusLayout.setVisibility(View.VISIBLE);
+            sharesPlusLayout.startAnimation(slide);
+        }
+        if (goodsDishes > 0) {
+            countSharesDishes.setText("(+" + goodsDishes + ") товарів");
+            sharesDishesLayout.setVisibility(View.VISIBLE);
+            sharesDishesLayout.startAnimation(slide);
+        }
+    }
+
+    public void hideAllInforamation() {
+        newsPlusLayout.setVisibility(View.INVISIBLE);
+        newsDishesLayout.setVisibility(View.INVISIBLE);
+        sharesPlusLayout.setVisibility(View.GONE);
+        sharesDishesLayout.setVisibility(View.GONE);
     }
 }

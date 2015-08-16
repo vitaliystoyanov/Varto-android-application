@@ -51,34 +51,29 @@
                 android:typeface="serif" />
 
             <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/info_shares_plus"
-                android:layout_below="@+id/textview_enter_plus"
-                android:layout_alignLeft="@+id/textview_enter_plus">
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="6dp"
+                android:visibility="gone">
 
-                <RelativeLayout
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/ic_sale_v2"
+                    android:contentDescription="@string/image_description" />
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:visibility="visible">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@mipmap/ic_sale_v2"
-                        android:contentDescription="@string/image_description" />
-
-                    <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:id="@+id/textview_count_news_plus"
-                        android:gravity="center"
-                        android:textColor="#ff000000"
-                        android:textSize="11sp"
-                        android:text="@string/textview_default_amount"
-                        app:customTypeface="Lato-Light.ttf"
-                        android:layout_alignParentStart="true" />
-                </RelativeLayout>
+                    android:text="(+0) товарів"
+                    android:id="@+id/textview_count_shares_plus"
+                    android:gravity="center"
+                    android:textColor="@color/text_color_white"
+                    android:textSize="11sp" />
 
             </LinearLayout>
 
@@ -87,28 +82,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/info_news_plus"
-                android:layout_below="@+id/textview_enter_plus"
-                android:layout_alignRight="@+id/textview_enter_plus">
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="false"
+                android:layout_toRightOf="@+id/info_shares_plus"
+                android:layout_margin="6dp"
+                android:visibility="invisible">
 
-                <RelativeLayout
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/ic_newspaper_v2"
+                    android:contentDescription="@string/image_description" />
+
+                <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@mipmap/ic_newspaper_v2"
-                        android:contentDescription="@string/image_description" />
-
-                    <TextView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:text="@string/textview_default_amount"
-                        android:id="@+id/textview_count_shares_plus"
-                        android:gravity="center"
-                        android:textColor="#ff000000"
-                        android:textSize="11sp" />
-                </RelativeLayout>
+                    android:layout_height="match_parent"
+                    android:id="@+id/textview_count_news_plus"
+                    android:gravity="center"
+                    android:textColor="@color/text_color_white"
+                    android:textSize="12sp"
+                    android:text="(+0) новин"
+                    app:customTypeface="Lato-Light.ttf"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignParentBottom="false"
+                    android:layout_alignParentRight="false" />
 
             </LinearLayout>
 
@@ -157,57 +154,52 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/info_shares_dishes"
-                android:layout_below="@+id/textview_enter_dishes"
-                android:layout_alignLeft="@+id/textview_enter_dishes">
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="6dp"
+            android:visibility="gone">
 
-                <RelativeLayout
-                    android:layout_width="20dp"
-                    android:layout_height="20dp">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/ic_sale_v2"
+                android:contentDescription="@string/image_description" />
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@mipmap/ic_sale_v2"
-                        android:contentDescription="@string/image_description" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/textview_default_amount"
-                        android:id="@+id/textview_count_shares_dishes"
-                        android:gravity="center"
-                        android:textSize="12sp" />
-
-                </RelativeLayout>
-            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="(+0)товарів"
+                android:id="@+id/textview_count_shares_dishes"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:textColor="@color/text_color_white" />
+        </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/info_news_dishes"
-                android:layout_below="@+id/textview_enter_dishes"
-                android:layout_alignRight="@+id/textview_enter_dishes">
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="false"
+                android:layout_toRightOf="@+id/info_shares_dishes"
+                android:layout_margin="6dp"
+                android:visibility="invisible">
 
-                <RelativeLayout
+                <ImageView
                     android:layout_width="20dp"
-                    android:layout_height="20dp">
+                    android:layout_height="20dp"
+                    android:src="@mipmap/ic_newspaper_v2"
+                    android:contentDescription="@string/description_image" />
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@mipmap/ic_newspaper_v2"
-                        android:contentDescription="@string/description_image" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/textview_default_amount"
-                        android:id="@+id/textview_count_news_dishes"
-                        android:textSize="12sp"
-                        android:gravity="center" />
-
-                </RelativeLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="(+0)новини"
+                    android:id="@+id/textview_count_news_dishes"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:textColor="@color/text_color_white" />
             </LinearLayout>
 
     </RelativeLayout>

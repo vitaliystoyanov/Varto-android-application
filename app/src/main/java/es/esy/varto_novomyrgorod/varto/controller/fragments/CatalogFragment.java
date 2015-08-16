@@ -96,6 +96,7 @@ public class CatalogFragment extends Fragment {
             DBCatalogProvider dbCatalogProvider = new DBCatalogProvider(new DBHelper(getActivity()));
 
             if (fromFragment != null) {
+                Log.i("DBG", "fromFragment = " + fromFragment);
                 return dbCatalogProvider.getCatalogsFromSQLDatabase(fromFragment);
             } else {
                 return Collections.emptyList();
