@@ -13,6 +13,8 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import es.esy.varto_novomyrgorod.varto.R;
@@ -60,7 +62,9 @@ public class GoodsListviewAdapter extends ArrayAdapter<String> {
         GoodObject objectItem = data.get(position);
         title.setText(objectItem.getTitle());
         description.setText(objectItem.getDescription());
-        time.setText(objectItem.getCreated_at());
+
+        String resultFormat = getFormattedTimeDate(objectItem);
+        time.setText(resultFormat);
 
         old_price.setText(objectItem.getOld_price() + " грн.");
         new_price.setText(objectItem.getNew_price() + " грн.");
@@ -77,4 +81,17 @@ public class GoodsListviewAdapter extends ArrayAdapter<String> {
         return view;
     }
 
+    private String getFormattedTimeDate(GoodObject objectItem) {
+        String resultFormat = null;
+        try {
+            String oldFormat = "yyyy-MM-dd HH:mm:ss";
+            String newFormat = "dd MMMM HH:mm";
+            SimpleDateFormat oldDateFormat = new SimpleDateFormat(oldFormat);
+            SimpleDateFormat newDateFormat = new SimpleDateFormat(newFormat);
+            resultFormat = newDateFormat.format(oldDateFormat.parse(objectItem.getCreated_at()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return resultFormat;
+    }
 }

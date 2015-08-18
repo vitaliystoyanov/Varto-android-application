@@ -18,30 +18,42 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true">
+            android:layout_alignParentRight="true"
+            style="@style/AppThemeButton"
+            android:id="@+id/button_refresh">
 
             <View android:layout_height="fill_parent"
                 android:layout_width="1dp"
                 android:background="#ff353535"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:visibility="invisible" />
 
-            <ImageButton
-                android:layout_width="45dp"
+            <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/button_refresh"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="ОНОВИТИ"
+                android:id="@+id/textView3"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:textColor="@color/text_color_white"
+                app:customTypeface="Lato-Light.ttf"/>
+
+            <ImageView
+                android:layout_width="37dp"
+                android:layout_height="match_parent"
+                android:id="@+id/imageview_refresh"
                 android:src="@mipmap/ic_refresh_v2"
-                android:clickable="true"
-                android:layout_alignParentTop="true"
-                android:layout_toStartOf="@+id/button_settings"
-                android:layout_alignParentBottom="true"
-                style="@style/AppThemeButton" />
+                android:scaleType="center" />
 
             <View android:layout_height="fill_parent"
                 android:layout_width="1dp"
                 android:background="#ff353535"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
-                android:id="@+id/view" />
+                android:id="@+id/view"
+                android:visibility="gone" />
 
             <ImageButton
                 android:layout_width="45dp"
@@ -49,7 +61,8 @@
                 android:id="@+id/button_settings"
                 android:src="@mipmap/ic_settings"
                 style="@style/AppThemeButton"
-                android:layout_alignParentTop="true" />
+                android:layout_alignParentTop="true"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -57,21 +70,22 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            style="@style/AppThemeButton"
+            android:clickable="true"
             android:id="@+id/back_layout"
-            android:visibility="invisible">
+            android:visibility="invisible"
+            android:paddingRight="10dp"
+            android:paddingLeft="2dp">
 
-            <ImageButton
-                android:layout_width="45dp"
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/button_back"
                 android:src="@mipmap/ic_back"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:clickable="true"
-                style="@style/AppThemeButton" />
+                android:scaleType="center" />
 
             <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/status_location_bar_menu"
@@ -80,15 +94,15 @@
                 android:textColor="#ffffffff"
                 android:gravity="center"
                 android:visibility="visible"
-                app:customTypeface="Lato-Light.ttf"
-                android:layout_marginLeft="-9dp" />
+                app:customTypeface="Lato-Light.ttf" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/logo_layout">
+            android:id="@+id/logo_layout"
+            android:visibility="visible">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -115,7 +129,7 @@
         android:id="@+id/foregroung_panel"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:layout_below="@+id/action_bar">
 
         <ImageView
@@ -126,17 +140,36 @@
             android:layout_alignWithParentIfMissing="false"
             android:layout_centerInParent="true" />
 
-        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/foreground_text"
-            android:id="@+id/textView"
-            android:textColor="@color/text_color_white"
-            android:textSize="14sp"
-            app:customTypeface="Lato-Light.ttf"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar2"
+                android:indeterminateOnly="true"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="3dp" />
+
+            <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/foreground_text"
+                android:id="@+id/textView"
+                android:textColor="@color/text_color_white"
+                android:textSize="14sp"
+                app:customTypeface="Lato-Light.ttf"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:typeface="normal"
+                android:gravity="center_vertical" />
+        </LinearLayout>
 
     </RelativeLayout>
 

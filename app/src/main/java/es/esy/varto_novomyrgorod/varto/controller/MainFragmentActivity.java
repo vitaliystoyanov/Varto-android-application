@@ -1,30 +1,20 @@
 package es.esy.varto_novomyrgorod.varto.controller;
 
-import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import es.esy.varto_novomyrgorod.varto.R;
@@ -41,7 +31,7 @@ public class MainFragmentActivity extends FragmentActivity {
     private static final int DURATION_MILLIS = 700;
     private RelativeLayout foreground;
     private RelativeLayout container;
-    private ImageButton refresh;
+    private LinearLayout refresh;
     private FragmentManager manager;
     private MainMenuFragment menuFragmentInstance;
     private NotificationManager notificationManager;
@@ -73,14 +63,14 @@ public class MainFragmentActivity extends FragmentActivity {
 
         //settings = (ImageButton) findViewById(R.id.button_settings);
         foreground = (RelativeLayout) findViewById(R.id.foregroung_panel);
-        refresh = (ImageButton) findViewById(R.id.button_refresh);
+        refresh = (LinearLayout) findViewById(R.id.button_refresh);
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new LoadContentAsyncTask().execute();
             }
         });
-        ImageButton back = (ImageButton) findViewById(R.id.button_back);
+        LinearLayout back = (LinearLayout) findViewById(R.id.back_layout);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,12 +94,13 @@ public class MainFragmentActivity extends FragmentActivity {
             transaction.addToBackStack(null);
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             transaction.replace(R.id.container, menuFragmentInstance).commit();
+            enableDisableViewGroup(container, false);
 
             menuFragmentInstance.hideAllInforamation();
             foreground.setVisibility(View.VISIBLE);
             animationRefreshButton(true);
             refresh.setClickable(false);
-            enableDisableViewGroup(container, false);
+
         }
 
         protected InformationObject doInBackground(Void... args) {
@@ -158,28 +149,11 @@ public class MainFragmentActivity extends FragmentActivity {
             animationRefreshButton(false);
             refresh.setClickable(true);
             enableDisableViewGroup(container, true);
-
-//            Notification.Builder builder = new Notification.Builder(MainFragmentActivity.this);
-//            Intent intent = new Intent(getApplicationContext(), MainFragmentActivity.class);
-//            PendingIntent pendingIntent = PendingIntent.getActivity(MainFragmentActivity.this, 0,
-//                    intent, PendingIntent.FLAG_CANCEL_CURRENT);
-//            builder
-//                    .setContentIntent(pendingIntent)
-//                    .setSmallIcon(R.mipmap.ic_launcher)
-//                    .setLargeIcon(BitmapFactory.decodeResource(getApplication().getResources(), R.mipmap.ic_logo))
-//                    .setTicker("Notification")
-//                    .setAutoCancel(true)
-//                    .setWhen(System.currentTimeMillis())
-//                    .setContentText("Content text.\ndfgdfgdfg\n dgdfgfdg\ndfhdfhdfhdfh")
-//                    .setContentTitle("title content");
-//
-//            Notification notification = builder.build();
-//            notificationManager.notify(NOTIFICATION_ID, notification);
         }
     }
 
     private void animationRefreshButton(Boolean state) {
-        ImageButton refresh = (ImageButton) findViewById(R.id.button_refresh);
+        ImageView refresh = (ImageView) findViewById(R.id.imageview_refresh);
         if (state == true) {
             RotateAnimation anim = new RotateAnimation(0.0f, 360.0f,
                     Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    android:background="@color/text_color_white">
+    android:background="@color/text_color_white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -55,7 +55,8 @@
                     android:textSize="14sp"
                     android:gravity="left|center_vertical"
                     android:textColor="@color/text_color_black"
-                    android:id="@+id/textview_timetable" />
+                    android:id="@+id/textview_timetable"
+                    app:customTypeface="Lato-Light.ttf" />
 
             </LinearLayout>
 
@@ -77,8 +78,9 @@
                     android:text="EMPTY"
                     android:id="@+id/textview_location"
                     android:textSize="14sp"
-                    android:textColor="@color/text_color_gray"
-                    android:gravity="left|center_vertical" />
+                    android:textColor="@color/text_color_gray_dark"
+                    android:gravity="left|center_vertical"
+                    app:customTypeface="Lato-Light.ttf"/>
 
             </LinearLayout>
 
@@ -100,8 +102,9 @@
                     android:text="EMPTY"
                     android:id="@+id/textview_email"
                     android:textSize="14sp"
-                    android:textColor="@color/text_color_gray"
-                    android:gravity="left|center_vertical" />
+                    android:textColor="@color/text_color_gray_dark"
+                    android:gravity="left|center_vertical"
+                    app:customTypeface="Lato-Light.ttf" />
 
             </LinearLayout>
         </LinearLayout>

@@ -1,34 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/item_list_selector"
     android:orientation="horizontal"
-    tools:context=".controller.NewsActivity">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:id="@+id/imageview_news_item"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentTop="true"
-        android:scaleType="centerCrop" />
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageview_news_item"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="7dp"
-        android:padding="10dp">
+        android:layout_alignParentStart="true">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="time"
+            android:id="@+id/time"
+            android:textSize="14dp"
+            android:textColor="@color/text_color_gray_dark"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentTop="false"
+            android:layout_below="@+id/article"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical|right"
+            android:paddingRight="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            app:customTypeface="Lato-Light.ttf"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="130dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imageview_news_item"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentTop="true"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_logo"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="7dp" />
+        </RelativeLayout>
+
+        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Title"
@@ -38,32 +66,27 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="false"
             android:textColor="@color/text_color_black"
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            app:customTypeface="Lato-Light.ttf"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="7dp" />
 
-        <TextView
+        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
             android:id="@+id/article"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Нарисовать новый логотип для маркетинговой кампании ..."
             android:textSize="14dp"
-            android:typeface="sans"
+            android:typeface="serif"
             android:layout_below="@+id/title"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="14dp"
+            app:customTypeface="Lato-Light.ttf"
+            android:textColor="@color/text_color_gray_dark" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="time"
-            android:id="@+id/time"
-            android:textSize="11dp"
-            android:textColor="@color/text_color_black"
-            android:layout_alignParentRight="false"
-            android:layout_alignParentTop="false"
-            android:layout_below="@+id/article"
-            android:layout_alignParentBottom="false"
-            android:layout_alignParentLeft="true"
-            android:gravity="center_vertical|right" />
     </LinearLayout>
 
 </RelativeLayout>

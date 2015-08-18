@@ -27,7 +27,8 @@
             android:progress="100"
             android:indeterminateOnly="true"
             android:layout_alignParentTop="false"
-            android:layout_marginRight="5dp" />
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="2dp" />
 
         <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
             android:layout_width="wrap_content"
@@ -35,7 +36,7 @@
             android:text="@string/textview_loading_splash"
             android:id="@+id/textview_progress"
             android:textSize="14sp"
-            android:typeface="sans"
+            android:typeface="normal"
             app:customTypeface="Lato-Light.ttf"
             android:textColor="@color/text_color_white"
             android:layout_alignParentTop="true"

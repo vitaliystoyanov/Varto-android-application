@@ -12,6 +12,8 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import es.esy.varto_novomyrgorod.varto.R;
@@ -58,7 +60,9 @@ public class NewsListviewAdapter extends ArrayAdapter<String> {
 
         title.setText(objectItem.getTitle());
         article.setText(objectItem.getArticle());
-        time.setText(objectItem.getCreated_at());
+
+        String resultFormat = getFormattedTimeDate(objectItem);
+        time.setText(resultFormat);
 
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
@@ -69,5 +73,19 @@ public class NewsListviewAdapter extends ArrayAdapter<String> {
         ImageLoader imageLoader = ImageLoader.getInstance();
         imageLoader.displayImage(objectItem.getImage(), image, options);
         return view;
+    }
+
+    private String getFormattedTimeDate(NewsObject objectItem) {
+        String resultFormat = null;
+        try {
+            String oldFormat = "yyyy-MM-dd HH:mm:ss";
+            String newFormat = "dd MMMM HH:mm";
+            SimpleDateFormat oldDateFormat = new SimpleDateFormat(oldFormat);
+            SimpleDateFormat newDateFormat = new SimpleDateFormat(newFormat);
+            resultFormat = newDateFormat.format(oldDateFormat.parse(objectItem.getCreated_at()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return resultFormat;
     }
 }

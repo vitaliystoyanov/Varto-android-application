@@ -53,6 +53,7 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
+
         logo = (LinearLayout) getActivity().findViewById(R.id.logo_layout);
         TextView buttonPlus = (TextView) getActivity().findViewById(R.id.textview_plus);
         TextView buttonDishes = (TextView) getActivity().findViewById(R.id.textview_dishes);
@@ -136,20 +137,20 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
             newsDishesLayout.startAnimation(slide);
         }
         if (goodsPlus > 0) {
-            countSharesPlus.setText("(+" + goodsPlus + ") товарів");
+            countSharesPlus.setText("(+" + goodsPlus + ") товар");
             sharesPlusLayout.setVisibility(View.VISIBLE);
             sharesPlusLayout.startAnimation(slide);
         }
         if (goodsDishes > 0) {
-            countSharesDishes.setText("(+" + goodsDishes + ") товарів");
+            countSharesDishes.setText("(+" + goodsDishes + ") товар");
             sharesDishesLayout.setVisibility(View.VISIBLE);
             sharesDishesLayout.startAnimation(slide);
         }
     }
 
     public void hideAllInforamation() {
-        newsPlusLayout.setVisibility(View.INVISIBLE);
-        newsDishesLayout.setVisibility(View.INVISIBLE);
+        newsPlusLayout.setVisibility(View.GONE);
+        newsDishesLayout.setVisibility(View.GONE);
         sharesPlusLayout.setVisibility(View.GONE);
         sharesDishesLayout.setVisibility(View.GONE);
     }
