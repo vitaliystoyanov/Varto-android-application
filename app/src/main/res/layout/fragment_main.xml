@@ -64,12 +64,14 @@
                     android:id="@+id/info_shares_plus"
                     android:layout_alignParentBottom="true"
                     android:layout_margin="6dp"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    android:background="#8f000000"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@mipmap/ic_sale_v2"
+                        android:src="@mipmap/ic_sale"
                         android:contentDescription="@string/image_description" />
 
                     <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
@@ -92,7 +94,8 @@
                     android:layout_alignParentBottom="true"
                     android:layout_toRightOf="@+id/info_shares_plus"
                     android:layout_margin="6dp"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    android:background="#8f000000">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -171,12 +174,13 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="6dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:background="#8f000000">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@mipmap/ic_sale_v2"
+                    android:src="@mipmap/ic_sale"
                     android:contentDescription="@string/image_description" />
 
                 <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
@@ -200,7 +204,8 @@
                     android:layout_alignParentLeft="false"
                     android:layout_toRightOf="@+id/info_shares_dishes"
                     android:layout_margin="6dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:background="#8f000000">
 
                     <ImageView
                         android:layout_width="20dp"

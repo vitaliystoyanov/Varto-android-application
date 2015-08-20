@@ -21,6 +21,7 @@ import es.esy.varto_novomyrgorod.varto.R;
 import es.esy.varto_novomyrgorod.varto.controller.fragments.MainMenuFragment;
 import es.esy.varto_novomyrgorod.varto.model.database.DBCatalogProvider;
 import es.esy.varto_novomyrgorod.varto.model.database.DBHelper;
+import es.esy.varto_novomyrgorod.varto.model.database.DBInfomationProvider;
 import es.esy.varto_novomyrgorod.varto.model.database.DBNewsProvider;
 import es.esy.varto_novomyrgorod.varto.model.database.DBSalesProvider;
 import es.esy.varto_novomyrgorod.varto.model.database.DBScheduleProvider;
@@ -82,7 +83,6 @@ public class MainFragmentActivity extends FragmentActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        new LoadContentAsyncTask().execute();
     }
 
     class LoadContentAsyncTask extends AsyncTask<Void, Integer, InformationObject> {
@@ -138,12 +138,14 @@ public class MainFragmentActivity extends FragmentActivity {
             informationObject.setAmountOfGoodsPlus(newListGoodsPlus.size());
             informationObject.setAmountOfGoodsDishes(newListGoodsDishes.size());
 
+            DBInfomationProvider dbInfomationProvider = new DBInfomationProvider(dbHelper);
+            dbInfomationProvider.setInformationToSQLDatabase(informationObject);
             return informationObject;
         }
 
         @Override
         protected void onPostExecute(InformationObject result) {
-            menuFragmentInstance.setInformationObject(result);
+            menuFragmentInstance.showInformation(result);
 
             foreground.setVisibility(View.INVISIBLE);
             animationRefreshButton(false);

@@ -5,6 +5,7 @@ public class DBConstants {
     public static final String TAG_TABLE_SCHEDULE = "schedule";
     public static final String TAG_TABLE_CATALOG = "catalog";
     public static final String TAG_TABLE_SALES = "sale";
+    public static final String TAG_TABLE_INFORMATION = "inforamtion";
 
     public static final String TAG_ID = "id";
     public static final String TAG_SHOP = "shop";
@@ -27,4 +28,9 @@ public class DBConstants {
     public static final String TAG_NEW_PRICE = "new_price";
     public static final String TAG_OLD_PRICE = "old_price";
     public static final String TAG_CATALOG = "catalog";
+
+    public static final String TAG_AMOUNT_NEWS_PLUS = "news_plus";
+    public static final String TAG_AMOUNT_NEWS_DISHES = "news_dishes";
+    public static final String TAG_AMOUNT_GOODS_PLUS = "goods_plus";
+    public static final String TAG_AMOUNT_GOODS_DISHES = "goods_dishes";
 }

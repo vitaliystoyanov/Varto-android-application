@@ -2,8 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="@color/text_color_white"
-    xmlns:app="http://schemas.android.com/apk/res-auto" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/AppThemeButton">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView5"
+        android:src="@mipmap/ic_forward"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="invisible" />
 
     <View
         android:layout_width="fill_parent"
@@ -15,14 +26,15 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:src="@mipmap/ic_bag"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/imageView2"
         android:layout_marginLeft="17dp"
-        android:layout_marginRight="14dp" />
+        android:layout_marginRight="10dp"
+        android:paddingBottom="3dp" />
 
     <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
         android:layout_width="wrap_content"

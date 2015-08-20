@@ -45,6 +45,11 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("create table " + DBConstants.TAG_TABLE_CATALOG + " ("
                 + DBConstants.TAG_SHOP + " text,"
                 + DBConstants.TAG_NAME + " text" + ");");
+        db.execSQL("create table " + DBConstants.TAG_TABLE_INFORMATION + " ("
+                + DBConstants.TAG_AMOUNT_NEWS_PLUS + " int,"
+                + DBConstants.TAG_AMOUNT_NEWS_DISHES + " int,"
+                + DBConstants.TAG_AMOUNT_GOODS_PLUS + " int,"
+                + DBConstants.TAG_AMOUNT_GOODS_DISHES + " int" + ");");
     }
 
     @Override

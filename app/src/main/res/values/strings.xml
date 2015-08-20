@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Varto</string>
+    <string name="app_name">Varto news&amp;goods</string>
 
     //SPLASH ACTIVITY.
     <string name="textview_loading_splash">Завантаження...</string>
@@ -44,4 +44,6 @@
     
     //FRAGMENT GOODS
     <string name="valuta">грн.</string>
+    <string name="textview_price">Вартість:</string>
+    <string name="textview_price_sale">Зі знижкою:</string>
 </resources>

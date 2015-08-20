@@ -41,11 +41,13 @@
                 app:customTypeface="Lato-Light.ttf"/>
 
             <ImageView
-                android:layout_width="37dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/imageview_refresh"
                 android:src="@mipmap/ic_refresh_v2"
-                android:scaleType="center" />
+                android:scaleType="center"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp" />
 
             <View android:layout_height="fill_parent"
                 android:layout_width="1dp"
@@ -129,7 +131,7 @@
         android:id="@+id/foregroung_panel"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:layout_below="@+id/action_bar">
 
         <ImageView

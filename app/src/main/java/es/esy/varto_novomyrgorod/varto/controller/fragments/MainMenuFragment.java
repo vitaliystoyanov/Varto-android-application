@@ -20,6 +20,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 import es.esy.varto_novomyrgorod.varto.R;
+import es.esy.varto_novomyrgorod.varto.model.database.DBHelper;
+import es.esy.varto_novomyrgorod.varto.model.database.DBInfomationProvider;
 import es.esy.varto_novomyrgorod.varto.model.pojo.InformationObject;
 
 public class MainMenuFragment extends Fragment implements View.OnClickListener {
@@ -70,6 +72,10 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
 
         buttonPlus.setOnClickListener(this);
         buttonDishes.setOnClickListener(this);
+
+        DBHelper dbHelper = new DBHelper(getActivity());
+        DBInfomationProvider dbInfomationProvider = new DBInfomationProvider(dbHelper);
+        showInformation(dbInfomationProvider.getInformationFromSQLDatabase());
     }
 
     @Override
@@ -81,11 +87,11 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
-                .displayer(new FadeInBitmapDisplayer(1000, true,true,true))
+                .displayer(new FadeInBitmapDisplayer(700, true,true,true))
                 .build();
         ImageLoader imageLoader = ImageLoader.getInstance();
-        imageLoader.displayImage("assets://images/designer.jpeg", imageViewPlus, options);
-        imageLoader.displayImage("assets://images/fashion.jpeg", imageViewDishes, options);
+        imageLoader.displayImage("assets://images/plus.JPG", imageViewPlus, options);
+        imageLoader.displayImage("assets://images/dishes.jpg", imageViewDishes, options);
     }
 
     @Override
@@ -93,6 +99,7 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
         super.onPause();
         logo.setVisibility(View.INVISIBLE);
     }
+
 
     @Override
     public void onClick(View v) {
@@ -118,7 +125,7 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    public void setInformationObject(InformationObject object) {
+    public void showInformation(InformationObject object) {
         Animation slide = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.abc_slide_in_bottom);
         Log.i("DBG", "goods = "+object.getAmountOfGoodsPlus() +", news = " +object.getAmountOfNewsPlus());
         Log.i("DBG", "goods = "+object.getAmountOfGoodsDishes() +", news = " +object.getAmountOfNewsDishes());
