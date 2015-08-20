@@ -24,9 +24,8 @@
 
             <View android:layout_height="fill_parent"
                 android:layout_width="1dp"
-                android:background="#ff353535"
-                android:layout_alignParentStart="true"
-                android:visibility="invisible" />
+                android:background="#ff1f1f1f"
+                android:layout_alignParentStart="true" />
 
             <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
                 android:layout_width="wrap_content"
@@ -51,7 +50,7 @@
 
             <View android:layout_height="fill_parent"
                 android:layout_width="1dp"
-                android:background="#ff353535"
+                android:background="#ff000000"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:id="@+id/view"
@@ -76,8 +75,7 @@
             android:clickable="true"
             android:id="@+id/back_layout"
             android:visibility="invisible"
-            android:paddingRight="10dp"
-            android:paddingLeft="2dp">
+            android:paddingLeft="5dp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -96,7 +94,13 @@
                 android:textColor="#ffffffff"
                 android:gravity="center"
                 android:visibility="visible"
-                app:customTypeface="Lato-Light.ttf" />
+                app:customTypeface="Lato-Light.ttf"
+                android:paddingRight="10dp" />
+
+            <View android:layout_height="fill_parent"
+                android:layout_width="1dp"
+                android:background="#ff1f1f1f"
+                android:layout_alignParentStart="true" />
         </LinearLayout>
 
         <LinearLayout

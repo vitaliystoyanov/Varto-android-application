@@ -77,7 +77,8 @@ public class DBNewsProvider extends DBConstants {
 
                 Cursor cursor = null;
                 try {
-                    cursor = DBConnect.query(TAG_TABLE_NEWS, null, whereArgs, whereValues, null, null, null);
+                    String orderBy = "id DESC";
+                    cursor = DBConnect.query(TAG_TABLE_NEWS, null, whereArgs, whereValues, null, null, orderBy);
                     int idColIndex = cursor.getColumnIndex(TAG_ID);
                     int shopColIndex = cursor.getColumnIndex(TAG_SHOP);
                     int titleColIndex = cursor.getColumnIndex(TAG_TITLE);

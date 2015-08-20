@@ -76,10 +76,11 @@ public class DBSalesProvider extends DBConstants{
 
                 String whereArgs = "shop = ? AND catalog = ?";
                 String[] whereValues = new String[]{shop, catalog};
+                String orderBy = "id DESC";
 
                 Cursor cursor = null;
                 try {
-                    cursor = DBConnect.query(TAG_TABLE_SALES, null, whereArgs, whereValues, null, null, null);
+                    cursor = DBConnect.query(TAG_TABLE_SALES, null, whereArgs, whereValues, null, null, orderBy);
                     int idColIndex = cursor.getColumnIndex(TAG_ID);
                     int shopColIndex = cursor.getColumnIndex(TAG_SHOP);
                     int titleColIndex = cursor.getColumnIndex(TAG_TITLE);
@@ -145,7 +146,7 @@ public class DBSalesProvider extends DBConstants{
                         do {
                             integerList.add(cursor.getInt(idColIndex));
                         } while (cursor.moveToNext());
-                        Log.i(TAG_LOG, "[TABLE: sales, getArrayListID]SQL:  Total objects in the ArrayList<NewsObject>"
+                        Log.i(TAG_LOG, "[TABLE: sales, getArrayListID]SQL:  Total objects in the ArrayList<GoodsObject>"
                                 + ",which will return method: "
                                 + integerList.size());
                     }
