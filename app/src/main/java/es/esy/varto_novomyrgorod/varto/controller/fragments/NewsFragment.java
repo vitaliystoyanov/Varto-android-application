@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class NewsFragment extends Fragment {
     private ListView newsList;
     private String fromFragment;
     private LinearLayout backLayout;
+    private ImageView logoImage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,6 +54,17 @@ public class NewsFragment extends Fragment {
         TextView textViewStatus = (TextView) getActivity().findViewById(R.id.textview_status);
         textViewStatus.setText(R.string.status_bar_news);
         backLayout.setVisibility(View.VISIBLE);
+        logoImage = (ImageView) getActivity().findViewById(R.id.imageview_news_logo);
+        switch (fromFragment) {
+            case "plus" : {
+                logoImage.setImageResource(R.mipmap.logo_vartoplus);
+            }
+            break;
+            case "dishes" : {
+                logoImage.setImageResource(R.mipmap.logo_vartodishes);
+            }
+            break;
+        }
         new loadNewsAsycnTask().execute();
     }
 

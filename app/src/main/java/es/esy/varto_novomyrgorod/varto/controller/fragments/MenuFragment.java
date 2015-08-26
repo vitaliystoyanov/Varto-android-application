@@ -29,6 +29,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener{
     private LinearLayout backLayout;
     private ImageView saleImage;
     private ImageView newsImage;
+    private ImageView logoImage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,6 +57,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener{
         backLayout = (LinearLayout) getActivity().findViewById(R.id.back_layout);
         saleImage = (ImageView) getActivity().findViewById(R.id.imageview_sale);
         newsImage = (ImageView) getActivity().findViewById(R.id.imageview_news);
+        logoImage = (ImageView) getActivity().findViewById(R.id.imageview_menu_logo);
         TextView textviewMenuNews = (TextView) getActivity().findViewById(R.id.textview_menu_news);
         textviewMenuNews.setOnClickListener(this);
         TextView textviewMenuSale = (TextView) getActivity().findViewById(R.id.textview_menu_shares);
@@ -80,8 +82,16 @@ public class MenuFragment extends Fragment implements View.OnClickListener{
                 .displayer(new FadeInBitmapDisplayer(DURATION_MILLIS_ANIMATION, true, true, true))
                 .build();
         ImageLoader imageLoader = ImageLoader.getInstance();
-        imageLoader.displayImage("assets://images/sale.jpg", saleImage, options);
         imageLoader.displayImage("assets://images/wine.jpg", newsImage, options);
+        imageLoader.displayImage("assets://images/goods.jpg", saleImage, options);
+        if (getStringFromBundle(FROM) == "plus") {
+            logoImage.setImageResource(R.mipmap.logo_vartoplus);
+
+
+        } else {
+            logoImage.setImageResource(R.mipmap.logo_vartodishes);
+        }
+
     }
 
     private void fillingData(TextView textViewLocation, TextView textViewEmail) {

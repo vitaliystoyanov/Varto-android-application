@@ -9,7 +9,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import es.esy.varto_novomyrgorod.varto.R;
 import es.esy.varto_novomyrgorod.varto.model.database.DBCatalogProvider;
@@ -27,10 +26,6 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
-                .build();
-        ImageLoader.getInstance().init(config);
 
         new LoadingDataFromServer().execute();
     }

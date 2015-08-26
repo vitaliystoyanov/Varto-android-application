@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ public class GoodFragment extends Fragment {
     private ListView goodsList;
     private String fromFragment;
     private String catalog;
+    private ImageView logoImage;
 
     public static GoodFragment newInstance(String source, String catalog){
         GoodFragment fragment = new GoodFragment();
@@ -53,6 +55,7 @@ public class GoodFragment extends Fragment {
         super.onStart();
         backLayout = (LinearLayout) getActivity().findViewById(R.id.back_layout);
         goodsList = (ListView) getActivity().findViewById(R.id.list_shares);
+        logoImage = (ImageView) getActivity().findViewById(R.id.imageview_goods_logo);
         fromFragment = getStringFromBundle(FROM);
         catalog = getStringFromBundle(CATALOG);
 
@@ -65,6 +68,16 @@ public class GoodFragment extends Fragment {
         TextView textViewStatus = (TextView) getActivity().findViewById(R.id.textview_status);
         textViewStatus.setText(R.string.status_bar_goods);
         backLayout.setVisibility(View.VISIBLE);
+        switch (fromFragment) {
+            case "plus" : {
+                logoImage.setImageResource(R.mipmap.logo_vartoplus);
+            }
+            break;
+            case "dishes" : {
+                logoImage.setImageResource(R.mipmap.logo_vartodishes);
+            }
+            break;
+        }
     }
 
     @Override

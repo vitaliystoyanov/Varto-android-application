@@ -25,8 +25,6 @@ import es.esy.varto_novomyrgorod.varto.model.database.DBInfomationProvider;
 import es.esy.varto_novomyrgorod.varto.model.pojo.InformationObject;
 
 public class MainMenuFragment extends Fragment implements View.OnClickListener {
-    private static final String NEWS_PLUS = "news_plus";
-    private static final String NEWS_DISHES = "new_dishes";
     private LinearLayout newsPlusLayout;
     private LinearLayout sharesPlusLayout;
     private LinearLayout newsDishesLayout;
@@ -36,16 +34,8 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
     private TextView countNewsDishes;
     private TextView countSharesDishes;
     private LinearLayout logo;
-
-    public static MainMenuFragment newInstance(InformationObject object){
-        MainMenuFragment fragment = new MainMenuFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(NEWS_PLUS, object.getAmountOfNewsPlus());
-        bundle.putInt(NEWS_DISHES, object.getAmountOfNewsDishes());
-        fragment.setArguments(bundle);
-
-        return fragment;
-    }
+    private TextView buttonPlus;
+    private TextView buttonDishes;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,8 +47,8 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
         super.onStart();
 
         logo = (LinearLayout) getActivity().findViewById(R.id.logo_layout);
-        TextView buttonPlus = (TextView) getActivity().findViewById(R.id.textview_plus);
-        TextView buttonDishes = (TextView) getActivity().findViewById(R.id.textview_dishes);
+        buttonPlus = (TextView) getActivity().findViewById(R.id.textview_plus);
+        buttonDishes = (TextView) getActivity().findViewById(R.id.textview_dishes);
 
         newsPlusLayout = (LinearLayout) getActivity().findViewById(R.id.info_news_plus);
         newsDishesLayout = (LinearLayout) getActivity().findViewById(R.id.info_news_dishes);
@@ -70,17 +60,10 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
         countNewsDishes = (TextView) getActivity().findViewById(R.id.textview_count_news_dishes);
         countSharesDishes = (TextView) getActivity().findViewById(R.id.textview_count_shares_dishes);
 
-        buttonPlus.setOnClickListener(this);
-        buttonDishes.setOnClickListener(this);
 
         DBHelper dbHelper = new DBHelper(getActivity());
         DBInfomationProvider dbInfomationProvider = new DBInfomationProvider(dbHelper);
         showInformation(dbInfomationProvider.getInformationFromSQLDatabase());
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         logo.setVisibility(View.VISIBLE);
         ImageView imageViewPlus = (ImageView) getActivity().findViewById(R.id.imageview_plus);
         ImageView imageViewDishes = (ImageView) getActivity().findViewById(R.id.imageview_dishes);
@@ -95,9 +78,18 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        buttonPlus.setOnClickListener(this);
+        buttonDishes.setOnClickListener(this);
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
         logo.setVisibility(View.INVISIBLE);
+        buttonPlus.setOnClickListener(null);
+        buttonDishes.setOnClickListener(null);
     }
 
 

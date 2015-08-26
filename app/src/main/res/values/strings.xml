@@ -29,8 +29,8 @@
     //FRAGMENT MENU.
     <string name="map_location_plus">Новомиргород, Леніна 118а</string>
     <string name="map_location_dishes">Новомиргород, Леніна 33/116</string>
-    <string name="email_plus">vartoplus@gmail.com</string>
-    <string name="email_dishes">vartodishes@gmail.com</string>
+    <string name="email_plus">info@varto.esy.es</string>
+    <string name="email_dishes">info@varto.esy.es</string>
     <string name="textview_menu_news">Новини</string>
     <string name="textview_menu_sale">Товари</string>
 

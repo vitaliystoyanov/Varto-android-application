@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -15,6 +16,10 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 import java.util.List;
 
 import es.esy.varto_novomyrgorod.varto.R;
@@ -51,8 +56,12 @@ public class MainFragmentActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        container = (RelativeLayout) findViewById(R.id.container);
 
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+                .build();
+        ImageLoader.getInstance().init(config);
+
+        container = (RelativeLayout) findViewById(R.id.container);
         menuFragmentInstance = new MainMenuFragment();
         manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -84,6 +93,13 @@ public class MainFragmentActivity extends FragmentActivity {
     protected void onStart() {
         super.onStart();
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
+
 
     class LoadContentAsyncTask extends AsyncTask<Void, Integer, InformationObject> {
 
@@ -185,4 +201,5 @@ public class MainFragmentActivity extends FragmentActivity {
             }
         }
     }
+
 }

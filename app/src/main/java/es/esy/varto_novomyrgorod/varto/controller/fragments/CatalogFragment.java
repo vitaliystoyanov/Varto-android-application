@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ public class CatalogFragment extends Fragment {
     private String fromFragment;
     private LinearLayout backLayout;
     private static final String TAG_LOG = "DBG";
+    private ImageView logoImage;
 
     public static CatalogFragment newInstance(String source){
         CatalogFragment fragment = new CatalogFragment();
@@ -50,6 +52,8 @@ public class CatalogFragment extends Fragment {
     public void onStart() {
         super.onStart();
         backLayout = (LinearLayout) getActivity().findViewById(R.id.back_layout);
+        logoImage = (ImageView) getActivity().findViewById(R.id.imageview_catalog_logo);
+
         fromFragment = getStringFromBundle("FROM");
         FragmentManager manager = getActivity().getSupportFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
@@ -76,6 +80,16 @@ public class CatalogFragment extends Fragment {
         TextView textViewStatus = (TextView) getActivity().findViewById(R.id.textview_status);
         textViewStatus.setText(R.string.status_bar_catalogs);
         backLayout.setVisibility(View.VISIBLE);
+        switch (fromFragment) {
+            case "plus" : {
+                logoImage.setImageResource(R.mipmap.logo_vartoplus);
+            }
+            break;
+            case "dishes" : {
+                logoImage.setImageResource(R.mipmap.logo_vartodishes);
+            }
+            break;
+        }
     }
 
     @Override
