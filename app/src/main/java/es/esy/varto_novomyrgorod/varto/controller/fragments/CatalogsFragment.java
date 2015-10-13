@@ -19,19 +19,19 @@ import java.util.List;
 
 import es.esy.varto_novomyrgorod.varto.R;
 import es.esy.varto_novomyrgorod.varto.adapters.CatalogsListviewAdapter;
-import es.esy.varto_novomyrgorod.varto.model.database.DBCatalogProvider;
+import es.esy.varto_novomyrgorod.varto.model.database.DBCatalogsProvider;
 import es.esy.varto_novomyrgorod.varto.model.database.DBHelper;
 import es.esy.varto_novomyrgorod.varto.model.pojo.CatalogObject;
 
-public class CatalogFragment extends Fragment {
+public class CatalogsFragment extends Fragment {
     private ListView list;
     private String fromFragment;
     private LinearLayout backLayout;
     private static final String TAG_LOG = "DBG";
     private ImageView logoImage;
 
-    public static CatalogFragment newInstance(String source){
-        CatalogFragment fragment = new CatalogFragment();
+    public static CatalogsFragment newInstance(String source){
+        CatalogsFragment fragment = new CatalogsFragment();
         Bundle bundle = new Bundle();
         bundle.putString("FROM", source);
         fragment.setArguments(bundle);
@@ -64,10 +64,10 @@ public class CatalogFragment extends Fragment {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String catalog = parent.getAdapter().getItem(position).toString();
-                Log.i(TAG_LOG, "[CatalogFragment]  Selected a catalog: " + catalog);
+                Log.i(TAG_LOG, "[CatalogsFragment]  Selected a catalog: " + catalog);
                 if (catalog != null) {
-                    GoodFragment goodFragment = GoodFragment.newInstance(fromFragment, catalog);
-                    transaction.replace(R.id.container, goodFragment).commit();
+                    GoodsFragment goodsFragment = GoodsFragment.newInstance(fromFragment, catalog);
+                    transaction.replace(R.id.container, goodsFragment).commit();
                 }
             }
         });
@@ -107,11 +107,11 @@ public class CatalogFragment extends Fragment {
 
         @Override
         protected List<CatalogObject> doInBackground(Void... params) {
-            DBCatalogProvider dbCatalogProvider = new DBCatalogProvider(new DBHelper(getActivity()));
+            DBCatalogsProvider dbCatalogsProvider = new DBCatalogsProvider(new DBHelper(getActivity()));
 
             if (fromFragment != null) {
                 Log.i("DBG", "fromFragment = " + fromFragment);
-                return dbCatalogProvider.getCatalogsFromSQLDatabase(fromFragment);
+                return dbCatalogsProvider.getCatalogsFromSQLDatabase(fromFragment);
             } else {
                 return Collections.emptyList();
             }

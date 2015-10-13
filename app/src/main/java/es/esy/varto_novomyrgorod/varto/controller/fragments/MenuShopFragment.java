@@ -21,11 +21,11 @@ import es.esy.varto_novomyrgorod.varto.model.database.DBHelper;
 import es.esy.varto_novomyrgorod.varto.model.database.DBScheduleProvider;
 import es.esy.varto_novomyrgorod.varto.model.pojo.ScheduleObject;
 
-public class MenuFragment extends Fragment implements View.OnClickListener{
+public class MenuShopFragment extends Fragment implements View.OnClickListener{
     private static final String FROM = "FROM";
     private static final String NEWS = "NEWS";
     private static final String SHARES = "SHARES";
-    private static final int DURATION_MILLIS_ANIMATION = 700;
+    private static final int DURATION_MILLIS_ANIMATION = 400;
     private LinearLayout backLayout;
     private ImageView saleImage;
     private ImageView newsImage;
@@ -36,8 +36,8 @@ public class MenuFragment extends Fragment implements View.OnClickListener{
         return inflater.inflate(R.layout.fragment_menu, null);
     }
 
-    public static MenuFragment newInstance(String source, int news, int shares){
-        MenuFragment fragment = new MenuFragment();
+    public static MenuShopFragment newInstance(String source, int news, int shares){
+        MenuShopFragment fragment = new MenuShopFragment();
         Bundle bundle = new Bundle();
         bundle.putString(FROM, source);
         bundle.putInt(NEWS, news);
@@ -87,7 +87,6 @@ public class MenuFragment extends Fragment implements View.OnClickListener{
         if (getStringFromBundle(FROM) == "plus") {
             logoImage.setImageResource(R.mipmap.logo_vartoplus);
 
-
         } else {
             logoImage.setImageResource(R.mipmap.logo_vartodishes);
         }
@@ -99,7 +98,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener{
         String timetable = getResources().getString(R.string.timetable_for_today);
 
         DBScheduleProvider dbScheduleProvider = new DBScheduleProvider(new DBHelper(getActivity()));
-        ScheduleObject object = dbScheduleProvider.getScheduleFromDB(getStringFromBundle(FROM));
+        ScheduleObject object = dbScheduleProvider.getScheduleFromSQLDataBase(getStringFromBundle(FROM));
 
         String timetableShop = object.getScheduleToday();
         textViewTimetable.setText(timetable + " " + timetableShop);
@@ -138,8 +137,9 @@ public class MenuFragment extends Fragment implements View.OnClickListener{
             }
             break;
             case R.id.textview_menu_shares: {
-                CatalogFragment catalog = CatalogFragment.newInstance(from);
-                transaction.replace(R.id.container, catalog).commit();
+                GoodsFragment goods = GoodsFragment.newInstance(from);
+                //CatalogsFragment catalog = CatalogsFragment.newInstance(from);
+                transaction.replace(R.id.container, goods).commit();
             }
             break;
         }

@@ -136,7 +136,7 @@
                 android:id="@+id/textview_menu_news"
                 android:gravity="center"
                 android:textColor="@color/text_color_white"
-                android:textSize="32sp"
+                android:textSize="34sp"
                 android:typeface="serif"
                 style="@style/CustomButton" />
 
@@ -167,7 +167,7 @@
                 android:id="@+id/textview_menu_shares"
                 android:gravity="center"
                 android:textColor="@color/text_color_white"
-                android:textSize="32sp"
+                android:textSize="34sp"
                 android:typeface="serif"
                 style="@style/CustomButton" />
         </RelativeLayout>

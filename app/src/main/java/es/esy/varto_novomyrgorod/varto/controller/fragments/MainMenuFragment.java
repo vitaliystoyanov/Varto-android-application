@@ -70,7 +70,7 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
-                .displayer(new FadeInBitmapDisplayer(700, true,true,true))
+                .displayer(new FadeInBitmapDisplayer(400, true,true,true))
                 .build();
         ImageLoader imageLoader = ImageLoader.getInstance();
         imageLoader.displayImage("assets://images/plus.JPG", imageViewPlus, options);
@@ -101,17 +101,17 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         switch (v.getId()) {
             case R.id.textview_plus: {
-                MenuFragment menuFragment = MenuFragment.newInstance("plus",
+                MenuShopFragment menuShopFragment = MenuShopFragment.newInstance("plus",
                         0,
                         0);
-                transaction.replace(R.id.container, menuFragment).commit();
+                transaction.replace(R.id.container, menuShopFragment).commit();
             }
             break;
             case R.id.textview_dishes: {
-                MenuFragment menuFragment = MenuFragment.newInstance("dishes",
+                MenuShopFragment menuShopFragment = MenuShopFragment.newInstance("dishes",
                         0,
                         0);
-                transaction.replace(R.id.container, menuFragment).commit();
+                transaction.replace(R.id.container, menuShopFragment).commit();
             }
             break;
         }

@@ -5,22 +5,19 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-
 import java.util.List;
 
 import es.esy.varto_novomyrgorod.varto.R;
-import es.esy.varto_novomyrgorod.varto.model.database.DBCatalogProvider;
+import es.esy.varto_novomyrgorod.varto.model.database.DBCatalogsProvider;
+import es.esy.varto_novomyrgorod.varto.model.database.DBGoodsProvider;
 import es.esy.varto_novomyrgorod.varto.model.database.DBHelper;
 import es.esy.varto_novomyrgorod.varto.model.database.DBInfomationProvider;
 import es.esy.varto_novomyrgorod.varto.model.database.DBNewsProvider;
-import es.esy.varto_novomyrgorod.varto.model.database.DBSalesProvider;
 import es.esy.varto_novomyrgorod.varto.model.database.DBScheduleProvider;
 import es.esy.varto_novomyrgorod.varto.model.network.JSONParser;
 import es.esy.varto_novomyrgorod.varto.model.pojo.InformationObject;
 
-public class SplashActivity extends Activity {
+public class SplashScreenActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +34,14 @@ public class SplashActivity extends Activity {
             InformationObject informationObject = new InformationObject();
             JSONParser parsedObjects = new JSONParser();
 
-            DBHelper dbHelper = new DBHelper(SplashActivity.this);
+            DBHelper dbHelper = new DBHelper(SplashScreenActivity.this);
             DBScheduleProvider dbManager = new DBScheduleProvider(dbHelper);
             DBNewsProvider dbNewsProvider = new DBNewsProvider(dbHelper);
-            DBCatalogProvider dbCatalogProvider = new DBCatalogProvider(dbHelper);
-            DBSalesProvider dbSalesProvider = new DBSalesProvider(dbHelper);
+            DBCatalogsProvider dbCatalogsProvider = new DBCatalogsProvider(dbHelper);
+            DBGoodsProvider dbGoodsProvider = new DBGoodsProvider(dbHelper);
 
-            dbManager.setScheduleObjectToDB(parsedObjects.getTimetables());
-            dbCatalogProvider.setCatalogsToSQLDatabase(parsedObjects.getCatalogs());
+            dbManager.setScheduleToSQLDataBase(parsedObjects.getTimetables());
+            dbCatalogsProvider.setCatalogsToSQLDatabase(parsedObjects.getCatalogs());
 
             List<Integer> oldListPlus = dbNewsProvider.getArrayListID("plus");
             List<Integer> oldListDishes = dbNewsProvider.getArrayListID("dishes");
@@ -57,11 +54,11 @@ public class SplashActivity extends Activity {
             informationObject.setAmountOfNewsPlus(newListPlus.size());
             informationObject.setAmountOfNewsDishes(newListDishes.size());
 
-            List<Integer> oldListGoodsPlus = dbSalesProvider.getArrayListID("plus");
-            List<Integer> oldListGoodsDishes = dbSalesProvider.getArrayListID("dishes");
-            dbSalesProvider.setSaleObjectsToSQLDatabase(parsedObjects.getSales());
-            List<Integer> newListGoodsPlus = dbSalesProvider.getArrayListID("plus");
-            List<Integer> newListGoodsDishes = dbSalesProvider.getArrayListID("dishes");
+            List<Integer> oldListGoodsPlus = dbGoodsProvider.getArrayListID("plus");
+            List<Integer> oldListGoodsDishes = dbGoodsProvider.getArrayListID("dishes");
+            dbGoodsProvider.setSaleObjectsToSQLDatabase(parsedObjects.getSales());
+            List<Integer> newListGoodsPlus = dbGoodsProvider.getArrayListID("plus");
+            List<Integer> newListGoodsDishes = dbGoodsProvider.getArrayListID("dishes");
             newListGoodsPlus.removeAll(oldListGoodsPlus);
             newListGoodsDishes.removeAll(oldListGoodsDishes);
 
@@ -75,7 +72,7 @@ public class SplashActivity extends Activity {
 
         @Override
         protected void onPostExecute(InformationObject result) {
-            Intent intentSwithing = new Intent(SplashActivity.this, MainFragmentActivity.class);
+            Intent intentSwithing = new Intent(SplashScreenActivity.this, MainFragmentActivity.class);
             startActivity(intentSwithing);
         }
     }

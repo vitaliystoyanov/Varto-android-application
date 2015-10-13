@@ -17,25 +17,33 @@ import java.util.List;
 
 import es.esy.varto_novomyrgorod.varto.R;
 import es.esy.varto_novomyrgorod.varto.adapters.GoodsListviewAdapter;
+import es.esy.varto_novomyrgorod.varto.model.database.DBGoodsProvider;
 import es.esy.varto_novomyrgorod.varto.model.database.DBHelper;
-import es.esy.varto_novomyrgorod.varto.model.database.DBSalesProvider;
 import es.esy.varto_novomyrgorod.varto.model.pojo.GoodObject;
 
-public class GoodFragment extends Fragment {
+public class GoodsFragment extends Fragment {
     private LinearLayout backLayout;
     private static final String FROM = "FROM";
     private static final String CATALOG = "CATALOG";
-    private static final String TAG_LOG = "DBG";
     private ListView goodsList;
     private String fromFragment;
     private String catalog;
     private ImageView logoImage;
 
-    public static GoodFragment newInstance(String source, String catalog){
-        GoodFragment fragment = new GoodFragment();
+    public static GoodsFragment newInstance(String source, String catalog) {
+        GoodsFragment fragment = new GoodsFragment();
         Bundle bundle = new Bundle();
         bundle.putString(FROM, source);
         bundle.putString(CATALOG, catalog);
+        fragment.setArguments(bundle);
+
+        return fragment;
+    }
+
+    public static GoodsFragment newInstance(String source) {
+        GoodsFragment fragment = new GoodsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(FROM, source);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -57,6 +65,7 @@ public class GoodFragment extends Fragment {
         goodsList = (ListView) getActivity().findViewById(R.id.list_shares);
         logoImage = (ImageView) getActivity().findViewById(R.id.imageview_goods_logo);
         fromFragment = getStringFromBundle(FROM);
+        Log.i("DBG", "fromFragment - " + fromFragment);
         catalog = getStringFromBundle(CATALOG);
 
         new LoadGoodsAsyncTask().execute();
@@ -96,11 +105,15 @@ public class GoodFragment extends Fragment {
         protected List<GoodObject> doInBackground(Void... args) {
             List<GoodObject> goodObjectsList = Collections.emptyList();
             Log.i("DBG", "[GoodsFragment]  LoadGoodsAsyncTask working! ");
-            if (catalog != null) {
+            /*if (catalog != null) {
                 Log.i("DBG", "[GoodsFragment]  Selected a catalog: " + catalog);
-                DBSalesProvider dbSalesProvider = new DBSalesProvider(new DBHelper(getActivity()));
+                DBGoodsProvider dbSalesProvider = new DBGoodsProvider(new DBHelper(getActivity()));
                 goodObjectsList = dbSalesProvider.getSalesObjectsFromSQLDatabase(fromFragment, catalog);
                 Log.i("DBG", "[GoodsFragment]  List<GoodObject> return: " + goodObjectsList.size());
+            }*/
+            if (fromFragment != null) {
+                DBGoodsProvider dbGoodsProvider = new DBGoodsProvider(new DBHelper(getActivity()));
+                goodObjectsList = dbGoodsProvider.getSalesObjectsFromSQLDatabase(fromFragment);
             }
 
             return goodObjectsList;

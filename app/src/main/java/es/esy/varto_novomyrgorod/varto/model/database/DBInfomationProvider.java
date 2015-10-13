@@ -25,8 +25,6 @@ public class DBInfomationProvider extends DBConstants {
             SQLiteDatabase DBConnect = null;
             try {
                 DBConnect = localDBHelper.getWritableDatabase();
-                Log.i(TAG_LOG, "[TABLE: information]SQL:  DBConnect = localDBHelper.getWritableDatabase(): " + DBConnect.toString());
-
                 Cursor cursor = null;
                 try {
                     cursor = DBConnect.query(TAG_TABLE_INFORMATION, null, null, null, null, null, null);
@@ -53,46 +51,42 @@ public class DBInfomationProvider extends DBConstants {
             } finally {
                 if (DBConnect != null) DBConnect.close();
             }
-        } else {
+        } else
             Log.i(TAG_LOG, "[TABLE: inforamation] arg informationToSQLDatabase is empty!");
-        }
     }
 
     public InformationObject getInformationFromSQLDatabase() {
         InformationObject informationObject = new InformationObject();
-            SQLiteDatabase DBConnect = null;
+        SQLiteDatabase DBConnect = null;
+        try {
+            DBConnect = localDBHelper.getWritableDatabase();
+            Log.i(TAG_LOG, "[TABLE: inforamtion]SQL:  DBConnect = localDBHelper.getWritableDatabase(): "
+                    + DBConnect.toString());
+            Cursor cursor = null;
             try {
-                DBConnect = localDBHelper.getWritableDatabase();
-                Log.i(TAG_LOG, "[TABLE: inforamtion]SQL:  DBConnect = localDBHelper.getWritableDatabase(): "
-                        + DBConnect.toString());
-
-                Cursor cursor = null;
-                try {
-                    cursor = DBConnect.query(TAG_TABLE_INFORMATION, null, null, null, null, null, null);
-                    int newsPlusColIndex = cursor.getColumnIndex(TAG_AMOUNT_NEWS_PLUS);
-                    int newsDishesColIndex = cursor.getColumnIndex(TAG_AMOUNT_NEWS_DISHES);
-                    int goodsPlusColIndex = cursor.getColumnIndex(TAG_AMOUNT_GOODS_PLUS);
-                    int goodsDishesColIndex = cursor.getColumnIndex(TAG_AMOUNT_GOODS_DISHES);
-
-                    if (cursor.moveToFirst()) {
-                        do {
-                            informationObject.setAmountOfNewsPlus(cursor.getInt(newsPlusColIndex));
-                            informationObject.setAmountOfNewsDishes(cursor.getInt(newsDishesColIndex));
-                            informationObject.setAmountOfGoodsPlus(cursor.getInt(goodsPlusColIndex));
-                            informationObject.setAmountOfGoodsDishes(cursor.getInt(goodsDishesColIndex));
-                        } while (cursor.moveToNext());
-
-                        Log.i(TAG_LOG, "news plus = " + informationObject.getAmountOfNewsPlus() +
-                        ", news dishes = " + informationObject.getAmountOfNewsDishes() +
-                        ", goods plus = " +informationObject.getAmountOfGoodsPlus() + ", goods dishes = " +
-                        informationObject.getAmountOfGoodsDishes());
-                    }
-                } finally {
-                    if (cursor != null) cursor.close();
+                cursor = DBConnect.query(TAG_TABLE_INFORMATION, null, null, null, null, null, null);
+                int newsPlusColIndex = cursor.getColumnIndex(TAG_AMOUNT_NEWS_PLUS);
+                int newsDishesColIndex = cursor.getColumnIndex(TAG_AMOUNT_NEWS_DISHES);
+                int goodsPlusColIndex = cursor.getColumnIndex(TAG_AMOUNT_GOODS_PLUS);
+                int goodsDishesColIndex = cursor.getColumnIndex(TAG_AMOUNT_GOODS_DISHES);
+                if (cursor.moveToFirst()) {
+                    do {
+                        informationObject.setAmountOfNewsPlus(cursor.getInt(newsPlusColIndex));
+                        informationObject.setAmountOfNewsDishes(cursor.getInt(newsDishesColIndex));
+                        informationObject.setAmountOfGoodsPlus(cursor.getInt(goodsPlusColIndex));
+                        informationObject.setAmountOfGoodsDishes(cursor.getInt(goodsDishesColIndex));
+                    } while (cursor.moveToNext());
+                    Log.i(TAG_LOG, "news plus = " + informationObject.getAmountOfNewsPlus() + ", " +
+                            "news dishes = " + informationObject.getAmountOfNewsDishes() + ", " +
+                            "goods plus = " +informationObject.getAmountOfGoodsPlus() + ", " +
+                            "goods dishes = " + informationObject.getAmountOfGoodsDishes());
                 }
             } finally {
-                if (DBConnect != null) DBConnect.close();
+                if (cursor != null) cursor.close();
             }
-            return informationObject;
+        } finally {
+            if (DBConnect != null) DBConnect.close();
+        }
+        return informationObject;
     }
 }

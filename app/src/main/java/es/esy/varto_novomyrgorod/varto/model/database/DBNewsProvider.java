@@ -25,8 +25,6 @@ public class DBNewsProvider extends DBConstants {
             SQLiteDatabase DBConnect = null;
             try {
                 DBConnect = localDBHelper.getWritableDatabase();
-                Log.i(TAG_LOG, "[TABLE: news]SQL:  DBConnect = localDBHelper.getWritableDatabase(): " + DBConnect.toString());
-
                 Cursor cursor = null;
                 try {
                     cursor = DBConnect.query(TAG_TABLE_NEWS, null, null, null, null, null, null);
@@ -58,23 +56,19 @@ public class DBNewsProvider extends DBConstants {
             } finally {
                 if (DBConnect != null) DBConnect.close();
             }
-        }else {
+        }else
             Log.i(TAG_LOG, "[TABLE: news] List<NewsObject> is empty!");
-        }
     }
 
     public List<NewsObject> getNewsFromSQLDatabase(String shop) {
-        ArrayList<NewsObject> newsObject = new ArrayList<>();
         if (shop != null) {
+            ArrayList<NewsObject> newsObject = new ArrayList<>();
             SQLiteDatabase DBConnect = null;
             try {
                 DBConnect = localDBHelper.getWritableDatabase();
-                Log.i(TAG_LOG, "[TABLE: news]SQL:  DBConnect = localDBHelper.getWritableDatabase(): "
-                        + DBConnect.toString());
 
                 String whereArgs = "shop = ?";
                 String[] whereValues = new String[]{shop};
-
                 Cursor cursor = null;
                 try {
                     String orderBy = "id DESC";
@@ -123,12 +117,8 @@ public class DBNewsProvider extends DBConstants {
             SQLiteDatabase DBConnect = null;
             try {
                 DBConnect = localDBHelper.getWritableDatabase();
-                Log.i(TAG_LOG, "[TABLE: news, getArrayListID]SQL:  DBConnect = localDBHelper.getWritableDatabase(): "
-                        + DBConnect.toString());
-
                 String whereArgs = "shop = ?";
                 String[] whereValues = new String[]{shop};
-
                 Cursor cursor = null;
                 try {
                     cursor = DBConnect.query(TAG_TABLE_NEWS, null, whereArgs, whereValues, null, null, null);

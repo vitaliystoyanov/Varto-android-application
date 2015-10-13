@@ -27,7 +27,7 @@
                 android:id="@+id/textview_enter_plus"
                 android:textColor="@color/text_color_white"
                 android:text="@string/start_menu_enter"
-                android:textSize="18sp"
+                android:textSize="16sp"
                android:textColorLink="@color/text_color_white"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
@@ -42,7 +42,7 @@
                 android:layout_height="match_parent"
                 android:clickable="true"
                 android:gravity="center"
-                android:textSize="32sp"
+                android:textSize="34sp"
                 android:textColor="@color/text_color_white"
                 style="@style/CustomButton"
                 android:layout_alignParentTop="true"
@@ -151,12 +151,12 @@
             android:layout_height="wrap_content"
             android:text="@string/start_menu_enter"
             android:textColor="@color/text_color_white"
-            android:textSize="18sp"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:paddingTop="60dp"
             app:customTypeface="Lato-Light.ttf"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:textSize="16sp" />
 
         <LinearLayout
             android:orientation="horizontal"

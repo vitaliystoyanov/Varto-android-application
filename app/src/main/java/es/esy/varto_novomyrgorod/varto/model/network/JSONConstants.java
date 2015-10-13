@@ -1,6 +1,7 @@
 package es.esy.varto_novomyrgorod.varto.model.network;
 
 public class JSONConstants {
+
     public static final String JSON_SUCCESS = "success";
     public static final String JSON_NEWS = "news";
     public static final String JSON_CATALOGS = "catalogs";
@@ -23,4 +24,5 @@ public class JSONConstants {
     public static final String JSON_THURSDAY = "thursday";
     public static final String JSON_FRIDAY = "friday";
     public static final String JSON_SATURDAY = "saturday";
+
 }

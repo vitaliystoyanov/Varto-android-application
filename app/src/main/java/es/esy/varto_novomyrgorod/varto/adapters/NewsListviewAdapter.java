@@ -20,7 +20,7 @@ import es.esy.varto_novomyrgorod.varto.R;
 import es.esy.varto_novomyrgorod.varto.model.pojo.NewsObject;
 
 public class NewsListviewAdapter extends ArrayAdapter<String> {
-    private static final int DURATION_MILLIS_ANIMATION = 700;
+    private static final int DURATION_MILLIS_ANIMATION = 400;
     private List<NewsObject> data;
     private Context context;
 

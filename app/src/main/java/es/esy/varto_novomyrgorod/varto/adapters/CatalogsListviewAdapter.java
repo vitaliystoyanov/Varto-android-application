@@ -41,13 +41,9 @@ public class CatalogsListviewAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View view = inflater.inflate(R.layout.item_catalog_listview, parent, false);
-
         TextView catalogTextview = (TextView)view.findViewById(R.id.textview_catalog_item);
-
         CatalogObject objectItem = data.get(position);
-
         catalogTextview.setText(objectItem.getName());
-
         return view;
     }
 }

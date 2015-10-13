@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
+        config {
+            storeFile file('C:/Users/Vitaliy Stoyanov/Documents/Google Keys/varto-key.jks')
+        }
     }
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
@@ -9,8 +12,8 @@ android {
         applicationId "es.esy.varto_novomyrgorod.varto"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.2"
     }
     buildTypes {
         release {

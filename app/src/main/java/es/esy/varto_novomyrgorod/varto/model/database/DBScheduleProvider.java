@@ -16,7 +16,7 @@ public class DBScheduleProvider extends DBConstants{
         this.localDBHelper = helper;
     }
 
-    public void setScheduleObjectToDB(List<ScheduleObject> listTimetables) {
+    public void setScheduleToSQLDataBase(List<ScheduleObject> listTimetables) {
         if (!listTimetables.isEmpty()) {
             SQLiteDatabase DBConnect = null;
             try {
@@ -58,7 +58,7 @@ public class DBScheduleProvider extends DBConstants{
         }
     }
 
-    public ScheduleObject getScheduleFromDB(String shop){
+    public ScheduleObject getScheduleFromSQLDataBase(String shop){
         if (shop != null) {
             ScheduleObject scheduleObject = new ScheduleObject();
             SQLiteDatabase DBConnect = null;
@@ -73,7 +73,7 @@ public class DBScheduleProvider extends DBConstants{
                 try {
                     cursor = DBConnect.query(TAG_TABLE_SCHEDULE, null, whereArgs, whereValues, null, null, null);
                     if (cursor.moveToFirst()) {
-                        Log.i(LOG_TAG, "[TABLE: schedule]  getScheduleFromDB(String shop) - the successful request, found the rows.");
+                        Log.i(LOG_TAG, "[TABLE: schedule]  getScheduleFromSQLDataBase(String shop) - the successful request, found the rows.");
                         int shopColIndex = cursor.getColumnIndex(TAG_SHOP);
                         int sundayColIndex = cursor.getColumnIndex(TAG_SUNDAY);
                         int mondayColIndex = cursor.getColumnIndex(TAG_MONDAY);
@@ -100,7 +100,7 @@ public class DBScheduleProvider extends DBConstants{
             }
             return scheduleObject;
         } else {
-            Log.i(LOG_TAG, "[TABLE: schedule]  getScheduleFromDB(String shop): Argument a shop is NULL!");
+            Log.i(LOG_TAG, "[TABLE: schedule]  getScheduleFromSQLDataBase(String shop): Argument a shop is NULL!");
             return null;
         }
     }

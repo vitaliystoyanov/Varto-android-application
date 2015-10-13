@@ -21,7 +21,7 @@ import es.esy.varto_novomyrgorod.varto.R;
 import es.esy.varto_novomyrgorod.varto.model.pojo.GoodObject;
 
 public class GoodsListviewAdapter extends ArrayAdapter<String> {
-    private static final int DURATION_MILLIS_ANIMATION = 700;
+    private static final int DURATION_MILLIS_ANIMATION = 400;
     private List<GoodObject> data;
     private Context context;
 

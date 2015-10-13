@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -24,17 +23,19 @@ import java.util.List;
 
 import es.esy.varto_novomyrgorod.varto.R;
 import es.esy.varto_novomyrgorod.varto.controller.fragments.MainMenuFragment;
-import es.esy.varto_novomyrgorod.varto.model.database.DBCatalogProvider;
+import es.esy.varto_novomyrgorod.varto.model.database.DBCatalogsProvider;
 import es.esy.varto_novomyrgorod.varto.model.database.DBHelper;
 import es.esy.varto_novomyrgorod.varto.model.database.DBInfomationProvider;
 import es.esy.varto_novomyrgorod.varto.model.database.DBNewsProvider;
-import es.esy.varto_novomyrgorod.varto.model.database.DBSalesProvider;
+import es.esy.varto_novomyrgorod.varto.model.database.DBGoodsProvider;
 import es.esy.varto_novomyrgorod.varto.model.database.DBScheduleProvider;
 import es.esy.varto_novomyrgorod.varto.model.network.JSONParser;
 import es.esy.varto_novomyrgorod.varto.model.pojo.InformationObject;
 
 public class MainFragmentActivity extends FragmentActivity {
     private static final int DURATION_MILLIS = 700;
+    private static final String FIRST_SHOP = "plus";
+    private static final String SECOND_SHOP = "dishes";
     private RelativeLayout foreground;
     private RelativeLayout container;
     private LinearLayout refresh;
@@ -100,7 +101,6 @@ public class MainFragmentActivity extends FragmentActivity {
         finish();
     }
 
-
     class LoadContentAsyncTask extends AsyncTask<Void, Integer, InformationObject> {
 
         @Override
@@ -126,28 +126,28 @@ public class MainFragmentActivity extends FragmentActivity {
             DBHelper dbHelper = new DBHelper(MainFragmentActivity.this);
             DBScheduleProvider dbManager = new DBScheduleProvider(dbHelper);
             DBNewsProvider dbNewsProvider = new DBNewsProvider(dbHelper);
-            DBCatalogProvider dbCatalogProvider = new DBCatalogProvider(dbHelper);
-            DBSalesProvider dbSalesProvider = new DBSalesProvider(dbHelper);
+            DBCatalogsProvider dbCatalogsProvider = new DBCatalogsProvider(dbHelper);
+            DBGoodsProvider dbGoodsProvider = new DBGoodsProvider(dbHelper);
 
-            dbManager.setScheduleObjectToDB(parsedObjects.getTimetables());
-            dbCatalogProvider.setCatalogsToSQLDatabase(parsedObjects.getCatalogs());
+            dbManager.setScheduleToSQLDataBase(parsedObjects.getTimetables());
+            dbCatalogsProvider.setCatalogsToSQLDatabase(parsedObjects.getCatalogs());
 
-            List<Integer> oldListPlus = dbNewsProvider.getArrayListID("plus");
-            List<Integer> oldListDishes = dbNewsProvider.getArrayListID("dishes");
+            List<Integer> oldListPlus = dbNewsProvider.getArrayListID(FIRST_SHOP);
+            List<Integer> oldListDishes = dbNewsProvider.getArrayListID(SECOND_SHOP);
             dbNewsProvider.setNewsToSQLDatabase(parsedObjects.getNews());
-            List<Integer> newListPlus = dbNewsProvider.getArrayListID("plus");
-            List<Integer> newListDishes = dbNewsProvider.getArrayListID("dishes");
+            List<Integer> newListPlus = dbNewsProvider.getArrayListID(FIRST_SHOP);
+            List<Integer> newListDishes = dbNewsProvider.getArrayListID(SECOND_SHOP);
             newListPlus.removeAll(oldListPlus);
             newListDishes.removeAll(oldListDishes);
 
             informationObject.setAmountOfNewsPlus(newListPlus.size());
             informationObject.setAmountOfNewsDishes(newListDishes.size());
 
-            List<Integer> oldListGoodsPlus = dbSalesProvider.getArrayListID("plus");
-            List<Integer> oldListGoodsDishes = dbSalesProvider.getArrayListID("dishes");
-            dbSalesProvider.setSaleObjectsToSQLDatabase(parsedObjects.getSales());
-            List<Integer> newListGoodsPlus = dbSalesProvider.getArrayListID("plus");
-            List<Integer> newListGoodsDishes = dbSalesProvider.getArrayListID("dishes");
+            List<Integer> oldListGoodsPlus = dbGoodsProvider.getArrayListID(FIRST_SHOP);
+            List<Integer> oldListGoodsDishes = dbGoodsProvider.getArrayListID(SECOND_SHOP);
+            dbGoodsProvider.setSaleObjectsToSQLDatabase(parsedObjects.getSales());
+            List<Integer> newListGoodsPlus = dbGoodsProvider.getArrayListID(FIRST_SHOP);
+            List<Integer> newListGoodsDishes = dbGoodsProvider.getArrayListID(SECOND_SHOP);
             newListGoodsPlus.removeAll(oldListGoodsPlus);
             newListGoodsDishes.removeAll(oldListGoodsDishes);
 
@@ -184,13 +184,6 @@ public class MainFragmentActivity extends FragmentActivity {
         }
     }
 
-    /**
-     * Enables/Disables all child views in a view group.
-     *
-     * @param viewGroup the view group
-     * @param enabled <code>true</code> to enable, <code>false</code> to disable
-     * the views.
-     */
     private static void enableDisableViewGroup(ViewGroup viewGroup, boolean enabled) {
         int childCount = viewGroup.getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -201,5 +194,4 @@ public class MainFragmentActivity extends FragmentActivity {
             }
         }
     }
-
 }

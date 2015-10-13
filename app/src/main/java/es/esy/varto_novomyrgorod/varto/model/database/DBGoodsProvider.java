@@ -11,11 +11,11 @@ import java.util.List;
 
 import es.esy.varto_novomyrgorod.varto.model.pojo.GoodObject;
 
-public class DBSalesProvider extends DBConstants{
+public class DBGoodsProvider extends DBConstants{
     private DBHelper localDBHelper;
     private static final String TAG_LOG = "DBG";
 
-    public DBSalesProvider(DBHelper localDBHelper) {
+    public DBGoodsProvider(DBHelper localDBHelper) {
         this.localDBHelper = localDBHelper;
     }
 
@@ -66,18 +66,15 @@ public class DBSalesProvider extends DBConstants{
     }
 
     public List<GoodObject> getSalesObjectsFromSQLDatabase(String shop, String catalog) {
-        ArrayList<GoodObject> salesObject = new ArrayList<>();
         if ((shop != null) && (catalog != null)) {
+            ArrayList<GoodObject> salesObject = new ArrayList<>();
             SQLiteDatabase DBConnect = null;
             try {
                 DBConnect = localDBHelper.getWritableDatabase();
-                Log.i(TAG_LOG, "[TABLE: sale]SQL:  DBConnect = localDBHelper.getWritableDatabase(): "
-                        + DBConnect.toString());
 
                 String whereArgs = "shop = ? AND catalog = ?";
                 String[] whereValues = new String[]{shop, catalog};
                 String orderBy = "id DESC";
-
                 Cursor cursor = null;
                 try {
                     cursor = DBConnect.query(TAG_TABLE_SALES, null, whereArgs, whereValues, null, null, orderBy);
@@ -125,18 +122,75 @@ public class DBSalesProvider extends DBConstants{
         }
     }
 
-    public List<Integer> getArrayListID(String shop) {
-        List<Integer> integerList = new ArrayList<Integer>();
+    public List<GoodObject> getSalesObjectsFromSQLDatabase(String shop) {
+        ArrayList<GoodObject> salesObject = new ArrayList<>();
         if (shop != null) {
             SQLiteDatabase DBConnect = null;
             try {
                 DBConnect = localDBHelper.getWritableDatabase();
-                Log.i(TAG_LOG, "[TABLE: sales, getArrayListID]SQL:  DBConnect = localDBHelper.getWritableDatabase(): "
+                Log.i(TAG_LOG, "[TABLE: sale]SQL:  DBConnect = localDBHelper.getWritableDatabase(): "
                         + DBConnect.toString());
 
                 String whereArgs = "shop = ?";
                 String[] whereValues = new String[]{shop};
+                String orderBy = "id DESC";
 
+                Cursor cursor = null;
+                try {
+                    cursor = DBConnect.query(TAG_TABLE_SALES, null, whereArgs, whereValues, null, null, orderBy);
+                    int idColIndex = cursor.getColumnIndex(TAG_ID);
+                    int shopColIndex = cursor.getColumnIndex(TAG_SHOP);
+                    int titleColIndex = cursor.getColumnIndex(TAG_TITLE);
+                    int catalogColIndex = cursor.getColumnIndex(TAG_CATALOG);
+                    int descriptionColIndex = cursor.getColumnIndex(TAG_DESCRIPTION);
+                    int imageColIndex = cursor.getColumnIndex(TAG_IMAGE);
+                    int new_priceColIndex = cursor.getColumnIndex(TAG_NEW_PRICE);
+                    int old_priceColIndex = cursor.getColumnIndex(TAG_OLD_PRICE);
+                    int created_atColIndex = cursor.getColumnIndex(TAG_CREATED_AT);
+
+                    if (cursor.moveToFirst()) {
+                        do {
+                            GoodObject object = new GoodObject();
+
+                            object.setId(cursor.getInt(idColIndex));
+                            object.setShop(cursor.getString(shopColIndex));
+                            object.setTitle(cursor.getString(titleColIndex));
+                            object.setCatalog(cursor.getString(catalogColIndex));
+                            object.setDescription(cursor.getString(descriptionColIndex));
+                            object.setImage(cursor.getString(imageColIndex));
+                            object.setNew_price(cursor.getString(new_priceColIndex));
+                            object.setOld_price(cursor.getString(old_priceColIndex));
+                            object.setCreated_at(cursor.getString(created_atColIndex));
+
+                            salesObject.add(object);
+                        } while (cursor.moveToNext());
+                        Log.i(TAG_LOG, "[TABLE: sale]SQL:  Total objects in the ArrayList<GoodObject>"
+                                + ", which will return method: "
+                                + salesObject.size());
+                    }
+                } finally {
+                    if (cursor != null) cursor.close();
+                }
+            } finally {
+                if (DBConnect != null) DBConnect.close();
+            }
+            Log.i(TAG_LOG, "[TABLE: sale] Amount of sales -" + salesObject.size());
+            return salesObject;
+        } else {
+            Log.i(TAG_LOG, "[TABLE: sale]  getNewsFromSQLDatabase(String shop) -  String shop is empty!");
+            return Collections.emptyList();
+        }
+    }
+
+    public List<Integer> getArrayListID(String shop) {
+        if (shop != null) {
+            List<Integer> listID = new ArrayList<Integer>();
+            SQLiteDatabase DBConnect = null;
+            try {
+                DBConnect = localDBHelper.getWritableDatabase();
+
+                String whereArgs = "shop = ?";
+                String[] whereValues = new String[]{shop};
                 Cursor cursor = null;
                 try {
                     cursor = DBConnect.query(TAG_TABLE_SALES, null, whereArgs, whereValues, null, null, null);
@@ -144,11 +198,11 @@ public class DBSalesProvider extends DBConstants{
 
                     if (cursor.moveToFirst()) {
                         do {
-                            integerList.add(cursor.getInt(idColIndex));
+                            listID.add(cursor.getInt(idColIndex));
                         } while (cursor.moveToNext());
                         Log.i(TAG_LOG, "[TABLE: sales, getArrayListID]SQL:  Total objects in the ArrayList<GoodsObject>"
                                 + ",which will return method: "
-                                + integerList.size());
+                                + listID.size());
                     }
                 } finally {
                     if (cursor != null) cursor.close();
@@ -157,7 +211,7 @@ public class DBSalesProvider extends DBConstants{
                 if (DBConnect != null) DBConnect.close();
             }
 
-            return integerList;
+            return listID;
         } else {
             Log.i(TAG_LOG, "[TABLE: sales, getArrayListID]  getNewsFromSQLDatabase(String shop) -  String shop is empty!");
             return Collections.emptyList();

@@ -28,7 +28,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/imageview_good_image_item"
                 android:visibility="visible"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerInside" />
 
             <ImageView
                 android:layout_width="50dp"

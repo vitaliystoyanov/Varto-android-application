@@ -11,20 +11,19 @@ import java.util.List;
 
 import es.esy.varto_novomyrgorod.varto.model.pojo.CatalogObject;
 
-public class DBCatalogProvider extends DBConstants {
+public class DBCatalogsProvider extends DBConstants {
     private DBHelper localDBHelper;
     private static final String TAG_LOG = "DBG";
 
-    public DBCatalogProvider(DBHelper localDBHelper) {
+    public DBCatalogsProvider(DBHelper localDBHelper) {
         this.localDBHelper = localDBHelper;
     }
 
-    public void setCatalogsToSQLDatabase(List<CatalogObject> catalogsToSQLDatabase) {
-        if (!catalogsToSQLDatabase.isEmpty()) {
+    public void setCatalogsToSQLDatabase(List<CatalogObject> catalogs) {
+        if (!catalogs.isEmpty()) {
             SQLiteDatabase DBConnect = null;
             try {
                 DBConnect = localDBHelper.getWritableDatabase();
-                Log.i(TAG_LOG, "[TABLE: table]SQL:  DBConnect = localDBHelper.getWritableDatabase(): " + DBConnect.toString());
 
                 Cursor cursor = null;
                 try {
@@ -37,12 +36,12 @@ public class DBCatalogProvider extends DBConstants {
                     if (cursor != null) cursor.close();
                 }
 
-                for (int i = 0; i < catalogsToSQLDatabase.size(); i++) {
+                for (int i = 0; i < catalogs.size(); i++) {
                     ContentValues contentValues = new ContentValues();
-                    CatalogObject catalogObject = catalogsToSQLDatabase.get(i);
+                    CatalogObject object = catalogs.get(i);
 
-                    contentValues.put(TAG_SHOP, catalogObject.getShop());
-                    contentValues.put(TAG_NAME, catalogObject.getName());
+                    contentValues.put(TAG_SHOP, object.getShop());
+                    contentValues.put(TAG_NAME, object.getName());
 
                     Log.i(TAG_LOG, "[TABLE: catalog]SQL:  Result SQL insert operation: "
                             + String.valueOf(DBConnect.insert(TAG_TABLE_CATALOG, null, contentValues))
@@ -53,23 +52,19 @@ public class DBCatalogProvider extends DBConstants {
             } finally {
                 if (DBConnect != null) DBConnect.close();
             }
-        } else {
+        } else
             Log.i(TAG_LOG, "[TABLE: catalog] List<CatalogObject> is empty!");
-        }
     }
 
     public List<CatalogObject> getCatalogsFromSQLDatabase(String shop) {
-        ArrayList<CatalogObject> catalogObjects = new ArrayList<>();
         if (shop != null) {
+            ArrayList<CatalogObject> catalogObjects = new ArrayList<>();
             SQLiteDatabase DBConnect = null;
             try {
                 DBConnect = localDBHelper.getWritableDatabase();
-                Log.i(TAG_LOG, "[TABLE: catalog]SQL:  DBConnect = localDBHelper.getWritableDatabase(): "
-                        + DBConnect.toString());
 
                 String whereArgs = "shop = ?";
                 String[] whereValues = new String[]{shop};
-
                 Cursor cursor = null;
                 try {
                     cursor = DBConnect.query(TAG_TABLE_CATALOG, null, whereArgs, whereValues, null, null, null);
@@ -82,12 +77,10 @@ public class DBCatalogProvider extends DBConstants {
 
                             object.setName(cursor.getString(nameColIndex));
                             object.setShop(cursor.getString(shopColIndex));
-
                             catalogObjects.add(object);
-                            Log.i(TAG_LOG, "name = " + object.getName() + ", shop = " + object.getShop());
                         } while (cursor.moveToNext());
                         Log.i(TAG_LOG, "[TABLE: catalog]SQL:  Total objects in the ArrayList<CatalogObject>"
-                                + ",which will return method: "
+                                + ",which will return method getCatalogsFromSQLDatabase - "
                                 + catalogObjects.size());
                     }
                 } finally {
@@ -98,7 +91,7 @@ public class DBCatalogProvider extends DBConstants {
             }
             return catalogObjects;
         } else {
-            Log.i(TAG_LOG, "[TABLE: news]  getNewsFromSQLDatabase(String shop) -  String shop is empty!");
+            Log.i(TAG_LOG, "[TABLE: news]  getNewsFromSQLDatabase(String shop) -  arg shop is empty!");
             return Collections.emptyList();
         }
     }
