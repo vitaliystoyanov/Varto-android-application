@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/toolbar_primary">
+
+    <LinearLayout
+        android:id="@+id/toolbar_button_refresh"
+        style="@style/AppThemeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/toolbar_primary"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="#ff1f1f1f" />
+
+        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:text="@string/title_button_refresh"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/base_font_size"
+            app:customTypeface="Lato-Light.ttf" />
+
+        <ImageView
+            android:id="@+id/toolbar_image_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:contentDescription="@null"
+            android:scaleType="center"
+            android:src="@mipmap/ic_refresh_v2" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="#ff1f1f1f"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/toolbar_button_settings"
+            style="@style/AppThemeButton"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:src="@mipmap/ic_settings"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/toolbar_back_layout"
+        style="@style/AppThemeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:orientation="horizontal"
+        android:visibility="invisible">
+
+        <ImageView
+            android:id="@+id/toolbar_button_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="center"
+            android:src="@mipmap/ic_back" />
+
+        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+            android:id="@+id/textview_status"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:text="@string/toolbar_title_menu"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffffff"
+            android:textSize="@dimen/base_font_size"
+            app:customTypeface="Lato-Light.ttf" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="#ff1f1f1f" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/toolbar_logo_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/toolbar_image_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:contentDescription="@null"
+            android:src="@mipmap/ic_logo" />
+    </LinearLayout>
+</RelativeLayout>

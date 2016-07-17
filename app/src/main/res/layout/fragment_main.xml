@@ -1,231 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/linearlayout_main_root">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/imageview_plus"
-                android:scaleType="centerCrop"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/description_image"
-                android:clickable="true" />
-
-            <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textview_enter_plus"
-                android:textColor="@color/text_color_white"
-                android:text="@string/start_menu_enter"
-                android:textSize="16sp"
-               android:textColorLink="@color/text_color_white"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:paddingTop="60dp"
-                app:customTypeface="Lato-Light.ttf"
-                android:visibility="visible" />
-
-            <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-                android:layout_width="match_parent"
-                android:text="@string/textview_varto_plus"
-                android:id="@+id/textview_plus"
-                android:layout_height="match_parent"
-                android:clickable="true"
-                android:gravity="center"
-                android:textSize="34sp"
-                android:textColor="@color/text_color_white"
-                style="@style/CustomButton"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:typeface="serif"
-                android:visibility="visible" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:gravity="center">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/info_shares_plus"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="6dp"
-                    android:visibility="gone"
-                    android:background="#8f000000"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@mipmap/ic_sale"
-                        android:contentDescription="@string/image_description" />
-
-                    <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="(+0) товарів"
-                        android:id="@+id/textview_count_shares_plus"
-                        android:gravity="center"
-                        android:textColor="@color/text_color_white"
-                        android:textSize="11sp"
-                        app:customTypeface="Lato-Light.ttf" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/info_news_plus"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/info_shares_plus"
-                    android:layout_margin="6dp"
-                    android:visibility="gone"
-                    android:background="#8f000000">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@mipmap/ic_newspaper_v2"
-                        android:contentDescription="@string/image_description" />
-
-                    <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/textview_count_news_plus"
-                        android:gravity="center"
-                        android:textColor="@color/text_color_white"
-                        android:textSize="12sp"
-                        android:text="(+0) новин"
-                        app:customTypeface="Lato-Light.ttf" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-        </RelativeLayout>
+    android:orientation="vertical">
 
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/image_shop_varto_plus"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/imageview_dishes"
-                android:scaleType="centerCrop"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/image_description"
-                android:clickable="true" />
-
-            <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-                android:layout_width="match_parent"
-                android:text="@string/textview_varto_dishes"
-                android:id="@+id/textview_dishes"
-                android:layout_height="match_parent"
-                android:clickable="true"
-                android:gravity="center"
-                android:textSize="32sp"
-                android:textColor="@color/text_color_white"
-                style="@style/CustomButton"
-                android:typeface="serif" />
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop" />
 
         <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-            android:id="@+id/textview_enter_dishes"
+            android:id="@+id/text_enter_varto_plus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/start_menu_enter"
-            android:textColor="@color/text_color_white"
-            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:paddingTop="60dp"
-            app:customTypeface="Lato-Light.ttf"
-            android:visibility="visible"
-            android:textSize="16sp" />
+            android:layout_centerVertical="true"
+            android:paddingTop="@dimen/padding_top_enter_shop"
+            android:text="@string/title_click_to_enter"
+            android:textColor="@color/color_white"
+            android:textColorLink="@color/color_white"
+            android:textSize="@dimen/secondary_font_size"
+            app:customTypeface="Lato-Light.ttf" />
+
+        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+            android:id="@+id/text_varto_plus"
+            style="@style/ButtonTheme"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/title_varto_plus"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/big_title_font_size"
+            android:typeface="serif" />
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="false"
-            android:gravity="center">
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/info_shares_dishes"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="6dp"
-                android:visibility="gone"
-                android:background="#8f000000">
+                android:id="@+id/layout_goods_varto_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_all_quantity_layout"
+                android:background="@color/color_quantity_layout"
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@mipmap/ic_sale"
-                    android:contentDescription="@string/image_description" />
+                    android:layout_width="@dimen/icon_size_quantity"
+                    android:layout_height="@dimen/icon_size_quantity"
+                    android:contentDescription="@null"
+                    android:src="@mipmap/ic_sale" />
 
                 <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+                    android:id="@+id/text_new_goods_plus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="(+0)товарів"
-                    android:id="@+id/textview_count_shares_dishes"
                     android:gravity="center"
-                    android:textSize="12sp"
-                    android:textColor="@color/text_color_white"
-                    app:customTypeface="Lato-Light.ttf" />
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/small_size_font"
+                    app:customTypeface="Lato-Light.ttf"
+                    tools:text="(+0) товарів" />
 
             </LinearLayout>
 
             <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/info_news_dishes"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="false"
-                    android:layout_toRightOf="@+id/info_shares_dishes"
-                    android:layout_margin="6dp"
-                android:visibility="gone"
-                android:background="#8f000000">
+                android:id="@+id/layout_fresh_news_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_all_quantity_layout"
+                android:background="@color/color_quantity_layout"
+                android:orientation="horizontal"
+                android:visibility="gone">
 
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@mipmap/ic_newspaper_v2"
-                        android:contentDescription="@string/description_image" />
+                <ImageView
+                    android:layout_width="@dimen/icon_size_quantity"
+                    android:layout_height="@dimen/icon_size_quantity"
+                    android:contentDescription="@null"
+                    android:src="@mipmap/ic_newspaper_v2" />
 
-                    <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="(+0)новини"
-                        android:id="@+id/textview_count_news_dishes"
-                        android:textSize="12sp"
-                        android:gravity="center"
-                        android:textColor="@color/text_color_white"
-                        app:customTypeface="Lato-Light.ttf" />
+                <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+                    android:id="@+id/text_new_news_plus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/small_size_font"
+                    app:customTypeface="Lato-Light.ttf"
+                    tools:text="(+0) новин" />
 
-                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
     </RelativeLayout>
-    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/image_varto_dishes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop" />
+
+        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+            android:id="@+id/text_varto_dishes"
+            style="@style/ButtonTheme"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/title_varto_dishes"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/big_title_font_size"
+            android:typeface="serif" />
+
+        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+            android:id="@+id/text_enter_varto_dishes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:paddingTop="@dimen/padding_top_enter_shop"
+            android:text="@string/title_click_to_enter"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/secondary_font_size"
+            app:customTypeface="Lato-Light.ttf" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/layout_goods_varto_dishes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_all_quantity_layout"
+                android:background="@color/color_quantity_layout"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size_quantity"
+                    android:layout_height="@dimen/icon_size_quantity"
+                    android:contentDescription="@null"
+                    android:src="@mipmap/ic_sale" />
+
+                <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+                    android:id="@+id/text_new_goods_dishes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/small_size_font"
+                    app:customTypeface="Lato-Light.ttf"
+                    tools:text="(+0)товарів" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_fresh_news_varto_dishes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_all_quantity_layout"
+                android:background="@color/color_quantity_layout"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size_quantity"
+                    android:layout_height="@dimen/icon_size_quantity"
+                    android:contentDescription="@null"
+                    android:src="@mipmap/ic_newspaper_v2" />
+
+                <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+                    android:id="@+id/text_fresh_news_dishes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/base_font_size"
+                    app:customTypeface="Lato-Light.ttf"
+                    tools:text="(+0)новини" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

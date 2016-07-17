@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="small_size_font">12sp</dimen>
+    <dimen name="secondary_font_size">16sp</dimen>
+    <dimen name="big_title_font_size">32sp</dimen>
+    <dimen name="base_font_size">14sp</dimen>
+
+    <dimen name="margin_all_quantity_layout">10dp</dimen>
+    <dimen name="margin_left_image_description">8dp</dimen>
+    <dimen name="margin_left_shop_logo">17dp</dimen>
+    <dimen name="margin_bottom_foreground_loading">10dp</dimen>
+    <dimen name="margin_side_for_icon_catalog">17dp</dimen>
+
+    <dimen name="padding_bottom_description">17dp</dimen>
+    <dimen name="padding_top_description">17dp</dimen>
+    <dimen name="padding_side_description">15dp</dimen>
+    <dimen name="padding_top_enter_shop">60dp</dimen>
+
+    <dimen name="icon_size_quantity">24dp</dimen>
+    <dimen name="height_for_logo_shop">60dp</dimen>
+    <dimen name="thickness_divider">1dp</dimen>
+    <dimen name="toolbar_size">45dp</dimen>
+    <dimen name="height_description_shop">164dp</dimen>
+    <dimen name="height_image_good">350dp</dimen>
+    <dimen name="height_image_news">130dp</dimen>
+
+</resources>

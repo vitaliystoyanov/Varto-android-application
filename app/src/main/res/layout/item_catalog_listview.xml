@@ -1,52 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="60dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/AppThemeButton">
+    xmlns:tool="http://schemas.android.com/tools"
+    style="@style/AppThemeButton"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
 
     <ImageView
+        android:id="@+id/image_go_to_goods"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/imageView5"
-        android:src="@mipmap/ic_forward"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:visibility="invisible" />
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#ffd0d0d0"
-        android:id="@+id/view"
-        android:layout_alignParentBottom="true"
-        android:visibility="invisible" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/margin_side_for_icon_catalog"
+        android:layout_marginStart="10dp"
+        android:contentDescription="@null"
+        android:src="@mipmap/ic_email" />
 
     <ImageView
+        android:id="@+id/image_icon_catalog"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:src="@mipmap/ic_bag"
-        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/imageView2"
-        android:layout_marginLeft="17dp"
-        android:layout_marginRight="10dp"
-        android:paddingBottom="3dp" />
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="@dimen/margin_side_for_icon_catalog"
+        android:contentDescription="@null"
+        android:src="@mipmap/ic_email" />
 
     <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        android:id="@+id/text_item_catalog"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="Catalog"
-        android:id="@+id/textview_catalog_item"
-        android:textSize="16sp"
-        android:textColor="@color/text_color_black"
-        android:layout_toRightOf="@+id/imageView2"
-        android:layout_toEndOf="@+id/imageView2"
-        android:layout_above="@+id/view"
+        android:layout_toEndOf="@+id/image_icon_catalog"
+        android:layout_toRightOf="@+id/image_icon_catalog"
         android:gravity="center"
-        app:customTypeface="Lato-Light.ttf" />
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/secondary_font_size"
+        app:customTypeface="Lato-Light.ttf"
+        tool:text="Catalog" />
 
 </RelativeLayout>

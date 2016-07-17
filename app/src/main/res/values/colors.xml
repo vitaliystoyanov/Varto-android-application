@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="action_bar">#ff272727</color>
+    <color name="toolbar_primary">#ff272727</color>
     <color name="button_press_bar">#45000000</color>
-    <color name="text_color_white">#ffffffff</color>
-    <color name="text_color_black">#ff000000</color>
+    <color name="color_white">#ffffffff</color>
+    <color name="color_black">#ff000000</color>
     <color name="text_color_gray">#ff9e9e9e</color>
     <color name="text_color_red">#ffff0000</color>
-    <color name="text_color_gray_dark">#ff595959</color>
+    <color name="color_gray_dark">#ff595959</color>
+    <color name="color_divider">#ffd0d0d0</color>
+    <color name="color_background_loading">#c2000000</color>
+    <color name="color_quantity_layout">#8f000000</color>
 </resources>

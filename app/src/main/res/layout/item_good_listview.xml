@@ -1,167 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_white"
+    android:orientation="vertical">
+
+    <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        android:id="@+id/text_good_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/text_color_white"
-        xmlns:app="http://schemas.android.com/apk/res-auto" >
+        android:gravity="end"
+        android:paddingBottom="3dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="3dp"
+        android:textSize="@dimen/base_font_size"
+        app:customTypeface="Lato-Light.ttf"
+        tool:text="12 june" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_image_good">
+
+        <ImageView
+            android:id="@+id/image_item_good"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="centerInside" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="@null"
+            android:src="@mipmap/ic_logo" />
+    </RelativeLayout>
+
+    <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        android:id="@+id/text_item_good_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="7dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="7dp"
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/secondary_font_size"
+        app:customTypeface="Lato-Light.ttf"
+        tool:text="Title good" />
+
+    <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        android:id="@+id/text_item_good_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:textColor="@color/color_gray_dark"
+        android:textSize="@dimen/base_font_size"
+        app:customTypeface="Lato-Light.ttf"
+        tool:text="Description" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|end"
+        android:orientation="horizontal">
 
         <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="date"
-            android:id="@+id/textview_good_time_item"
-            android:textSize="14sp"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:paddingBottom="3dp"
-            android:gravity="right"
-            android:paddingTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|end"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:paddingTop="5dp"
+            android:text="@string/title_price"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/base_font_size"
             app:customTypeface="Lato-Light.ttf" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="350dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/imageview_good_image_item"
-                android:visibility="visible"
-                android:scaleType="centerInside" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_logo"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="5dp" />
-        </RelativeLayout>
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:paddingEnd="3dp"
+            android:paddingStart="3dp"
+            android:paddingTop="2dp"
+            android:scaleType="center"
+            android:src="@mipmap/ic_email" />
 
         <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Title good"
-            android:id="@+id/textview_good_title_item"
-            android:textSize="16sp"
-            android:textColor="@color/text_color_black"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="7dp"
-            android:paddingBottom="7dp"
-            app:customTypeface="Lato-Light.ttf"/>
-
-        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Description"
-            android:id="@+id/textview_good_description_item"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="10dp"
-            android:textSize="14dp"
+            android:id="@+id/text_item_good_old_price"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|end"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/base_font_size"
             app:customTypeface="Lato-Light.ttf"
-            android:textColor="@color/text_color_gray_dark" />
+            tool:text="257,34 грн." />
 
-        <View android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="#ffd0d0d0"
-            android:id="@+id/view"
-            android:layout_below="@+id/imageview_menu_logo"
-            android:visibility="invisible" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical|right">
-
-                <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="@string/textview_price"
-                    android:textColor="@color/text_color_black"
-                    android:textSize="14dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/textview_good_new_price_item"
-                    android:layout_toStartOf="@+id/textview_good_new_price_item"
-                    android:paddingRight="5dp"
-                    android:paddingTop="5dp"
-                    android:gravity="center_vertical|right"
-                    app:customTypeface="Lato-Light.ttf" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/imageView4"
-                    android:src="@mipmap/ic_price"
-                    android:paddingRight="3dp"
-                    android:scaleType="center"
-                    android:paddingTop="2dp" />
-
-                <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="257,34 грн."
-                    android:id="@+id/textview_good_old_price_item"
-                    android:textColor="@color/text_color_black"
-                    android:textSize="14dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/textview_good_new_price_item"
-                    android:layout_toStartOf="@+id/textview_good_new_price_item"
-                    android:paddingRight="10dp"
-                    android:paddingTop="5dp"
-                    android:gravity="center_vertical|right"
-                    app:customTypeface="Lato-Light.ttf" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top|right">
-
-                <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="@string/textview_price_sale"
-                    android:id="@+id/textView2"
-                    android:textColor="@color/text_color_black"
-                    android:layout_alignTop="@+id/textview_good_old_price_item"
-                    android:layout_toLeftOf="@+id/textview_good_old_price_item"
-                    android:layout_toStartOf="@+id/textview_good_old_price_item"
-                    android:textSize="14sp"
-                    android:gravity="right"
-                    app:customTypeface="Lato-Light.ttf"
-                    android:paddingBottom="5dp"
-                    android:paddingRight="5dp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/imageView3"
-                    android:src="@mipmap/ic_sale_price"
-                    android:paddingBottom="5dp"
-                    android:paddingRight="2dp"
-                    android:scaleType="fitCenter" />
-
-                <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="248,45 грн."
-                    android:id="@+id/textview_good_new_price_item"
-                    android:textColor="@color/text_color_red"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
-                    android:gravity="center_vertical"
-                    android:paddingRight="10dp"
-                    android:textSize="16dp"
-                    android:paddingBottom="5dp"
-                    app:customTypeface="Lato-Light.ttf" />
-
-            </LinearLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top|end"
+        android:orientation="horizontal">
+
+        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:text="@string/title_price_sale"
+            android:textColor="@color/color_black"
+            android:textSize="14sp"
+            app:customTypeface="Lato-Light.ttf" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:paddingBottom="5dp"
+            android:paddingEnd="2dp"
+            android:paddingStart="2dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_email" />
+
+        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+            android:id="@+id/text_item_good_new_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingBottom="5dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:textColor="@color/text_color_red"
+            android:textSize="@dimen/secondary_font_size"
+            app:customTypeface="Lato-Light.ttf"
+            tool:text="248,45 грн." />
+
+    </LinearLayout>
+
+</LinearLayout>

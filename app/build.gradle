@@ -1,19 +1,17 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        config {
-            storeFile file('C:/Users/Vitaliy Stoyanov/Documents/Google Keys/varto-key.jks')
-        }
-    }
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
     defaultConfig {
         applicationId "es.esy.varto_novomyrgorod.varto"
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 24
         versionCode 3
         versionName "1.2"
+        jackOptions {
+            enabled true
+        }
     }
     buildTypes {
         release {
@@ -22,9 +20,18 @@ android {
         }
     }
     sourceSets { main { assets.srcDirs = ['src/main/assets'] } }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile 'com.hannesdorfmann.mosby:viewstate:2.0.1'
+    compile 'com.hannesdorfmann.mosby:mvp:2.0.1'
 }

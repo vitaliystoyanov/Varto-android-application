@@ -1,181 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="visible"
-    android:background="@color/text_color_white">
+    android:background="@color/color_white"
+    android:orientation="vertical"
+    tools:context=".activity.ContainerActivity">
 
-    <RelativeLayout
+    <es.esy.varto_novomyrgorod.varto.view.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/action_bar"
-        android:id="@+id/action_bar">
+        android:layout_height="@dimen/toolbar_size" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            style="@style/AppThemeButton"
-            android:id="@+id/button_refresh">
-
-            <View android:layout_height="fill_parent"
-                android:layout_width="1dp"
-                android:background="#ff1f1f1f"
-                android:layout_alignParentStart="true" />
-
-            <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="ОНОВИТИ"
-                android:id="@+id/textView3"
-                android:textSize="14sp"
-                android:gravity="center"
-                android:paddingLeft="10dp"
-                android:textColor="@color/text_color_white"
-                app:customTypeface="Lato-Light.ttf"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/imageview_refresh"
-                android:src="@mipmap/ic_refresh_v2"
-                android:scaleType="center"
-                android:layout_marginRight="8dp"
-                android:layout_marginLeft="8dp" />
-
-            <View android:layout_height="fill_parent"
-                android:layout_width="1dp"
-                android:background="#ff000000"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:id="@+id/view"
-                android:visibility="gone" />
-
-            <ImageButton
-                android:layout_width="45dp"
-                android:layout_height="match_parent"
-                android:id="@+id/button_settings"
-                android:src="@mipmap/ic_settings"
-                style="@style/AppThemeButton"
-                android:layout_alignParentTop="true"
-                android:visibility="gone" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            style="@style/AppThemeButton"
-            android:clickable="true"
-            android:id="@+id/back_layout"
-            android:visibility="invisible"
-            android:paddingLeft="5dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/button_back"
-                android:src="@mipmap/ic_back"
-                android:scaleType="center" />
-
-            <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/status_location_bar_menu"
-                android:textSize="14sp"
-                android:id="@+id/textview_status"
-                android:textColor="#ffffffff"
-                android:gravity="center"
-                android:visibility="visible"
-                app:customTypeface="Lato-Light.ttf"
-                android:paddingRight="10dp" />
-
-            <View android:layout_height="fill_parent"
-                android:layout_width="1dp"
-                android:background="#ff1f1f1f"
-                android:layout_alignParentStart="true" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/logo_layout"
-            android:visibility="visible">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/image_logo"
-                android:src="@mipmap/ic_logo"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <FrameLayout
         android:id="@+id/container"
-        android:layout_below="@+id/action_bar">
-    </RelativeLayout>
-
-    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ac000000"
-        android:id="@+id/foregroung_panel"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentStart="false"
-        android:visibility="invisible"
-        android:layout_below="@+id/action_bar">
+        android:layout_below="@+id/toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/foreground_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:background="@color/color_background_loading"
+        android:visibility="invisible">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView"
-            android:src="@mipmap/ic_logo_splash"
-            android:layout_alignWithParentIfMissing="false"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"
+            android:contentDescription="@null"
+            android:src="@mipmap/ic_logo_splash" />
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp">
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/progressBar2"
-                android:indeterminateOnly="true"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="3dp" />
-
-            <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/foreground_text"
-                android:id="@+id/textView"
-                android:textColor="@color/text_color_white"
-                android:textSize="14sp"
-                app:customTypeface="Lato-Light.ttf"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:typeface="normal"
-                android:gravity="center_vertical" />
-        </LinearLayout>
+            android:layout_margin="@dimen/margin_bottom_foreground_loading"
+            android:gravity="center_vertical"
+            android:text="@string/title_loading"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/base_font_size"
+            android:textStyle="bold"
+            app:customTypeface="Lato-Light.ttf" />
 
     </RelativeLayout>
 

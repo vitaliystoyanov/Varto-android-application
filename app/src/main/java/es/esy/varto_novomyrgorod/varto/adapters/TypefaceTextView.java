@@ -49,7 +49,7 @@ public class TypefaceTextView extends TextView {
     public TypefaceTextView(final Context context, final AttributeSet attrs, final int defStyle) {
         super(context, attrs, defStyle);
         if (mTypefaces == null) {
-            mTypefaces = new HashMap<String, Typeface>();
+            mTypefaces = new HashMap<>();
         }
 
         // prevent exception in Android Studio / ADT interface builder
@@ -63,7 +63,7 @@ public class TypefaceTextView extends TextView {
                     R.styleable.TypefaceTextView_customTypeface);
 
             if (typefaceAssetPath != null) {
-                Typeface typeface = null;
+                Typeface typeface;
 
                 if (mTypefaces.containsKey(typefaceAssetPath)) {
                     typeface = mTypefaces.get(typefaceAssetPath);
