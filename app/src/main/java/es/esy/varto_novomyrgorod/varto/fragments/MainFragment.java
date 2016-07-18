@@ -17,6 +17,8 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
+import java.util.Locale;
+
 import es.esy.varto_novomyrgorod.varto.R;
 import es.esy.varto_novomyrgorod.varto.activity.ContainerActivity;
 import es.esy.varto_novomyrgorod.varto.pojo.Shop;
@@ -30,13 +32,13 @@ public class MainFragment extends MvpFragment<MainView, MainPresenter>
     public static final String TAG = "MainFragment";
     private Toolbar toolbar;
     private LinearLayout newsPlusLayout;
-    private LinearLayout sharesPlusLayout;
     private LinearLayout newsDishesLayout;
-    private LinearLayout sharesDishesLayout;
-    private TextView countNewsPlus;
-    private TextView countSharesPlus;
-    private TextView countNewsDishes;
-    private TextView countSharesDishes;
+    private LinearLayout goodsPlusLayout;
+    private LinearLayout goodsDishesLayout;
+    private TextView quantityNewsPlus;
+    private TextView quantityGoodsPlus;
+    private TextView quantityNewsDishes;
+    private TextView quantityGoodsDishes;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,13 +57,13 @@ public class MainFragment extends MvpFragment<MainView, MainPresenter>
         toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         newsPlusLayout = (LinearLayout) getActivity().findViewById(R.id.layout_fresh_news_plus);
         newsDishesLayout = (LinearLayout) getActivity().findViewById(R.id.layout_fresh_news_varto_dishes);
-        sharesPlusLayout = (LinearLayout) getActivity().findViewById(R.id.layout_goods_varto_plus);
-        sharesDishesLayout = (LinearLayout) getActivity().findViewById(R.id.layout_goods_varto_dishes);
+        goodsPlusLayout = (LinearLayout) getActivity().findViewById(R.id.layout_goods_varto_plus);
+        goodsDishesLayout = (LinearLayout) getActivity().findViewById(R.id.layout_goods_varto_dishes);
 
-        countNewsPlus = (TextView) getActivity().findViewById(R.id.text_new_news_plus);
-        countSharesPlus = (TextView) getActivity().findViewById(R.id.text_new_goods_plus);
-        countNewsDishes = (TextView) getActivity().findViewById(R.id.text_fresh_news_dishes);
-        countSharesDishes = (TextView) getActivity().findViewById(R.id.text_new_goods_dishes);
+        quantityNewsPlus = (TextView) getActivity().findViewById(R.id.text_new_news_plus);
+        quantityGoodsPlus = (TextView) getActivity().findViewById(R.id.text_new_goods_plus);
+        quantityNewsDishes = (TextView) getActivity().findViewById(R.id.text_fresh_news_dishes);
+        quantityGoodsDishes = (TextView) getActivity().findViewById(R.id.text_new_goods_dishes);
 
         ImageView imageViewPlus = (ImageView) getActivity().findViewById(R.id.image_shop_varto_plus);
         ImageView imageViewDishes = (ImageView) getActivity().findViewById(R.id.image_varto_dishes);
@@ -97,41 +99,48 @@ public class MainFragment extends MvpFragment<MainView, MainPresenter>
         int newsDishes = bundle.getInt(ContentIntentService.EXTRA_NEWS_DISHES);
         int goodsPlus = bundle.getInt(ContentIntentService.EXTRA_GOODS_PLUS);
         int goodsDishes = bundle.getInt(ContentIntentService.EXTRA_GOODS_DISHES);
-
         if (newsPlus > 0) {
-            countNewsPlus.setText("(+" + newsPlus + ") новин");
+            quantityNewsPlus.setText(
+                    String.format(Locale.getDefault(),
+                            "(+%d) %s", newsPlus, getString(R.string.quantity_news_text)));
             newsPlusLayout.setVisibility(View.VISIBLE);
             newsPlusLayout.startAnimation(slide);
         }
         if (newsDishes > 0) {
-            countNewsDishes.setText("(+" + newsDishes + ") новин");
+            quantityNewsDishes.setText(
+                    String.format(Locale.getDefault(),
+                            "(+%d) %s", newsDishes, getString(R.string.quantity_news_text)));
             newsDishesLayout.setVisibility(View.VISIBLE);
             newsDishesLayout.startAnimation(slide);
         }
         if (goodsPlus > 0) {
-            countSharesPlus.setText("(+" + goodsPlus + ") товар");
-            sharesPlusLayout.setVisibility(View.VISIBLE);
-            sharesPlusLayout.startAnimation(slide);
+            quantityGoodsPlus.setText(
+                    String.format(Locale.getDefault(),
+                            "(+%d) %s", goodsPlus, getString(R.string.quantity_goods_text)));
+            goodsPlusLayout.setVisibility(View.VISIBLE);
+            goodsPlusLayout.startAnimation(slide);
         }
         if (goodsDishes > 0) {
-            countSharesDishes.setText("(+" + goodsDishes + ") товар");
-            sharesDishesLayout.setVisibility(View.VISIBLE);
-            sharesDishesLayout.startAnimation(slide);
+            quantityGoodsDishes.setText(
+                    String.format(Locale.getDefault(),
+                            "(+%d) %s", goodsDishes, getString(R.string.quantity_goods_text)));
+            goodsDishesLayout.setVisibility(View.VISIBLE);
+            goodsDishesLayout.startAnimation(slide);
         }
-    }
-
-    @Override
-    public void hideQuantityContent() {
-        newsPlusLayout.setVisibility(View.GONE);
-        newsDishesLayout.setVisibility(View.GONE);
-        sharesPlusLayout.setVisibility(View.GONE);
-        sharesDishesLayout.setVisibility(View.GONE);
     }
 
     @NonNull
     @Override
     public MainPresenter createPresenter() {
         return new MainPresenter();
+    }
+
+    @Override
+    public void hideQuantityContent() {
+        newsPlusLayout.setVisibility(View.GONE);
+        newsDishesLayout.setVisibility(View.GONE);
+        goodsPlusLayout.setVisibility(View.GONE);
+        goodsDishesLayout.setVisibility(View.GONE);
     }
 
     @Override

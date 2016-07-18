@@ -29,24 +29,24 @@ import es.esy.varto_novomyrgorod.varto.view.Toolbar;
 public class NewsFragment extends MvpFragment<NewsView, NewsPresenter>
         implements NewsView, LoaderManager.LoaderCallbacks<List<News>> {
     private static final String TAG = "NewsFragment";
-    private static final String FROM = "FROM";
+    private static final String EXTRA_SHOP = "EXTRA_SHOP";
     private static final int LOADER_ID = 1;
 
     private ListView newsList;
     private Toolbar toolbar;
     private String shop;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_news, null);
-    }
-
     public static NewsFragment newInstance(Shop shop) {
         NewsFragment fragment = new NewsFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(FROM, shop.toString());
+        bundle.putString(EXTRA_SHOP, shop.toString());
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_news, null);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class NewsFragment extends MvpFragment<NewsView, NewsPresenter>
         newsList = (ListView) getActivity().findViewById(R.id.list_news);
         toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
 
-        shop = getArguments().getString(FROM);
+        shop = getArguments().getString(EXTRA_SHOP);
         setupShopLogo();
         getLoaderManager().initLoader(LOADER_ID, null, this).forceLoad();
     }
@@ -76,11 +76,6 @@ public class NewsFragment extends MvpFragment<NewsView, NewsPresenter>
     @Override
     public NewsPresenter createPresenter() {
         return new NewsPresenter();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
     }
 
     @Override

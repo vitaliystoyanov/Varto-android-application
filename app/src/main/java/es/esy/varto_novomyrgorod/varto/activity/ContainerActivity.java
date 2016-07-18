@@ -31,7 +31,7 @@ public class ContainerActivity extends MvpActivity<ContainerView, ContainerPrese
     private static final String TAG = "ContainerActivity";
     private static final int NOTIFICATION_ID = 1;
     private NavigationManager navigationManager;
-    private RelativeLayout foreground;
+    private RelativeLayout foregroundLoading;
     private Toolbar toolbar;
 
     private BroadcastReceiver reportStatusReceiver;
@@ -40,10 +40,9 @@ public class ContainerActivity extends MvpActivity<ContainerView, ContainerPrese
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        foreground = (RelativeLayout) findViewById(R.id.foreground_loading);
+        foregroundLoading = (RelativeLayout) findViewById(R.id.foreground_loading);
 
         setupBroadcastReceiver();
         setupNavigationManager();
@@ -69,7 +68,7 @@ public class ContainerActivity extends MvpActivity<ContainerView, ContainerPrese
                         PendingIntent.FLAG_UPDATE_CURRENT
                 );
         builder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_newspaper)
+                .setSmallIcon(R.mipmap.ic_newspaper_notification)
                 .setLargeIcon(icon)
                 .setContentIntent(resultPendingIntent)
                 .setContentTitle(getString(R.string.notification_content_title));
@@ -85,12 +84,6 @@ public class ContainerActivity extends MvpActivity<ContainerView, ContainerPrese
         navigationManager = new NavigationManager();
         navigationManager.init(getSupportFragmentManager());
         navigationManager.startMainMenu();
-    }
-
-    @NonNull
-    @Override
-    public ContainerPresenter createPresenter() {
-        return new ContainerPresenter();
     }
 
     private void setupBroadcastReceiver() {
@@ -156,6 +149,12 @@ public class ContainerActivity extends MvpActivity<ContainerView, ContainerPrese
         return builder.toString();
     }
 
+    @NonNull
+    @Override
+    public ContainerPresenter createPresenter() {
+        return new ContainerPresenter();
+    }
+
     @Override
     public void onBack() {
         presenter.onClickToolbarBackButton();
@@ -165,34 +164,6 @@ public class ContainerActivity extends MvpActivity<ContainerView, ContainerPrese
     public void onRefresh() {
         presenter.onRefresh();
         ContentIntentService.start(getApplicationContext());
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        notificationManager.cancel(NOTIFICATION_ID);
-        LocalBroadcastManager.getInstance(getApplicationContext())
-                .unregisterReceiver(reportStatusReceiver);
-        super.onDestroy();
-    }
-
-    @Override
-    public void onBackPressed() {
-        presenter.onBackPressed();
     }
 
     public NavigationManager getNavigationManager() {
@@ -206,12 +177,25 @@ public class ContainerActivity extends MvpActivity<ContainerView, ContainerPrese
 
     @Override
     public void displayLoading(boolean isVisible) {
-        foreground.setVisibility(isVisible ? View.VISIBLE : View.INVISIBLE);
+        foregroundLoading.setVisibility(isVisible ? View.VISIBLE : View.INVISIBLE);
         toolbar.animateRefreshButton(isVisible);
     }
 
     @Override
     public void goToMaimMenu(Bundle bundle) {
         navigationManager.startMainMenu(bundle);
+    }
+
+    @Override
+    public void onBackPressed() {
+        presenter.onBackPressed();
+    }
+
+    @Override
+    protected void onDestroy() {
+        notificationManager.cancel(NOTIFICATION_ID);
+        LocalBroadcastManager.getInstance(getApplicationContext())
+                .unregisterReceiver(reportStatusReceiver);
+        super.onDestroy();
     }
 }

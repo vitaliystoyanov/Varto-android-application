@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/toolbar</item>
+        <item name="android:colorPrimaryDark">@color/status_bar</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:buttonStyle">@style/ButtonToolbar</item>
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
+</resources>

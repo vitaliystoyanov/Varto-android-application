@@ -3,4 +3,4 @@
     android:id="@+id/divider"
     android:layout_width="match_parent"
     android:layout_height="@dimen/thickness_divider"
-    android:background="@color/color_divider" />
+    android:background="@color/divider" />

@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
-        android:background="@color/color_background_loading"
+        android:background="@color/background_loading"
         android:visibility="invisible">
 
         <ImageView
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:contentDescription="@null"
-            android:src="@mipmap/ic_logo_splash" />
+            android:src="@mipmap/ic_big_logo" />
 
         <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
             android:layout_width="wrap_content"

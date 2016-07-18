@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_white"
     android:orientation="vertical">
 
     <include layout="@layout/layout_shop_logo" />
+
+    <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_catalog"
+        android:textSize="@dimen/secondary_font_size"
+        app:customTypeface="Lato-Light.ttf"
+        android:layout_marginLeft="@dimen/margin_side_for_icon_catalog"
+        android:layout_marginTop="10dp" />
 
     <ListView
         android:id="@+id/list_catalog"

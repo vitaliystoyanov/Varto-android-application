@@ -28,7 +28,7 @@ import es.esy.varto_novomyrgorod.varto.view.Toolbar;
 
 public class CatalogsFragment extends MvpFragment<CatalogView, CatalogsPresenter>
         implements CatalogView, LoaderManager.LoaderCallbacks<List<Catalog>> {
-    private static final String FROM = "FROM";
+    private static final String EXTRA_SHOP = "EXTRA_SHOP";
     private static final int LOADER_ID = 2;
 
     private Toolbar toolbar;
@@ -38,7 +38,7 @@ public class CatalogsFragment extends MvpFragment<CatalogView, CatalogsPresenter
     public static CatalogsFragment newInstance(Shop shop) {
         CatalogsFragment fragment = new CatalogsFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(FROM, shop.toString());
+        bundle.putString(EXTRA_SHOP, shop.toString());
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -48,16 +48,10 @@ public class CatalogsFragment extends MvpFragment<CatalogView, CatalogsPresenter
         return inflater.inflate(R.layout.fragment_catalog, null);
     }
 
-    @NonNull
-    @Override
-    public CatalogsPresenter createPresenter() {
-        return new CatalogsPresenter();
-    }
-
     @Override
     public void onStart() {
         super.onStart();
-        shop = getArguments().getString(FROM);
+        shop = getArguments().getString(EXTRA_SHOP);
         toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         list = (ListView) getActivity().findViewById(R.id.list_catalog);
         list.setOnItemClickListener((parent, view, position, id) -> {
@@ -84,9 +78,10 @@ public class CatalogsFragment extends MvpFragment<CatalogView, CatalogsPresenter
         toolbar.setBackTitle(getString(R.string.toolbar_title_catalogs));
     }
 
+    @NonNull
     @Override
-    public void onPause() {
-        super.onPause();
+    public CatalogsPresenter createPresenter() {
+        return new CatalogsPresenter();
     }
 
     @Override

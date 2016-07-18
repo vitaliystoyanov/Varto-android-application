@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@color/toolbar_primary">
+    android:background="@color/toolbar">
 
     <LinearLayout
         android:id="@+id/toolbar_button_refresh"
-        style="@style/AppThemeButton"
+        style="@style/ButtonToolbar"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:background="@color/toolbar_primary"
+        android:background="@color/toolbar"
         android:orientation="horizontal">
 
         <View
@@ -49,7 +49,7 @@
 
         <ImageButton
             android:id="@+id/toolbar_button_settings"
-            style="@style/AppThemeButton"
+            style="@style/ButtonToolbar"
             android:layout_width="45dp"
             android:layout_height="match_parent"
             android:contentDescription="@null"
@@ -60,7 +60,7 @@
 
     <LinearLayout
         android:id="@+id/toolbar_back_layout"
-        style="@style/AppThemeButton"
+        style="@style/ButtonToolbar"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginStart="5dp"

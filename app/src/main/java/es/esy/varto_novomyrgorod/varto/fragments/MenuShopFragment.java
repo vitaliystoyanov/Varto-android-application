@@ -30,37 +30,35 @@ public class MenuShopFragment extends MvpFragment<MenuShopView, MenuShopPresente
         implements MenuShopView, View.OnClickListener, LoaderManager.LoaderCallbacks<Schedule> {
     public static final String TAG = "MenuShopFragment";
 
-    private static final String FROM = "FROM";
-    private static final String NEWS = "NEWS";
-    private static final String GOODS = "GOODS";
+    private static final String EXTRA_SHOP = "EXTRA_SHOP";
     private static final int DURATION_MILLIS_ANIMATION = 400;
     private static final int LOADER_ID = 4;
 
-    private ImageView saleImage;
+    private ImageView goodsImage;
     private ImageView newsImage;
     private String shop;
     private Toolbar toolbar;
+
+    public static MenuShopFragment newInstance(Shop shop) {
+        MenuShopFragment fragment = new MenuShopFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(EXTRA_SHOP, shop.toString());
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_menu, null);
     }
 
-    public static MenuShopFragment newInstance(Shop shop) {
-        MenuShopFragment fragment = new MenuShopFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString(FROM, shop.toString());
-        fragment.setArguments(bundle);
-        return fragment;
-    }
-
     @Override
     public void onStart() {
         super.onStart();
         toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        shop = getArguments().getString(FROM);
+        shop = getArguments().getString(EXTRA_SHOP);
 
-        saleImage = (ImageView) getActivity().findViewById(R.id.image_goods);
+        goodsImage = (ImageView) getActivity().findViewById(R.id.image_goods);
         newsImage = (ImageView) getActivity().findViewById(R.id.image_news);
 
         TextView news = (TextView) getActivity().findViewById(R.id.text_menu_news);
@@ -71,10 +69,31 @@ public class MenuShopFragment extends MvpFragment<MenuShopView, MenuShopPresente
 
         TextView location = (TextView) getActivity().findViewById(R.id.title_location);
         TextView email = (TextView) getActivity().findViewById(R.id.title_email);
-        loadData(location, email);
+        loadDescription(location, email);
 
         setupShopLogo();
         getLoaderManager().initLoader(LOADER_ID, null, this).forceLoad();
+    }
+
+    private void loadDescription(TextView textViewLocation, TextView textViewEmail) {
+        if (shop.equals(Shop.PLUS.toString())) {
+            textViewLocation.setText(R.string.location_varto_plus);
+            textViewEmail.setText(R.string.email_varto_plus);
+        } else if (shop.equals(Shop.DISHES.toString())) {
+            textViewLocation.setText(R.string.location_varto_dishes);
+            textViewEmail.setText(R.string.email_varto_dishes);
+        }
+    }
+
+    private void setupBackgroundImages() {
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .displayer(new FadeInBitmapDisplayer(DURATION_MILLIS_ANIMATION, true, true, true))
+                .build();
+        ImageLoader imageLoader = ImageLoader.getInstance();
+        imageLoader.displayImage("assets://images/wine.jpg", newsImage, options);
+        imageLoader.displayImage("assets://images/goods.jpg", goodsImage, options);
     }
 
     private void setupShopLogo() {
@@ -88,32 +107,6 @@ public class MenuShopFragment extends MvpFragment<MenuShopView, MenuShopPresente
         super.onResume();
         toolbar.setVisibleBackButton(true);
         toolbar.setBackTitle(getString(R.string.toolbar_title_menu));
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    private void setupBackgroundImages() {
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .cacheInMemory(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .displayer(new FadeInBitmapDisplayer(DURATION_MILLIS_ANIMATION, true, true, true))
-                .build();
-        ImageLoader imageLoader = ImageLoader.getInstance();
-        imageLoader.displayImage("assets://images/wine.jpg", newsImage, options);
-        imageLoader.displayImage("assets://images/goods.jpg", saleImage, options);
-    }
-
-    private void loadData(TextView textViewLocation, TextView textViewEmail) {
-        if (shop.equals(Shop.PLUS.toString())) {
-            textViewLocation.setText(R.string.location_varto_plus);
-            textViewEmail.setText(R.string.email_varto_plus);
-        } else if (shop.equals(Shop.DISHES.toString())) {
-            textViewLocation.setText(R.string.location_varto_dishes);
-            textViewEmail.setText(R.string.email_varto_dishes);
-        }
     }
 
     @NonNull

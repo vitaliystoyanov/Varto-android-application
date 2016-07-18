@@ -7,13 +7,15 @@
     <ImageView
         android:id="@+id/image_shop_logo"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="28dp"
         android:layout_marginStart="@dimen/margin_left_shop_logo"
         android:contentDescription="@null"
-        android:src="@mipmap/logo_vartoplus" />
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="15dp"
+        android:scaleType="fitStart" />
 
     <include layout="@layout/divider"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="1dp" />
 
 </LinearLayout>

@@ -34,5 +34,8 @@
     <string name="notification_fresh_news">\t нових новин \n</string>
     <string name="notification_new_goods">\t нових товарів \n</string>
     <string name="notification_content_title">Новий контент</string>
+    <string name="quantity_news_text">" новин"</string>
+    <string name="quantity_goods_text">товарів</string>
+    <string name="select_catalog">Виберіть каталог</string>
 
 </resources>

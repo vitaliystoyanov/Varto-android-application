@@ -38,7 +38,7 @@
 
             <TextView
                 android:id="@+id/text_menu_news"
-                style="@style/ButtonTheme"
+                style="@style/ButtonPressed"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -63,7 +63,7 @@
 
             <TextView
                 android:id="@+id/menu_goods"
-                style="@style/ButtonTheme"
+                style="@style/ButtonPressed"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
