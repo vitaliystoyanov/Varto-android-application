@@ -38,7 +38,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="5dp"
             android:contentDescription="@null"
-            android:src="@mipmap/ic_logo" />
+            android:src="@drawable/ic_logo" />
     </RelativeLayout>
 
     <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
@@ -122,7 +122,7 @@
             android:contentDescription="@null"
             android:paddingBottom="5dp"
             android:scaleType="fitCenter"
-            android:src="@mipmap/ic_sale" />
+            android:src="@drawable/ic_sale" />
 
         <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
             android:id="@+id/text_item_good_new_price"

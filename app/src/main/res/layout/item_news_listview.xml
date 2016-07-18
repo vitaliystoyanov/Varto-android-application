@@ -41,7 +41,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="7dp"
             android:contentDescription="@null"
-            android:src="@mipmap/ic_logo" />
+            android:src="@drawable/ic_logo" />
     </RelativeLayout>
 
     <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView

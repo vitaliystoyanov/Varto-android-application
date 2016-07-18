@@ -69,7 +69,7 @@
                     android:layout_width="@dimen/icon_size_quantity"
                     android:layout_height="@dimen/icon_size_quantity"
                     android:contentDescription="@null"
-                    android:src="@mipmap/ic_sale_quantity" />
+                    android:src="@drawable/ic_sale_quantity" />
 
                 <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
                     android:id="@+id/text_new_goods_plus"
@@ -96,7 +96,7 @@
                     android:layout_width="@dimen/icon_size_quantity"
                     android:layout_height="@dimen/icon_size_quantity"
                     android:contentDescription="@null"
-                    android:src="@mipmap/ic_newspaper_v2" />
+                    android:src="@drawable/ic_newspaper" />
 
                 <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
                     android:id="@+id/text_new_news_plus"
@@ -172,7 +172,7 @@
                     android:layout_width="@dimen/icon_size_quantity"
                     android:layout_height="@dimen/icon_size_quantity"
                     android:contentDescription="@null"
-                    android:src="@mipmap/ic_sale_quantity" />
+                    android:src="@drawable/ic_sale_quantity" />
 
                 <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
                     android:id="@+id/text_new_goods_dishes"
@@ -199,7 +199,7 @@
                     android:layout_width="@dimen/icon_size_quantity"
                     android:layout_height="@dimen/icon_size_quantity"
                     android:contentDescription="@null"
-                    android:src="@mipmap/ic_newspaper_v2" />
+                    android:src="@drawable/ic_newspaper" />
 
                 <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
                     android:id="@+id/text_fresh_news_dishes"
