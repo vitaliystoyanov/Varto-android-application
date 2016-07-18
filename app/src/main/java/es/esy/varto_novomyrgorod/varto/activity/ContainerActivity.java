@@ -68,7 +68,7 @@ public class ContainerActivity extends MvpActivity<ContainerView, ContainerPrese
                         PendingIntent.FLAG_UPDATE_CURRENT
                 );
         builder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_newspaper_notification)
+                .setSmallIcon(R.drawable.ic_newspaper_notification)
                 .setLargeIcon(icon)
                 .setContentIntent(resultPendingIntent)
                 .setContentTitle(getString(R.string.notification_content_title));

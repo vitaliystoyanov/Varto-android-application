@@ -63,7 +63,7 @@ public class NewsFragment extends MvpFragment<NewsView, NewsPresenter>
     private void setupShopLogo() {
         ImageView logo = (ImageView) getActivity().findViewById(R.id.image_shop_logo);
         logo.setImageResource(Shop.valueOf(shop) == Shop.PLUS ?
-                R.mipmap.logo_vartoplus : R.mipmap.logo_vartodishes);
+                R.drawable.logo_vartoplus : R.drawable.logo_vartodishes);
     }
 
     @Override
