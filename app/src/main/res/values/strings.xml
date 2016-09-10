@@ -10,8 +10,8 @@
     <string name="title_varto_dishes">VARTO DISHES</string>
     <string name="title_news_quantity">новин</string>
     <string name="title_goods_quantity">товарів</string>
-    <string name="title_valuta">грн.</string>
     <string name="title_price">Вартість:</string>
+    <string name="title_price_format"> %s грн.</string>
     <string name="title_price_sale">Зі знижкою:</string>
     <string name="title_schedule_today">Розклад на сьогодні:</string>
     <string name="title_button_refresh">ОНОВИТИ</string>

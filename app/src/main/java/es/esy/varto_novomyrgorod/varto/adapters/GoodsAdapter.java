@@ -67,8 +67,10 @@ public class GoodsAdapter extends ArrayAdapter<String> {
         String resultFormat = getFormattedTimeDate(objectItem);
         time.setText(resultFormat);
 
-        old_price.setText(objectItem.getOld_price() + " грн.");
-        new_price.setText(objectItem.getNew_price() + " грн.");
+        old_price.setText(String.format(context.getString(R.string.title_price_format),
+                objectItem.getOld_price()));
+        new_price.setText(String.format(context.getString(R.string.title_price_format),
+                objectItem.getNew_price()));
 
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
