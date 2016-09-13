@@ -2,6 +2,7 @@ package es.esy.varto_novomyrgorod.varto.adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import es.esy.varto_novomyrgorod.varto.R;
 import es.esy.varto_novomyrgorod.varto.pojo.Good;
 
 public class GoodsAdapter extends ArrayAdapter<String> {
+    private static final String TAG = "GoodsAdapter";
     private static final int DURATION_MILLIS_ANIMATION = 400;
     private List<Good> data;
     private Context context;
@@ -93,7 +95,7 @@ public class GoodsAdapter extends ArrayAdapter<String> {
             SimpleDateFormat newDateFormat = new SimpleDateFormat(newFormat, Locale.getDefault());
             resultFormat = newDateFormat.format(oldDateFormat.parse(objectItem.getCreated_at()));
         } catch (ParseException e) {
-            e.printStackTrace();
+            Log.e(TAG, "getFormattedTimeDate: ", e);
         }
         return resultFormat;
     }

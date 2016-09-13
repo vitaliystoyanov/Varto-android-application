@@ -62,7 +62,7 @@ public class ContentIntentService extends IntentService {
                         .sendBroadcast(localIntent);
             }
         } else {
-            throw new IllegalArgumentException("intent null");
+            throw new IllegalArgumentException("An intent is null");
         }
     }
 }

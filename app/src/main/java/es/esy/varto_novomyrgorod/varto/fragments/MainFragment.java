@@ -25,7 +25,7 @@ import es.esy.varto_novomyrgorod.varto.pojo.Shop;
 import es.esy.varto_novomyrgorod.varto.presenters.MainPresenter;
 import es.esy.varto_novomyrgorod.varto.service.ContentIntentService;
 import es.esy.varto_novomyrgorod.varto.view.MainView;
-import es.esy.varto_novomyrgorod.varto.view.Toolbar;
+import es.esy.varto_novomyrgorod.varto.common.Toolbar;
 
 public class MainFragment extends MvpFragment<MainView, MainPresenter>
         implements MainView, View.OnClickListener {

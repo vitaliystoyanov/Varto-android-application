@@ -20,7 +20,7 @@
             android:layout_height="fill_parent"
             android:background="#ff1f1f1f" />
 
-        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
@@ -75,7 +75,7 @@
             android:scaleType="center"
             android:src="@drawable/ic_back" />
 
-        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
             android:id="@+id/textview_status"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

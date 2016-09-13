@@ -13,7 +13,6 @@ public class MainApplication extends Application {
 
     @Override
     public void onTerminate() {
-        Log.d(TAG, "onTerminate: ");
         DatabaseProvider.close();
         super.onTerminate();
     }
@@ -21,7 +20,6 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(TAG, "onCreate: ");
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
                 .build();
         ImageLoader.getInstance().init(config);

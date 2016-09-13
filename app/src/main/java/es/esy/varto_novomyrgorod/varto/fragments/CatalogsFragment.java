@@ -24,7 +24,7 @@ import es.esy.varto_novomyrgorod.varto.pojo.Catalog;
 import es.esy.varto_novomyrgorod.varto.pojo.Shop;
 import es.esy.varto_novomyrgorod.varto.presenters.CatalogsPresenter;
 import es.esy.varto_novomyrgorod.varto.view.CatalogView;
-import es.esy.varto_novomyrgorod.varto.view.Toolbar;
+import es.esy.varto_novomyrgorod.varto.common.Toolbar;
 
 public class CatalogsFragment extends MvpFragment<CatalogView, CatalogsPresenter>
         implements CatalogView, LoaderManager.LoaderCallbacks<List<Catalog>> {

@@ -1,4 +1,4 @@
-package es.esy.varto_novomyrgorod.varto.adapters;
+package es.esy.varto_novomyrgorod.varto.common;
 
 /*
  * Copyright (C) 2013 Mobs and Geeks

@@ -24,7 +24,7 @@ import es.esy.varto_novomyrgorod.varto.pojo.Good;
 import es.esy.varto_novomyrgorod.varto.pojo.Shop;
 import es.esy.varto_novomyrgorod.varto.presenters.GoodsPresenter;
 import es.esy.varto_novomyrgorod.varto.view.GoodView;
-import es.esy.varto_novomyrgorod.varto.view.Toolbar;
+import es.esy.varto_novomyrgorod.varto.common.Toolbar;
 
 public class GoodsFragment extends MvpFragment<GoodView, GoodsPresenter>
         implements GoodView, LoaderManager.LoaderCallbacks<List<Good>> {

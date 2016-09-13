@@ -8,7 +8,7 @@
 
     <include layout="@layout/layout_shop_logo" />
 
-    <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+    <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/select_catalog"

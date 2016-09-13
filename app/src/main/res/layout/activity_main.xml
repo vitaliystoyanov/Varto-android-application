@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".activity.ContainerActivity">
 
-    <es.esy.varto_novomyrgorod.varto.view.Toolbar
+    <es.esy.varto_novomyrgorod.varto.common.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_size" />
@@ -34,7 +34,7 @@
             android:contentDescription="@null"
             android:src="@drawable/ic_big_logo" />
 
-        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

@@ -1,4 +1,4 @@
-package es.esy.varto_novomyrgorod.varto.view;
+package es.esy.varto_novomyrgorod.varto.common;
 
 import android.annotation.TargetApi;
 import android.content.Context;

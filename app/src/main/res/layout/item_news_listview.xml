@@ -9,7 +9,7 @@
     android:background="@drawable/item_list_selector"
     android:orientation="vertical">
 
-    <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+    <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
         android:id="@+id/time_item_news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             android:src="@drawable/ic_logo" />
     </RelativeLayout>
 
-    <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+    <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
         android:id="@+id/title_item_news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
         app:customTypeface="Lato-Light.ttf"
         tool:text="Title" />
 
-    <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+    <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
         android:id="@+id/article_item_news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

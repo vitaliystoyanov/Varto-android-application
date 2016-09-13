@@ -24,7 +24,7 @@ import es.esy.varto_novomyrgorod.varto.pojo.News;
 import es.esy.varto_novomyrgorod.varto.pojo.Shop;
 import es.esy.varto_novomyrgorod.varto.presenters.NewsPresenter;
 import es.esy.varto_novomyrgorod.varto.view.NewsView;
-import es.esy.varto_novomyrgorod.varto.view.Toolbar;
+import es.esy.varto_novomyrgorod.varto.common.Toolbar;
 
 public class NewsFragment extends MvpFragment<NewsView, NewsPresenter>
         implements NewsView, LoaderManager.LoaderCallbacks<List<News>> {

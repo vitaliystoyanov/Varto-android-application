@@ -13,4 +13,5 @@ public interface MainView extends MvpView {
     void showQuantityContent(Bundle bundle);
 
     void hideQuantityContent();
+
 }

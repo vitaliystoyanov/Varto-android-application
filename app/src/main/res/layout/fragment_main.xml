@@ -20,7 +20,7 @@
             android:contentDescription="@null"
             android:scaleType="centerCrop" />
 
-        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
             android:id="@+id/text_enter_varto_plus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             android:textSize="@dimen/secondary_font_size"
             app:customTypeface="Lato-Light.ttf" />
 
-        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
             android:id="@+id/text_varto_plus"
             style="@style/ButtonPressed"
             android:layout_width="match_parent"
@@ -71,7 +71,7 @@
                     android:contentDescription="@null"
                     android:src="@drawable/ic_sale_quantity" />
 
-                <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+                <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
                     android:id="@+id/text_new_goods_plus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -98,7 +98,7 @@
                     android:contentDescription="@null"
                     android:src="@drawable/ic_newspaper" />
 
-                <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+                <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
                     android:id="@+id/text_new_news_plus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -127,7 +127,7 @@
             android:contentDescription="@null"
             android:scaleType="centerCrop" />
 
-        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
             android:id="@+id/text_varto_dishes"
             style="@style/ButtonPressed"
             android:layout_width="match_parent"
@@ -139,7 +139,7 @@
             android:textSize="@dimen/big_title_font_size"
             android:typeface="serif" />
 
-        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
             android:id="@+id/text_enter_varto_dishes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
                     android:contentDescription="@null"
                     android:src="@drawable/ic_sale_quantity" />
 
-                <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+                <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
                     android:id="@+id/text_new_goods_dishes"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -201,7 +201,7 @@
                     android:contentDescription="@null"
                     android:src="@drawable/ic_newspaper" />
 
-                <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+                <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
                     android:id="@+id/text_fresh_news_dishes"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

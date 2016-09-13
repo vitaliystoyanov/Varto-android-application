@@ -7,7 +7,7 @@
     android:background="@color/color_white"
     android:orientation="vertical">
 
-    <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+    <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
         android:id="@+id/text_good_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:src="@drawable/ic_logo" />
     </RelativeLayout>
 
-    <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+    <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
         android:id="@+id/text_item_good_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
         app:customTypeface="Lato-Light.ttf"
         tool:text="Title good" />
 
-    <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+    <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
         android:id="@+id/text_item_good_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
         android:gravity="center_vertical|end"
         android:orientation="horizontal">
 
-        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical|end"
@@ -84,7 +84,7 @@
             android:textSize="@dimen/base_font_size"
             app:customTypeface="Lato-Light.ttf" />
 
-        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
             android:id="@+id/text_item_good_old_price"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -105,7 +105,7 @@
         android:gravity="top|end"
         android:orientation="horizontal">
 
-        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:paddingBottom="5dp"
@@ -124,7 +124,7 @@
             android:scaleType="fitCenter"
             android:src="@drawable/ic_sale" />
 
-        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
             android:id="@+id/text_item_good_new_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

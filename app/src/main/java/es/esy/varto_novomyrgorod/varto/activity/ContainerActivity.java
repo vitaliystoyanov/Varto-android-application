@@ -24,7 +24,7 @@ import es.esy.varto_novomyrgorod.varto.R;
 import es.esy.varto_novomyrgorod.varto.presenters.ContainerPresenter;
 import es.esy.varto_novomyrgorod.varto.service.ContentIntentService;
 import es.esy.varto_novomyrgorod.varto.view.ContainerView;
-import es.esy.varto_novomyrgorod.varto.view.Toolbar;
+import es.esy.varto_novomyrgorod.varto.common.Toolbar;
 
 public class ContainerActivity extends MvpActivity<ContainerView, ContainerPresenter>
         implements ContainerView, Toolbar.OnRefreshButtonListener, Toolbar.OnBackButtonListener {
@@ -193,9 +193,9 @@ public class ContainerActivity extends MvpActivity<ContainerView, ContainerPrese
 
     @Override
     protected void onDestroy() {
+        super.onDestroy();
         notificationManager.cancel(NOTIFICATION_ID);
         LocalBroadcastManager.getInstance(getApplicationContext())
                 .unregisterReceiver(reportStatusReceiver);
-        super.onDestroy();
     }
 }

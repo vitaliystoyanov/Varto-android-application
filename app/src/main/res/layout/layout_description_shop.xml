@@ -25,7 +25,7 @@
             android:src="@drawable/ic_today"
             android:contentDescription="@null" />
 
-        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
             android:id="@+id/title_schedule"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -50,7 +50,7 @@
             android:src="@drawable/ic_map"
             android:contentDescription="@null" />
 
-        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
             android:id="@+id/title_location"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -75,7 +75,7 @@
             android:src="@drawable/ic_email"
             android:contentDescription="@null" />
 
-        <es.esy.varto_novomyrgorod.varto.adapters.TypefaceTextView
+        <es.esy.varto_novomyrgorod.varto.common.TypefaceTextView
             android:id="@+id/title_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

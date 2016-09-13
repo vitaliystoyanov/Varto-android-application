@@ -14,22 +14,10 @@ import es.esy.varto_novomyrgorod.varto.fragments.NewsFragment;
 import es.esy.varto_novomyrgorod.varto.pojo.Shop;
 
 public class NavigationManager {
-
-    public interface NavigationListener {
-        void onBackstackChanged();
-    }
-
     private FragmentManager manager;
-
-    private NavigationListener mNavigationListener;
 
     public void init(FragmentManager fragmentManager) {
         manager = fragmentManager;
-        manager.addOnBackStackChangedListener(() -> {
-            if (mNavigationListener != null) {
-                mNavigationListener.onBackstackChanged();
-            }
-        });
     }
 
     private void open(Fragment fragment) {
@@ -88,17 +76,5 @@ public class NavigationManager {
 
     public void startGoods(Shop shop, String catalog) {
         open(GoodsFragment.newInstance(shop, catalog));
-    }
-
-    public boolean isRootFragmentVisible() {
-        return manager.getBackStackEntryCount() <= 1;
-    }
-
-    public NavigationListener getNavigationListener() {
-        return mNavigationListener;
-    }
-
-    public void setNavigationListener(NavigationListener navigationListener) {
-        mNavigationListener = navigationListener;
     }
 }

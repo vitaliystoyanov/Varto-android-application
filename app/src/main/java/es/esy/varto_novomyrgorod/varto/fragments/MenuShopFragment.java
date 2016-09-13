@@ -24,7 +24,7 @@ import es.esy.varto_novomyrgorod.varto.pojo.Schedule;
 import es.esy.varto_novomyrgorod.varto.pojo.Shop;
 import es.esy.varto_novomyrgorod.varto.presenters.MenuShopPresenter;
 import es.esy.varto_novomyrgorod.varto.view.MenuShopView;
-import es.esy.varto_novomyrgorod.varto.view.Toolbar;
+import es.esy.varto_novomyrgorod.varto.common.Toolbar;
 
 public class MenuShopFragment extends MvpFragment<MenuShopView, MenuShopPresenter>
         implements MenuShopView, View.OnClickListener, LoaderManager.LoaderCallbacks<Schedule> {
