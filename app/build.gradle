@@ -34,4 +34,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.hannesdorfmann.mosby:viewstate:2.0.1'
     compile 'com.hannesdorfmann.mosby:mvp:2.0.1'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
 }

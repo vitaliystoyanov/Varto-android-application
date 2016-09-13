@@ -105,6 +105,8 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 24 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="okio-1.9.0" level="project" />
+    <orderEntry type="library" exported="" name="okhttp-3.4.1" level="project" />
     <orderEntry type="library" exported="" name="gson-1.7.1" level="project" />
     <orderEntry type="library" exported="" name="mvp-common-2.0.1" level="project" />
     <orderEntry type="library" exported="" name="viewstate-2.0.1" level="project" />
