@@ -25,9 +25,9 @@ public class GoodsParser extends AbstractParser<Good> {
             good.setCatalog(jsonObject.getString(JSON_CATALOG));
             good.setImage(jsonObject.getString(JSON_IMAGE));
             good.setDescription(jsonObject.getString(JSON_DESCRIPTION));
-            good.setNew_price(jsonObject.getString(JSON_NEW_PRICE));
-            good.setOld_price(jsonObject.getString(JSON_OLD_PRICE));
-            good.setCreated_at(jsonObject.getString(JSON_CREATED_AT));
+            good.setNewPrice(jsonObject.getString(JSON_NEW_PRICE));
+            good.setOldPrice(jsonObject.getString(JSON_OLD_PRICE));
+            good.setCreatedAt(jsonObject.getString(JSON_CREATED_AT));
 
             parsedGoods.add(good);
         }

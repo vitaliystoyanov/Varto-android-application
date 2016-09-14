@@ -58,12 +58,12 @@ public class NewsAdapter extends ArrayAdapter<String> {
         TextView title = (TextView)view.findViewById(R.id.title_item_news);
         TextView time = (TextView)view.findViewById(R.id.time_item_news);
 
-        News objectItem = data.get(position);
+        News news = data.get(position);
 
-        title.setText(objectItem.getTitle());
-        article.setText(objectItem.getArticle());
+        title.setText(news.getTitle());
+        article.setText(news.getArticle());
 
-        String resultFormat = getFormattedTimeDate(objectItem);
+        String resultFormat = getFormattedTimeDate(news);
         time.setText(resultFormat);
 
         DisplayImageOptions options = new DisplayImageOptions.Builder()
@@ -73,7 +73,7 @@ public class NewsAdapter extends ArrayAdapter<String> {
                 .displayer(new FadeInBitmapDisplayer(DURATION_MILLIS_ANIMATION, true, true, true))
                 .build();
         ImageLoader imageLoader = ImageLoader.getInstance();
-        imageLoader.displayImage(objectItem.getImage(), image, options);
+        imageLoader.displayImage(news.getImage(), image, options);
         return view;
     }
 

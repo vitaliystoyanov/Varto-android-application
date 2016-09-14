@@ -25,7 +25,7 @@ public class GoodsDAO implements GoodsDAOInterface, GoodsSchema {
     }
 
     @Override
-    public HashMap<Shop, Integer> add(List<Good> listOfItems) {
+    public HashMap<Shop, Integer> deleteAndAdd(List<Good> goods) {
         List<Integer> oldListOfGoodsIDPlus = getAllID(Shop.PLUS);
         List<Integer> oldListOfGoodsIDDishes = getAllID(Shop.DISHES);
         Cursor cursor = null;
@@ -33,29 +33,28 @@ public class GoodsDAO implements GoodsDAOInterface, GoodsSchema {
             cursor = DatabaseProvider.getInstance(context).query(TAG_TABLE_GOODS,
                     null, null, null, null, null, null);
             if (cursor.moveToFirst()) {
-                int clearCount = DatabaseProvider.getInstance(context).delete(TAG_TABLE_GOODS, null, null);
-                Log.i(TAG, "add:  SUCCESS DELETE, delete number of rows: "
-                        + clearCount);
+                int rowsAffected = DatabaseProvider.getInstance(context).delete(TAG_TABLE_GOODS, null, null);
+                Log.i(TAG, "deleteAndAdd:  SUCCESS DELETE, delete number of rows: "
+                        + rowsAffected);
             }
         } finally {
             if (cursor != null) cursor.close();
         }
 
-        for (int i = 0; i < listOfItems.size(); i++) {
+        for (int i = 0; i < goods.size(); i++) {
             ContentValues contentValues = new ContentValues();
-            Good good = listOfItems.get(i);
-
+            Good good = goods.get(i);
             contentValues.put(TAG_ID, good.getId());
             contentValues.put(TAG_SHOP, good.getShop());
             contentValues.put(TAG_TITLE, good.getTitle());
             contentValues.put(TAG_CATALOG, good.getCatalog());
             contentValues.put(TAG_IMAGE, good.getImage());
-            contentValues.put(TAG_NEW_PRICE, good.getNew_price());
-            contentValues.put(TAG_OLD_PRICE, good.getOld_price());
+            contentValues.put(TAG_NEW_PRICE, good.getNewPrice());
+            contentValues.put(TAG_OLD_PRICE, good.getOldPrice());
             contentValues.put(TAG_DESCRIPTION, good.getDescription());
-            contentValues.put(TAG_CREATED_AT, good.getCreated_at());
+            contentValues.put(TAG_CREATED_AT, good.getCreatedAt());
 
-            Log.i(TAG, "add:  Result SQL insert operation: "
+            Log.i(TAG, "deleteAndAdd:  Result SQL insert operation: "
                     + String.valueOf(DatabaseProvider.getInstance(context)
                     .insert(TAG_TABLE_GOODS, null, contentValues))
                     + ", Good size of which is transmitted database: "
@@ -66,19 +65,17 @@ public class GoodsDAO implements GoodsDAOInterface, GoodsSchema {
         newListOfGoodsIDPlus.removeAll(oldListOfGoodsIDPlus);
         newListOfGoodsIDDishes.removeAll(oldListOfGoodsIDDishes);
 
-
-
-        HashMap<Shop, Integer> newContent = new HashMap<>();
-        newContent.put(Shop.PLUS, newListOfGoodsIDPlus.size());
-        newContent.put(Shop.DISHES, newListOfGoodsIDDishes.size());
-        return newContent;
+        HashMap<Shop, Integer> quantityOfNewGoods = new HashMap<>();
+        quantityOfNewGoods.put(Shop.PLUS, newListOfGoodsIDPlus.size());
+        quantityOfNewGoods.put(Shop.DISHES, newListOfGoodsIDDishes.size());
+        return quantityOfNewGoods;
     }
 
     @Override
     public List<Good> getAll(Shop shop) {
         String whereArgs = "shop = ?";
         String[] whereValues = new String[]{shop.toString().toLowerCase()};
-        return something(whereArgs, whereValues);
+        return getAllWithParams(whereArgs, whereValues);
     }
 
     @Override
@@ -86,11 +83,11 @@ public class GoodsDAO implements GoodsDAOInterface, GoodsSchema {
         Log.d(TAG, "getAll: shop - " + shop + ", catalog - " + catalog);
         String whereArgs = "shop = ? AND catalog = ?";
         String[] whereValues = new String[]{shop.toString().toLowerCase(), catalog};
-        return something(whereArgs, whereValues);
+        return getAllWithParams(whereArgs, whereValues);
     }
 
-    private List<Good> something(String whereArgs, String[] whereValues) {
-        List<Good> listOfItems = new ArrayList<>();
+    private List<Good> getAllWithParams(String whereArgs, String[] whereValues) {
+        List<Good> goods = new ArrayList<>();
         Cursor cursor = null;
         try {
             cursor = DatabaseProvider.getInstance(context)
@@ -101,36 +98,35 @@ public class GoodsDAO implements GoodsDAOInterface, GoodsSchema {
             int catalogColIndex = cursor.getColumnIndex(TAG_CATALOG);
             int descriptionColIndex = cursor.getColumnIndex(TAG_DESCRIPTION);
             int imageColIndex = cursor.getColumnIndex(TAG_IMAGE);
-            int new_priceColIndex = cursor.getColumnIndex(TAG_NEW_PRICE);
-            int old_priceColIndex = cursor.getColumnIndex(TAG_OLD_PRICE);
-            int created_atColIndex = cursor.getColumnIndex(TAG_CREATED_AT);
+            int newPriceColIndex = cursor.getColumnIndex(TAG_NEW_PRICE);
+            int oldPriceColIndex = cursor.getColumnIndex(TAG_OLD_PRICE);
+            int createdAtColIndex = cursor.getColumnIndex(TAG_CREATED_AT);
 
             if (cursor.moveToFirst()) {
                 do {
-                    Good object = new Good();
+                    Good item = new Good();
+                    item.setId(cursor.getInt(idColIndex));
+                    item.setShop(cursor.getString(shopColIndex));
+                    item.setTitle(cursor.getString(titleColIndex));
+                    item.setCatalog(cursor.getString(catalogColIndex));
+                    item.setDescription(cursor.getString(descriptionColIndex));
+                    item.setImage(cursor.getString(imageColIndex));
+                    item.setNewPrice(cursor.getString(newPriceColIndex));
+                    item.setOldPrice(cursor.getString(oldPriceColIndex));
+                    item.setCreatedAt(cursor.getString(createdAtColIndex));
 
-                    object.setId(cursor.getInt(idColIndex));
-                    object.setShop(cursor.getString(shopColIndex));
-                    object.setTitle(cursor.getString(titleColIndex));
-                    object.setCatalog(cursor.getString(catalogColIndex));
-                    object.setDescription(cursor.getString(descriptionColIndex));
-                    object.setImage(cursor.getString(imageColIndex));
-                    object.setNew_price(cursor.getString(new_priceColIndex));
-                    object.setOld_price(cursor.getString(old_priceColIndex));
-                    object.setCreated_at(cursor.getString(created_atColIndex));
-
-                    listOfItems.add(object);
+                    goods.add(item);
                 } while (cursor.moveToNext());
             }
         } finally {
             if (cursor != null) cursor.close();
         }
-        return listOfItems;
+        return goods;
     }
 
     @Override
     public List<Integer> getAllID(Shop shop) {
-        List<Integer> listOfID = new ArrayList<>();
+        List<Integer> Ids = new ArrayList<>();
         String whereArgs = "shop = ?";
         String[] whereValues = new String[]{shop.toString().toLowerCase()};
         Cursor cursor = null;
@@ -141,12 +137,12 @@ public class GoodsDAO implements GoodsDAOInterface, GoodsSchema {
 
             if (cursor.moveToFirst()) {
                 do {
-                    listOfID.add(cursor.getInt(idColIndex));
+                    Ids.add(cursor.getInt(idColIndex));
                 } while (cursor.moveToNext());
             }
         } finally {
             if (cursor != null) cursor.close();
         }
-        return listOfID;
+        return Ids;
     }
 }

@@ -59,27 +59,27 @@ public class Good {
         this.description = description;
     }
 
-    public String getNew_price() {
+    public String getNewPrice() {
         return new_price;
     }
 
-    public void setNew_price(String new_price) {
+    public void setNewPrice(String new_price) {
         this.new_price = new_price;
     }
 
-    public String getOld_price() {
+    public String getOldPrice() {
         return old_price;
     }
 
-    public void setOld_price(String old_price) {
+    public void setOldPrice(String old_price) {
         this.old_price = old_price;
     }
 
-    public String getCreated_at() {
+    public String getCreatedAt() {
         return created_at;
     }
 
-    public void setCreated_at(String created_at) {
+    public void setCreatedAt(String created_at) {
         this.created_at = created_at;
     }
 }

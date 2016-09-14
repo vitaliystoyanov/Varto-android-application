@@ -26,10 +26,9 @@ public class NewsDAO implements NewsDAOInterface, NewsSchema {
     }
 
     @Override
-    public HashMap<Shop, Integer> add(@NonNull List<News> listOfItems) {
+    public HashMap<Shop, Integer> deleteAndAdd(@NonNull List<News> news) {
         List<Integer> oldListOfNewsIDPlus = getAllNewsID(Shop.PLUS);
         List<Integer> oldListOfNewsIDDishes = getAllNewsID(Shop.DISHES);
-        Log.i(TAG, "addNews: size - " + listOfItems.size());
         Cursor cursor = null;
         try {
             cursor = DatabaseProvider.getInstance(context).query(TAG_TABLE_NEWS,
@@ -43,16 +42,15 @@ public class NewsDAO implements NewsDAOInterface, NewsSchema {
             if (cursor != null) cursor.close();
         }
 
-        for (int i = 0; i < listOfItems.size(); i++) {
+        for (int i = 0; i < news.size(); i++) {
             ContentValues contentValues = new ContentValues();
-            News news = listOfItems.get(i);
-
-            contentValues.put(TAG_ID, news.getId());
-            contentValues.put(TAG_SHOP, news.getShop());
-            contentValues.put(TAG_TITLE, news.getTitle());
-            contentValues.put(TAG_IMAGE, news.getImage());
-            contentValues.put(TAG_ARTICLE, news.getArticle());
-            contentValues.put(TAG_CREATED_AT, news.getCreatedAt());
+            News item = news.get(i);
+            contentValues.put(TAG_ID, item.getId());
+            contentValues.put(TAG_SHOP, item.getShop());
+            contentValues.put(TAG_TITLE, item.getTitle());
+            contentValues.put(TAG_IMAGE, item.getImage());
+            contentValues.put(TAG_ARTICLE, item.getArticle());
+            contentValues.put(TAG_CREATED_AT, item.getCreatedAt());
 
             Log.i(TAG, "addNews:  Result SQL insert operation: "
                     + String.valueOf(DatabaseProvider.getInstance(context).insert(TAG_TABLE_NEWS,
@@ -90,16 +88,16 @@ public class NewsDAO implements NewsDAOInterface, NewsSchema {
 
             if (cursor.moveToFirst()) {
                 do {
-                    News object = new News();
+                    News item = new News();
 
-                    object.setId(cursor.getInt(idColIndex));
-                    object.setShop(cursor.getString(shopColIndex));
-                    object.setTitle(cursor.getString(titleColIndex));
-                    object.setArticle(cursor.getString(articleColIndex));
-                    object.setImage(cursor.getString(imageColIndex));
-                    object.setCreatedAt(cursor.getString(created_atColIndex));
+                    item.setId(cursor.getInt(idColIndex));
+                    item.setShop(cursor.getString(shopColIndex));
+                    item.setTitle(cursor.getString(titleColIndex));
+                    item.setArticle(cursor.getString(articleColIndex));
+                    item.setImage(cursor.getString(imageColIndex));
+                    item.setCreatedAt(cursor.getString(created_atColIndex));
 
-                    news.add(object);
+                    news.add(item);
                 } while (cursor.moveToNext());
                 Log.i(TAG, "[TABLE: news]SQL:  Total objects in the ArrayList<News>"
                         + ",which will return method: "
@@ -109,10 +107,6 @@ public class NewsDAO implements NewsDAOInterface, NewsSchema {
             if (cursor != null) cursor.close();
         }
         return news;
-    }
-
-    public void getCountNewContent(Shop shop) {
-
     }
 
     @NonNull

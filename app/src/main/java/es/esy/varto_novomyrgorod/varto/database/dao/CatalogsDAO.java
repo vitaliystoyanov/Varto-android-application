@@ -24,23 +24,25 @@ public class CatalogsDAO implements DAOInterface<Catalog>, CatalogSchema {
     }
 
     @Override
-    public HashMap<Shop, Integer> add(List<Catalog> listOfItems) {
+    public HashMap<Shop, Integer> deleteAndAdd(List<Catalog> catalogs) {
         Cursor cursor = null;
         try {
             cursor = DatabaseProvider.getInstance(context).query(TAG_TABLE_CATALOG,
                     null, null, null, null, null, null);
             if (cursor.moveToFirst()) {
-                int clearCount = DatabaseProvider.getInstance(context).delete(TAG_TABLE_CATALOG, null, null);
-                Log.i(TAG, "[TABLE: catalog]SQL:  SUCCESS DELETE, delete number of rows: " + clearCount);
+                int rowsAffected = DatabaseProvider.getInstance(context)
+                        .delete(TAG_TABLE_CATALOG, null, null);
+                Log.i(TAG, "[TABLE: catalog]SQL:  SUCCESS DELETE, deleted number of rows: "
+                        + rowsAffected);
             }
         } finally {
             if (cursor != null) cursor.close();
         }
-        for (int i = 0; i < listOfItems.size(); i++) {
+        for (int i = 0; i < catalogs.size(); i++) {
             ContentValues contentValues = new ContentValues();
-            Catalog object = listOfItems.get(i);
-            contentValues.put(TAG_SHOP, object.getShop());
-            contentValues.put(TAG_NAME, object.getName());
+            Catalog item = catalogs.get(i);
+            contentValues.put(TAG_SHOP, item.getShop());
+            contentValues.put(TAG_NAME, item.getName());
             Log.i(TAG, "[TABLE: catalog]SQL:  Result SQL insert operation: "
                     + String.valueOf(DatabaseProvider.getInstance(context)
                     .insert(TAG_TABLE_CATALOG, null, contentValues))
@@ -52,7 +54,7 @@ public class CatalogsDAO implements DAOInterface<Catalog>, CatalogSchema {
 
     @Override
     public List<Catalog> getAll(Shop shop) {
-        List<Catalog> listOfItems = new ArrayList<>();
+        List<Catalog> catalogs = new ArrayList<>();
         String whereArgs = "shop = ?";
         String[] whereValues = new String[]{shop.toString().toLowerCase()};
         Cursor cursor = null;
@@ -63,18 +65,18 @@ public class CatalogsDAO implements DAOInterface<Catalog>, CatalogSchema {
             int nameColIndex = cursor.getColumnIndex(TAG_NAME);
             if (cursor.moveToFirst()) {
                 do {
-                    Catalog object = new Catalog();
-                    object.setName(cursor.getString(nameColIndex));
-                    object.setShop(cursor.getString(shopColIndex));
-                    listOfItems.add(object);
+                    Catalog item = new Catalog();
+                    item.setName(cursor.getString(nameColIndex));
+                    item.setShop(cursor.getString(shopColIndex));
+                    catalogs.add(item);
                 } while (cursor.moveToNext());
                 Log.i(TAG, "[TABLE: catalog]SQL:  Total objects in the ArrayList<Catalog>"
                         + ",which will return method getCatalogsFromSQLDatabase - "
-                        + listOfItems.size());
+                        + catalogs.size());
             }
         } finally {
             if (cursor != null) cursor.close();
         }
-        return listOfItems;
+        return catalogs;
     }
 }

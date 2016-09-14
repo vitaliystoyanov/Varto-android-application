@@ -59,8 +59,8 @@ public class GoodsAdapter extends ArrayAdapter<String> {
         TextView title = (TextView) view.findViewById(R.id.text_item_good_title);
         TextView description = (TextView) view.findViewById(R.id.text_item_good_description);
         TextView time = (TextView) view.findViewById(R.id.text_good_time);
-        TextView old_price = (TextView) view.findViewById(R.id.text_item_good_old_price);
-        TextView new_price = (TextView) view.findViewById(R.id.text_item_good_new_price);
+        TextView oldPrice = (TextView) view.findViewById(R.id.text_item_good_old_price);
+        TextView newPrice = (TextView) view.findViewById(R.id.text_item_good_new_price);
 
         Good objectItem = data.get(position);
         title.setText(objectItem.getTitle());
@@ -69,10 +69,10 @@ public class GoodsAdapter extends ArrayAdapter<String> {
         String resultFormat = getFormattedTimeDate(objectItem);
         time.setText(resultFormat);
 
-        old_price.setText(String.format(context.getString(R.string.title_price_format),
-                objectItem.getOld_price()));
-        new_price.setText(String.format(context.getString(R.string.title_price_format),
-                objectItem.getNew_price()));
+        oldPrice.setText(String.format(context.getString(R.string.title_price_format),
+                objectItem.getOldPrice()));
+        newPrice.setText(String.format(context.getString(R.string.title_price_format),
+                objectItem.getNewPrice()));
 
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
@@ -93,7 +93,7 @@ public class GoodsAdapter extends ArrayAdapter<String> {
             String newFormat = "dd MMMM HH:mm";
             SimpleDateFormat oldDateFormat = new SimpleDateFormat(oldFormat, Locale.getDefault());
             SimpleDateFormat newDateFormat = new SimpleDateFormat(newFormat, Locale.getDefault());
-            resultFormat = newDateFormat.format(oldDateFormat.parse(objectItem.getCreated_at()));
+            resultFormat = newDateFormat.format(oldDateFormat.parse(objectItem.getCreatedAt()));
         } catch (ParseException e) {
             Log.e(TAG, "getFormattedTimeDate: ", e);
         }

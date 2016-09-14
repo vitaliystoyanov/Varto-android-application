@@ -22,30 +22,31 @@ public class ScheduleDAO implements ScheduleDAOInterface, ScheduleSchema {
     }
 
     @Override
-    public void add(List<Schedule> listOfItems) {
+    public void add(List<Schedule> schedules) {
         Cursor cursor = null;
         try {
             cursor = DatabaseProvider.getInstance(context).query(TAG_TABLE_SCHEDULE,
                     null, null, null, null, null, null);
             if (cursor.moveToFirst()) {
-                int clearCount = DatabaseProvider.getInstance(context).delete(TAG_TABLE_SCHEDULE,
+                int rowsAffected = DatabaseProvider.getInstance(context).delete(TAG_TABLE_SCHEDULE,
                         null, null);
-                Log.i(TAG, "[TABLE: schedule]SQL:  SUCCESS DELETE, deleted count rows: " + clearCount);
+                Log.i(TAG, "[TABLE: schedule]SQL:  SUCCESS DELETE, deleted count rows: "
+                        + rowsAffected);
             }
         } finally {
             if (cursor != null) cursor.close();
         }
-        for (int i = 0; i < listOfItems.size(); i++) {
+        for (int i = 0; i < schedules.size(); i++) {
             ContentValues contentValues = new ContentValues();
-            Schedule schedule = listOfItems.get(i);
-            contentValues.put(TAG_SHOP, schedule.getShop());
-            contentValues.put(TAG_SUNDAY, schedule.getSunday());
-            contentValues.put(TAG_MONDAY, schedule.getMonday());
-            contentValues.put(TAG_TUESDAY, schedule.getTuesday());
-            contentValues.put(TAG_WEDNESDAY, schedule.getWednesday());
-            contentValues.put(TAG_THURSDAY, schedule.getThursday());
-            contentValues.put(TAG_FRIDAY, schedule.getFriday());
-            contentValues.put(TAG_SATURDAY, schedule.getSaturday());
+            Schedule item = schedules.get(i);
+            contentValues.put(TAG_SHOP, item.getShop());
+            contentValues.put(TAG_SUNDAY, item.getSunday());
+            contentValues.put(TAG_MONDAY, item.getMonday());
+            contentValues.put(TAG_TUESDAY, item.getTuesday());
+            contentValues.put(TAG_WEDNESDAY, item.getWednesday());
+            contentValues.put(TAG_THURSDAY, item.getThursday());
+            contentValues.put(TAG_FRIDAY, item.getFriday());
+            contentValues.put(TAG_SATURDAY, item.getSaturday());
             Log.i(TAG, "[TABLE: schedule]SQL: Result SQL insert: "
                     + String.valueOf(DatabaseProvider.getInstance(context)
                     .insert(TAG_TABLE_SCHEDULE, null, contentValues)));
@@ -56,8 +57,7 @@ public class ScheduleDAO implements ScheduleDAOInterface, ScheduleSchema {
     public Schedule get(Shop shop) {
         Schedule schedule = new Schedule();
         String whereArgs = "shop = ?";
-        String[] whereValues = new String[]{shop.toString().toLowerCase()}; // FIXME: 6/29/16 repeat again
-
+        String[] whereValues = new String[]{shop.toString().toLowerCase()};
         Cursor cursor = null;
         try {
             cursor = DatabaseProvider.getInstance(context)

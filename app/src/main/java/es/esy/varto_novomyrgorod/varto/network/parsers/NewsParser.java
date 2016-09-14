@@ -11,7 +11,6 @@ import es.esy.varto_novomyrgorod.varto.pojo.News;
 
 public class NewsParser extends AbstractParser<News> {
 
-
     @Override
     protected List<News> parseToList(JSONObject object) throws JSONException {
         ArrayList<News> parsedNews = new ArrayList<>();
