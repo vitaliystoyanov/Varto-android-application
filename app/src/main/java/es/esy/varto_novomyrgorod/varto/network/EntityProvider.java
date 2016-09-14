@@ -17,6 +17,7 @@ import es.esy.varto_novomyrgorod.varto.pojo.Catalog;
 import es.esy.varto_novomyrgorod.varto.pojo.Good;
 import es.esy.varto_novomyrgorod.varto.pojo.News;
 import es.esy.varto_novomyrgorod.varto.pojo.Schedule;
+import es.esy.varto_novomyrgorod.varto.utility.JsonUtility;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -29,33 +30,23 @@ public class EntityProvider implements APIUrl {
         client = new OkHttpClient();
     }
 
-    private JSONObject getJSONObject(String json) {
-        JSONObject jsonObject = null;
-        try {
-            if (json != null) jsonObject = new JSONObject(json);
-        } catch (JSONException e) {
-            Log.e(TAG, "getJSONObject: Cannot parse String", e);
-        }
-        return jsonObject;
-    }
-
     public List<News> getNews() {
-        JSONObject json = getJSONObject(request(URL_NEWS));
+        JSONObject json = JsonUtility.toJSONObject(request(URL_NEWS));
         return new NewsParser().parse(json);
     }
 
     public List<Catalog> getCatalogs() {
-        JSONObject json = getJSONObject(request(URL_CATALOGS));
+        JSONObject json = JsonUtility.toJSONObject(request(URL_CATALOGS));
         return new CatalogParser().parse(json);
     }
 
     public List<Good> getGoods() {
-        JSONObject json = getJSONObject(request(URL_GOODS));
+        JSONObject json = JsonUtility.toJSONObject(request(URL_GOODS));
         return new GoodsParser().parse(json);
     }
 
     public List<Schedule> getSchedules() {
-        JSONObject json = getJSONObject(request(URL_SCHEDULE));
+        JSONObject json = JsonUtility.toJSONObject(request(URL_SCHEDULE));
         return new ScheduleParser().parse(json);
     }
 
