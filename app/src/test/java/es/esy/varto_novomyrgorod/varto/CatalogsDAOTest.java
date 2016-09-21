@@ -2,6 +2,7 @@ package es.esy.varto_novomyrgorod.varto;
 
 import android.os.Build;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +12,7 @@ import org.robolectric.annotation.Config;
 
 import java.util.List;
 
+import es.esy.varto_novomyrgorod.varto.database.DatabaseProvider;
 import es.esy.varto_novomyrgorod.varto.database.dao.CatalogsDAO;
 import es.esy.varto_novomyrgorod.varto.network.APIUrl;
 import es.esy.varto_novomyrgorod.varto.network.parsers.CatalogParser;
@@ -38,14 +40,19 @@ public class CatalogsDAOTest {
     }
 
     @Test
-    public void testDeleteAndAdd() throws Exception {
+    public void testUpdate() throws Exception {
         List<Catalog> catalogs = new CatalogParser()
                 .parse(JsonUtility.toJSONObject(network.call(APIUrl.URL_CATALOGS)));
         assertThat("List of catalogs is null", catalogs, notNullValue());
         assertThat("Quantity of catalogs is zero", catalogs, not(empty()));
-        catalogsDAO.deleteAndAdd(catalogs);
+        catalogsDAO.update(catalogs);
         int expectedQuantity = catalogsDAO.getAll(Shop.PLUS).size()
                 + catalogsDAO.getAll(Shop.DISHES).size();
         assertThat(catalogs.size(), is(equalTo(expectedQuantity)));
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        DatabaseProvider.close();
     }
 }
