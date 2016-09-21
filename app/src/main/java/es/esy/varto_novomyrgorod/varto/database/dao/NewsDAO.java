@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import es.esy.varto_novomyrgorod.varto.database.DatabaseProvider;
+import es.esy.varto_novomyrgorod.varto.database.Database;
 import es.esy.varto_novomyrgorod.varto.database.dao.interfaces.NewsDAOInterface;
 import es.esy.varto_novomyrgorod.varto.database.dao.schema.NewsSchema;
 import es.esy.varto_novomyrgorod.varto.pojo.News;
@@ -19,22 +19,22 @@ import es.esy.varto_novomyrgorod.varto.pojo.Shop;
 public class NewsDAO implements NewsDAOInterface, NewsSchema {
 
     private static final String TAG = "NewsDAO";
-    private final Context context;
+    private Context context;
 
     public NewsDAO(Context context) {
         this.context = context;
     }
 
     @Override
-    public HashMap<Shop, Integer> deleteAndAdd(@NonNull List<News> news) {
+    public HashMap<Shop, Integer> update(@NonNull List<News> news) {
         List<Integer> oldListOfNewsIDPlus = getAllNewsID(Shop.PLUS);
         List<Integer> oldListOfNewsIDDishes = getAllNewsID(Shop.DISHES);
         Cursor cursor = null;
         try {
-            cursor = DatabaseProvider.getInstance(context).query(TAG_TABLE_NEWS,
+            cursor = Database.getInstance(context).query(TAG_TABLE_NEWS,
                     null, null, null, null, null, null);
             if (cursor.moveToFirst()) {
-                int clearCount = DatabaseProvider.getInstance(context).delete(TAG_TABLE_NEWS,
+                int clearCount = Database.getInstance(context).delete(TAG_TABLE_NEWS,
                         null, null);
                 Log.i(TAG, "[TABLE: news]SQL:  SUCCESS DELETE, delete number of rows: " + clearCount);
             }
@@ -53,7 +53,7 @@ public class NewsDAO implements NewsDAOInterface, NewsSchema {
             contentValues.put(TAG_CREATED_AT, item.getCreatedAt());
 
             Log.i(TAG, "addNews:  Result SQL insert operation: "
-                    + String.valueOf(DatabaseProvider.getInstance(context).insert(TAG_TABLE_NEWS,
+                    + String.valueOf(Database.getInstance(context).insert(TAG_TABLE_NEWS,
                     null, contentValues)) + ", News size of which is transmitted database: "
                     + String.valueOf(contentValues.size()));
         }
@@ -77,7 +77,7 @@ public class NewsDAO implements NewsDAOInterface, NewsSchema {
         Cursor cursor = null;
         try {
             String orderBy = "id DESC";
-            cursor = DatabaseProvider.getInstance(context).query(TAG_TABLE_NEWS, null,
+            cursor = Database.getInstance(context).query(TAG_TABLE_NEWS, null,
                     whereArgs, whereValues, null, null, orderBy);
             int idColIndex = cursor.getColumnIndex(TAG_ID);
             int shopColIndex = cursor.getColumnIndex(TAG_SHOP);
@@ -117,7 +117,7 @@ public class NewsDAO implements NewsDAOInterface, NewsSchema {
         String[] whereValues = new String[]{shop.toString().toLowerCase()};
         Cursor cursor = null;
         try {
-            cursor = DatabaseProvider.getInstance(context).query(TAG_TABLE_NEWS, null,
+            cursor = Database.getInstance(context).query(TAG_TABLE_NEWS, null,
                     whereArgs, whereValues, null, null, null);
             int idColIndex = cursor.getColumnIndex(TAG_ID);
 

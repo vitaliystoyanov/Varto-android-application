@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import es.esy.varto_novomyrgorod.varto.database.DatabaseProvider;
+import es.esy.varto_novomyrgorod.varto.database.Database;
 import es.esy.varto_novomyrgorod.varto.database.dao.interfaces.GoodsDAOInterface;
 import es.esy.varto_novomyrgorod.varto.database.dao.schema.GoodsSchema;
 import es.esy.varto_novomyrgorod.varto.pojo.Good;
@@ -25,16 +25,16 @@ public class GoodsDAO implements GoodsDAOInterface, GoodsSchema {
     }
 
     @Override
-    public HashMap<Shop, Integer> deleteAndAdd(List<Good> goods) {
+    public HashMap<Shop, Integer> update(List<Good> goods) {
         List<Integer> oldListOfGoodsIDPlus = getAllID(Shop.PLUS);
         List<Integer> oldListOfGoodsIDDishes = getAllID(Shop.DISHES);
         Cursor cursor = null;
         try {
-            cursor = DatabaseProvider.getInstance(context).query(TAG_TABLE_GOODS,
+            cursor = Database.getInstance(context).query(TAG_TABLE_GOODS,
                     null, null, null, null, null, null);
             if (cursor.moveToFirst()) {
-                int rowsAffected = DatabaseProvider.getInstance(context).delete(TAG_TABLE_GOODS, null, null);
-                Log.i(TAG, "deleteAndAdd:  SUCCESS DELETE, delete number of rows: "
+                int rowsAffected = Database.getInstance(context).delete(TAG_TABLE_GOODS, null, null);
+                Log.i(TAG, "update:  SUCCESS DELETE, delete number of rows: "
                         + rowsAffected);
             }
         } finally {
@@ -54,8 +54,8 @@ public class GoodsDAO implements GoodsDAOInterface, GoodsSchema {
             contentValues.put(TAG_DESCRIPTION, good.getDescription());
             contentValues.put(TAG_CREATED_AT, good.getCreatedAt());
 
-            Log.i(TAG, "deleteAndAdd:  Result SQL insert operation: "
-                    + String.valueOf(DatabaseProvider.getInstance(context)
+            Log.i(TAG, "update:  Result SQL insert operation: "
+                    + String.valueOf(Database.getInstance(context)
                     .insert(TAG_TABLE_GOODS, null, contentValues))
                     + ", Good size of which is transmitted database: "
                     + String.valueOf(contentValues.size()));
@@ -90,7 +90,7 @@ public class GoodsDAO implements GoodsDAOInterface, GoodsSchema {
         List<Good> goods = new ArrayList<>();
         Cursor cursor = null;
         try {
-            cursor = DatabaseProvider.getInstance(context)
+            cursor = Database.getInstance(context)
                     .query(TAG_TABLE_GOODS, null, whereArgs, whereValues, null, null, ORDER_BY);
             int idColIndex = cursor.getColumnIndex(TAG_ID);
             int shopColIndex = cursor.getColumnIndex(TAG_SHOP);
@@ -131,7 +131,7 @@ public class GoodsDAO implements GoodsDAOInterface, GoodsSchema {
         String[] whereValues = new String[]{shop.toString().toLowerCase()};
         Cursor cursor = null;
         try {
-            cursor = DatabaseProvider.getInstance(context)
+            cursor = Database.getInstance(context)
                     .query(TAG_TABLE_GOODS, null, whereArgs, whereValues, null, null, null);
             int idColIndex = cursor.getColumnIndex(TAG_ID);
 

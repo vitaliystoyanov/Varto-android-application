@@ -1,19 +1,18 @@
 package es.esy.varto_novomyrgorod.varto;
 
 import android.app.Application;
-import android.util.Log;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import es.esy.varto_novomyrgorod.varto.database.DatabaseProvider;
+import es.esy.varto_novomyrgorod.varto.database.Database;
 
 public class MainApplication extends Application {
     private static final String TAG = "MainApplication";
 
     @Override
     public void onTerminate() {
-        DatabaseProvider.close();
+        Database.close();
         super.onTerminate();
     }
 
@@ -23,6 +22,6 @@ public class MainApplication extends Application {
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
                 .build();
         ImageLoader.getInstance().init(config);
-        DatabaseProvider.getInstance(this); // FIXME: 6/29/16 change to a correct name
+        Database.getInstance(this); // FIXME: 6/29/16 change to a correct name
     }
 }

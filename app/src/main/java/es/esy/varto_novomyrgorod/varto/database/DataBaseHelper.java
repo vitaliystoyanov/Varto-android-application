@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String TAG_DATABASE_DB = "DB";
     private static final int DATABASE_VERSION = 1;
 
-    private static DatabaseHelper instance = null;
+    private static DatabaseHelper instance;
 
     public static synchronized DatabaseHelper getInstance(Context context) {
         if (instance == null) {
@@ -33,7 +33,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.d(TAG, "onCreate database");
         db.execSQL("create table " + TAG_TABLE_SCHEDULE + " ("
                 + ScheduleSchema.TAG_SHOP + " text,"
                 + TAG_SUNDAY + " text,"
@@ -74,5 +73,11 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) { // FIXME: 6/30/16
         Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
                 + newVersion + " which destroys all old data");
+    }
+
+    public static void release() {
+        if (instance != null) {
+            instance.close();
+        }
     }
 }

@@ -7,7 +7,7 @@ import es.esy.varto_novomyrgorod.varto.pojo.Shop;
 
 public interface DAOInterface<T> {
 
-    HashMap<Shop, Integer> deleteAndAdd(List<T> listOfItems);
+    HashMap<Shop, Integer> update(List<T> listOfItems);
 
     List<T> getAll(Shop shop);
 

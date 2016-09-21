@@ -7,7 +7,7 @@ import android.util.Log;
 
 import java.util.List;
 
-import es.esy.varto_novomyrgorod.varto.database.DatabaseProvider;
+import es.esy.varto_novomyrgorod.varto.database.Database;
 import es.esy.varto_novomyrgorod.varto.database.dao.interfaces.ScheduleDAOInterface;
 import es.esy.varto_novomyrgorod.varto.database.dao.schema.ScheduleSchema;
 import es.esy.varto_novomyrgorod.varto.pojo.Schedule;
@@ -15,20 +15,20 @@ import es.esy.varto_novomyrgorod.varto.pojo.Shop;
 
 public class ScheduleDAO implements ScheduleDAOInterface, ScheduleSchema {
     private static final String TAG = "ScheduleDAO";
-    private final Context context;
+    private Context context;
 
     public ScheduleDAO(Context context) {
         this.context = context;
     }
 
     @Override
-    public void add(List<Schedule> schedules) {
+    public void update(List<Schedule> schedules) {
         Cursor cursor = null;
         try {
-            cursor = DatabaseProvider.getInstance(context).query(TAG_TABLE_SCHEDULE,
+            cursor = Database.getInstance(context).query(TAG_TABLE_SCHEDULE,
                     null, null, null, null, null, null);
             if (cursor.moveToFirst()) {
-                int rowsAffected = DatabaseProvider.getInstance(context).delete(TAG_TABLE_SCHEDULE,
+                int rowsAffected = Database.getInstance(context).delete(TAG_TABLE_SCHEDULE,
                         null, null);
                 Log.i(TAG, "[TABLE: schedule]SQL:  SUCCESS DELETE, deleted count rows: "
                         + rowsAffected);
@@ -48,7 +48,7 @@ public class ScheduleDAO implements ScheduleDAOInterface, ScheduleSchema {
             contentValues.put(TAG_FRIDAY, item.getFriday());
             contentValues.put(TAG_SATURDAY, item.getSaturday());
             Log.i(TAG, "[TABLE: schedule]SQL: Result SQL insert: "
-                    + String.valueOf(DatabaseProvider.getInstance(context)
+                    + String.valueOf(Database.getInstance(context)
                     .insert(TAG_TABLE_SCHEDULE, null, contentValues)));
         }
     }
@@ -60,7 +60,7 @@ public class ScheduleDAO implements ScheduleDAOInterface, ScheduleSchema {
         String[] whereValues = new String[]{shop.toString().toLowerCase()};
         Cursor cursor = null;
         try {
-            cursor = DatabaseProvider.getInstance(context)
+            cursor = Database.getInstance(context)
                     .query(TAG_TABLE_SCHEDULE, null, whereArgs, whereValues, null, null, null);
             if (cursor.moveToFirst()) {
                 int shopColIndex = cursor.getColumnIndex(TAG_SHOP);

@@ -6,7 +6,7 @@ import es.esy.varto_novomyrgorod.varto.pojo.Schedule;
 import es.esy.varto_novomyrgorod.varto.pojo.Shop;
 
 public interface ScheduleDAOInterface {
-    void add(List<Schedule> listOfItems);
+    void update(List<Schedule> listOfItems);
 
     Schedule get(Shop shop);
 }

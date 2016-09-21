@@ -12,7 +12,7 @@ import org.robolectric.annotation.Config;
 
 import java.util.List;
 
-import es.esy.varto_novomyrgorod.varto.database.DatabaseProvider;
+import es.esy.varto_novomyrgorod.varto.database.Database;
 import es.esy.varto_novomyrgorod.varto.database.dao.GoodsDAO;
 import es.esy.varto_novomyrgorod.varto.network.APIUrl;
 import es.esy.varto_novomyrgorod.varto.network.parsers.GoodsParser;
@@ -53,6 +53,6 @@ public class GoodsDAOTest {
 
     @After
     public void tearDown() throws Exception {
-        DatabaseProvider.close();
+        Database.close();
     }
 }

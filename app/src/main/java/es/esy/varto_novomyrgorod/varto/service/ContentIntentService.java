@@ -42,20 +42,20 @@ public class ContentIntentService extends IntentService {
                 EntityProvider entityProvider = new EntityProvider();
                 Intent localIntent = new Intent(BROADCAST_ACTION);
 
-                HashMap<Shop, Integer> newContent = new NewsDAO(getApplicationContext()).deleteAndAdd(entityProvider.getNews());
+                HashMap<Shop, Integer> newContent = new NewsDAO(getApplicationContext()).update(entityProvider.getNews());
                 localIntent.putExtra(EXTRA_NEWS_PLUS, newContent.get(Shop.PLUS));
                 localIntent.putExtra(EXTRA_NEWS_DISHES, newContent.get(Shop.DISHES));
                 Log.d(TAG, "onHandleIntent: fresh news plus - " + newContent.get(Shop.PLUS)
                         + ", fresh news dishes - " + newContent.get(Shop.DISHES));
 
-                newContent = new GoodsDAO(getApplicationContext()).deleteAndAdd(entityProvider.getGoods());
+                newContent = new GoodsDAO(getApplicationContext()).update(entityProvider.getGoods());
                 localIntent.putExtra(EXTRA_GOODS_PLUS, newContent.get(Shop.PLUS));
                 localIntent.putExtra(EXTRA_GOODS_DISHES, newContent.get(Shop.DISHES));
                 Log.d(TAG, "onHandleIntent: fresh goods plus - " + newContent.get(Shop.PLUS)
                         + ", fresh goods dishes - " + newContent.get(Shop.DISHES));
 
-                new CatalogsDAO(getApplicationContext()).deleteAndAdd(entityProvider.getCatalogs());
-                new ScheduleDAO(getApplicationContext()).add(entityProvider.getSchedules());
+                new CatalogsDAO(getApplicationContext()).update(entityProvider.getCatalogs());
+                new ScheduleDAO(getApplicationContext()).update(entityProvider.getSchedules());
 
                 LocalBroadcastManager
                         .getInstance(getApplicationContext())

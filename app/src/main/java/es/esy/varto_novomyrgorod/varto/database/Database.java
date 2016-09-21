@@ -3,7 +3,7 @@ package es.esy.varto_novomyrgorod.varto.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-public class DatabaseProvider {
+public class Database {
 
     private static SQLiteDatabase instance;
 
@@ -17,6 +17,8 @@ public class DatabaseProvider {
     public static void close() {
         if (instance != null) {
             instance.close();
+            instance = null;
+            DatabaseHelper.release();
         }
     }
 }
