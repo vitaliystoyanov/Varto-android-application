@@ -1,5 +1,4 @@
 # Varto News&Goods ![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)
-Android client
 [varto.esy.es](varto.esy.es) is online shop that provides news and goods. I worked on design
 and architecture of Android application. I gained hands-on experience in implementing MVP architecture, data access layer with SQLite database and custom views. Application code is covered with local-instrumented unit tests.
 
